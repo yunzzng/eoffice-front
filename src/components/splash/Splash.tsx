@@ -1,8 +1,8 @@
-const Login = () => {
+const Splash = () => {
     return (
         <>
         </>
     )
 }
 
-export default Login;
+export default Splash;
