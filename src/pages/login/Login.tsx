@@ -32,7 +32,7 @@ function Login() {
     
             if (!data.isError && data.user) {
               alert('로그인 성공!');
-              navigate('/home');
+              navigate('/');
               setUserData({
                 id: data.user._id,
                 email: data.user.email,
