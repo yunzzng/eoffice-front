@@ -1,5 +1,5 @@
-const CreateMinute = () => {
-  return;
+const CreateMinutes = () => {
+  return <></>;
 };
 
-export default CreateMinute;
+export default CreateMinutes;

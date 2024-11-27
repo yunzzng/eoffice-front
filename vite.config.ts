@@ -6,17 +6,19 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      /** [Browser]
-       * fetch("/api/signin")
-       * fetch("/api/signup")
-       * fetch("/api/profile")
-       * [Client] /api/~ ====> [Back] http://localhost:8080/api/~
-       * fetch("/api/")
-       */
+      // /api/oauth 경로는 그대로 유지
+      '/api/oauth': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path,
+      },
+      // /api 경로는 rewrite 적용
       '/api': {
         target: 'http://localhost:8080',
-        // http://localhost:8080/signin ===> api/signin
-        // rewrite: (path) => path.replace(/^\/api/, ''),
+        changeOrigin: true,
+        secure: false,
+        // rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },
