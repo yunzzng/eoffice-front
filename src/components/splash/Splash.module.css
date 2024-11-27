@@ -1,6 +1,6 @@
 * {
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
 }
 .header {
     display: flex;
@@ -15,26 +15,28 @@
 
 .content {
     max-width: 50%;
+    padding-left: 100px;
 }
 
 .logo {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 30px;
+    left: 30px;
     font-size: 50px;
     font-weight: bold;
   }
 
-h1 {
+.text {
     font-size: 80px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 100px;
     text-align: left;
 }
 
 .buttons {
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    gap: 60px;
 }
 
 .loginButton, .signupButton {
@@ -42,8 +44,9 @@ h1 {
     color: #6700E6;
     border: none;
     border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 20px;
+    padding: 15px 30px;
+    font-size: 50px;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -55,4 +58,5 @@ h1 {
 .image {
     max-width: 40%;
     height: auto;
+    padding-right: 100px;
 }
