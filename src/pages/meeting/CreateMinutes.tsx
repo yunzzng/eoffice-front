@@ -1,8 +1,5 @@
 const CreateMinutes = () => {
-    return (
-        <>
-        </>
-    )
-}
+  return <></>;
+};
 
 export default CreateMinutes;
