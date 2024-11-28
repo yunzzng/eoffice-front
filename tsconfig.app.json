@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/components/splash.tsx"]
+  "include": ["src", "src/components/splash/Splash.tsx"]
 }
