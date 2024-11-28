@@ -2,7 +2,7 @@ import styles from './Splash.module.css';
 import computerImage from '../../../public/img/computerImage.png';
 import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Splash = () => {
     const navigate = useNavigate();
 
     const navigateToLogin = () => {
@@ -27,4 +27,4 @@ const Header = () => {
       );
 };
 
-export default Header;
+export default Splash;
