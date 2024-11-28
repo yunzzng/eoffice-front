@@ -1,46 +1,47 @@
+
+import { useNavigate } from "react-router-dom";
 import styles from './Sidebar.module.css';
+import computerImg from '../../../public/img/computerImage.png';
+import { SidebarContext } from "../../context/SidebarContext";
+import { useContext } from "react";
+
 
 const Sidebar = () => {
-  return (
-    <>
-      <aside className={styles.sidebar}>
-        <div className={styles.sideContent_1}>
-          <div className={styles.side_header_logo}>
-            <img
-              className={styles.logo_image}
-              src={'../../../public/img/e-office.png'}
-              alt="로고 이미지"
-            />
-          </div>
+    const {selectedMenu, setSelectedMenu} = useContext(SidebarContext);
+    const navigate = useNavigate();
 
-          <ul className={styles.sidebar_menu}>
-            <li className={styles.sidebar_menu_item}>회의실 등록</li>
-            <li className={styles.sidebar_menu_item}>회의실 수정 / 삭제</li>
-            <li className={styles.sidebar_menu_item}>회의실 예약</li>
-            <li className={styles.sidebar_menu_item}>회의실 작성</li>
-          </ul>
+    const handleClickMenu = (menu: string, path:string) => {
+        setSelectedMenu(menu);
+        navigate(path);
+    }
+
+    return(
+        <div className={styles.sidebar_box}>
+            <div className={styles.sidebar_h1_box}>
+                <h1 className={styles.sidebar_h1}>E-office</h1>
+            </div>
+            <div className={styles.sidebar_ul_box}> 
+                <ul className={styles.sidebar_ul}>
+                    <li className={styles.sidebar_li}>
+                        <a className={`${selectedMenu === '회의실 등록' ? styles.selected : styles.sidebar_a}`}
+                            onClick={() => handleClickMenu('회의실 등록' , '/addmeeting')}>회의실 등록</a></li> 
+                    <li className={styles.sidebar_li}>
+                        <a className={`${selectedMenu === '회의실 수정/삭제' ? styles.selected : styles.sidebar_a}`} 
+                        onClick={() => handleClickMenu('회의실 수정/삭제', '/editmeeting')}>회의실 수정/삭제</a></li>
+                    <li className={styles.sidebar_li}>
+                        <a className={`${selectedMenu === '회의실 예약' ? styles.selected : styles.sidebar_a}`} 
+                        onClick={() => handleClickMenu('회의실 예약', '/reservemeeting')}>회의실 예약</a></li>
+                    <li className={styles.sidebar_li}>
+                        <a className={`${selectedMenu === '회의록 작성' ? styles.selected : styles.sidebar_a}`} 
+                        onClick={() => handleClickMenu('회의록 작성', '/editmeeting')}>회의록 작성</a></li>
+                </ul>
+            </div>
+            <div className={styles.sidebar_bottom_box}>
+                <li className={styles.sidebar_li}><a className={`${selectedMenu === '프로필 수정' ? styles.selected : styles.sidebar_a}`} onClick={() =>  handleClickMenu('프로필 수정', '/profile')}>프로필 수정</a></li>
+                <img src={computerImg} className={styles.sidebar_img}/>
+            </div>
         </div>
-
-        <div className={styles.cellbar}></div>
-
-        <div>
-          <ul className={styles.sidebar_menu}>
-            <li className={styles.sidebar_menu_item}>프로필 수정</li>
-
-            <li className={styles.sidebar_menu_item}>
-              <div className={styles.side_footer_logo}>
-                <img
-                  className={styles.logo_image}
-                  src={'../../../public/img/Group.png'}
-                  alt="사이드바 아래 로고"
-                />
-              </div>
-            </li>
-          </ul>
-        </div>
-      </aside>
-    </>
-  );
-};
+    );
+}
 
 export default Sidebar;

@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'elicefont';
-  src: url('/font/EliceDXNeolliOTF-Medium.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'elicefont';
+    src: url('/font/EliceDXNeolliOTF-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 *{
