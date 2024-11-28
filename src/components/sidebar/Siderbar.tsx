@@ -1,6 +1,8 @@
 import styles from './Siderbar.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+  const navigator = useNavigate();
   return (
     <>
       <aside className={styles.sidebar}>
@@ -14,10 +16,30 @@ const Sidebar = () => {
           </div>
 
           <ul className={styles.sidebar_menu}>
-            <li className={styles.sidebar_menu_item}>회의실 등록</li>
-            <li className={styles.sidebar_menu_item}>회의실 수정 / 삭제</li>
-            <li className={styles.sidebar_menu_item}>회의실 예약</li>
-            <li className={styles.sidebar_menu_item}>회의실 작성</li>
+            <li
+              onClick={() => navigator('')}
+              className={styles.sidebar_menu_item}
+            >
+              회의실 등록
+            </li>
+            <li
+              onClick={() => navigator('')}
+              className={styles.sidebar_menu_item}
+            >
+              회의실 수정 / 삭제
+            </li>
+            <li
+              onClick={() => navigator('')}
+              className={styles.sidebar_menu_item}
+            >
+              회의실 예약
+            </li>
+            <li
+              onClick={() => navigator('/createminutes')}
+              className={styles.sidebar_menu_item}
+            >
+              회의록 작성
+            </li>
           </ul>
         </div>
 
@@ -25,7 +47,12 @@ const Sidebar = () => {
 
         <div>
           <ul className={styles.sidebar_menu}>
-            <li className={styles.sidebar_menu_item}>프로필 수정</li>
+            <li
+              onClick={() => navigator('/profile')}
+              className={styles.sidebar_menu_item}
+            >
+              프로필 수정
+            </li>
 
             <li className={styles.sidebar_menu_item}>
               <div className={styles.side_footer_logo}>

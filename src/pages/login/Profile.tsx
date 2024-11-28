@@ -3,6 +3,7 @@ import Footer from '../../components/footer/Footer';
 import styles from '../../css/loginStyles/Profile.module.css';
 import Sidebar from '../../components/sidebar/Siderbar';
 import { useState, useEffect, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /** api call
  * 로드 시 이미지 가져오는 패치 하나 /api/editprofile/loadimage
@@ -10,21 +11,32 @@ import { useState, useEffect, ChangeEvent } from 'react';
  */
 
 const EditProfile = () => {
+  const navigator = useNavigate();
+
+  const token =
+    localStorage.getItem('token') ??
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDgyYTg1M2FiOTE0NDQ1OTYxYTUzNSIsImVtYWlsIjoibWpoMUBlbGljZS5jb20iLCJpYXQiOjE3MzI3OTYzNDMsImV4cCI6MTczMjc5OTk0M30.yYgnT2Z8FEaRscQpXS5wFC0HSNxa4UpqvOsyeMN1z5M';
+
   const [passwords, setPassword] = useState({
     password: '',
     passwordComfirmed: '',
   });
 
   const [inputFile, setInputFile] = useState<File>();
+  const [srcUrl, setSrcUrl] = useState<string>();
 
   const handleInputFile = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
-    if (!file) {
+    if (file) {
+      const localImage = URL.createObjectURL(file);
+
+      setInputFile(file);
+      setSrcUrl(localImage);
+    } else {
+      alert('프로필 이미지에 넣을 사진을 선택해주세요.');
       return;
     }
-
-    setInputFile(file);
   };
 
   const handlePasswordOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,20 +44,131 @@ const EditProfile = () => {
     setPassword((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleOnSubmit = () => {
+  const handleOnSubmit = async () => {
     const formData = new FormData();
 
-    if (passwords.password === passwords.passwordComfirmed && inputFile) {
-      formData.append('password', passwords.password);
-      formData.append('image', inputFile);
-    } else {
-      alert('비밀번호 또는 사진을 넣어주세요');
+    if (passwords.password === '' || passwords.passwordComfirmed === '') {
+      alert('비밀번호를 입력해주세요.');
       return;
+    } else if (passwords.password !== passwords.passwordComfirmed) {
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    } else if (!inputFile) {
+      alert('사진을 넣어주세요');
+      return;
+    } else {
+      formData.append('password', passwords.password);
+      formData.append('profileImage', inputFile);
+
+      try {
+        const editProfileRequest = await fetch('/api/user/update', {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        });
+
+        console.log(editProfileRequest);
+
+        if (editProfileRequest.status === 200) {
+          const { isError, user } = await editProfileRequest.json();
+
+          if (!isError && user) {
+            console.log(user);
+          } else {
+            alert('일치하는 유저가 없습니다.');
+            return;
+          }
+        } else if (editProfileRequest.status === 401) {
+          const { isError, message } = await editProfileRequest.json();
+
+          if (!isError) {
+            alert(`${message}`);
+            localStorage.removeItem('token');
+            navigator('/Login');
+            return;
+          }
+        } else if (editProfileRequest.status === 400) {
+          const { isError, message } = await editProfileRequest.json();
+
+          if (isError) {
+            alert(`${message}`);
+            return;
+          }
+        } else if (editProfileRequest.status === 500) {
+          const { isError, message } = await editProfileRequest.json();
+
+          if (isError) {
+            alert(`${message}`);
+            return;
+          }
+        } else {
+          alert('서버와 통신을 실패했습니다. 다시 시도해주세요.');
+          return;
+        }
+      } catch (err) {
+        alert('시스템 에러 발생!');
+        return;
+      }
     }
   };
 
   // 로컬 스토리지
-  // const getProfileFetch = async () => {};
+  const getProfileFetch = async () => {
+    try {
+      const LoadProfileRequest = await fetch('/', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (LoadProfileRequest.status === 200) {
+        const LoadProfileData = await LoadProfileRequest.json();
+
+        if (LoadProfileData) {
+          const { isError, user } = LoadProfileData;
+
+          if (!isError && user) {
+            console.log(user);
+          }
+        } else {
+          alert('일치하는 유저가 없습니다.');
+          return;
+        }
+      } else if (LoadProfileRequest.status === 401) {
+        const { isError, message } = await LoadProfileRequest.json();
+
+        if (!isError) {
+          alert(`${message}`);
+          localStorage.removeItem('token');
+          navigator('/Login');
+          return;
+        }
+      } else if (LoadProfileRequest.status === 400) {
+        const { isError, message } = await LoadProfileRequest.json();
+
+        if (isError) {
+          alert(`${message}`);
+          return;
+        }
+      } else if (LoadProfileRequest.status === 500) {
+        const { isError, message } = await LoadProfileRequest.json();
+
+        if (isError) {
+          alert(`${message}`);
+          return;
+        }
+      } else {
+        alert('서버와 통신을 실패했습니다. 다시 시도해주세요.');
+        return;
+      }
+    } catch (err) {
+      alert('시스템 에러 발생!');
+      return;
+    }
+  };
 
   useEffect(() => {
     // getProfileFetch();
@@ -64,7 +187,9 @@ const EditProfile = () => {
                 <label htmlFor="profileImage">
                   <img
                     className={styles.logo_image}
-                    src="../../../public/img/default-image.png"
+                    src={
+                      srcUrl ? srcUrl : '../../../public/img/default-image.png'
+                    }
                     alt="프로필 이미지"
                   />
                 </label>
