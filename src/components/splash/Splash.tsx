@@ -14,7 +14,7 @@ const Splash = () => {
 
     return (
         <div className={styles.header}>
-          <div className={styles.logo} >E-Office</div>
+          
           <div className={styles.content}>
             <h1 className={styles.text}>업무의 모든 것을 <br />하나의 플랫폼에서</h1>
             <div className={styles.buttons}>

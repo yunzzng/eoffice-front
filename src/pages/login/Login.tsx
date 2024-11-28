@@ -1,6 +1,8 @@
 import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Login.module.css';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 function Login() {
     const [readUser, setReadUser] = useState({ email: '', password: '' });
@@ -49,10 +51,7 @@ function Login() {
 
     return (
         <div className={styles.loginContainer}>
-            <header className={styles.header}>
-                <h1 className={styles.logoText}>E-Office</h1>
-                <img src="../../../public/img/guestuserImage.png" className={styles.userIcon} />
-            </header>
+            <Header />
             <div className={styles.mainContent}>
                 <div className={styles.leftSection}>
                     <img src="../../../public/img/computerImage.png" className={styles.image} />
@@ -76,7 +75,6 @@ function Login() {
                     </div>
                 </div>
             </div>
-            <footer className={styles.footer}>© 2024 E-Office. All Rights Reserved.</footer>
         </div>
     );
 }
