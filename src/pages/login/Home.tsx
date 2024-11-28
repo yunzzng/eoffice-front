@@ -8,7 +8,6 @@ const HomePage = () => {
     <>
       <div className={styles.container}>
         <Sidebar />
-
         <div className={styles.main_container}>
           <Header />
           <main className={styles.main}>
@@ -22,7 +21,6 @@ const HomePage = () => {
                       alt="프로필 이미지"
                     />
                   </div>
-
                   <a className={styles.navigation}>
                     <p className={styles.navigation_title}>
                       회의실 등록하러 가기
@@ -36,7 +34,6 @@ const HomePage = () => {
                     </div>
                   </a>
                 </div>
-
                 <div className={styles.navigation_wrap}>
                   <div className={styles.default_image}>
                     <img

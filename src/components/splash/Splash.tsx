@@ -2,7 +2,7 @@ import styles from './Splash.module.css';
 import computerImage from '../../../public/img/computerImage.png';
 import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Splash = () => {
     const navigate = useNavigate();
 
     const navigateToLogin = () => {
@@ -14,7 +14,7 @@ const Header = () => {
 
     return (
         <div className={styles.header}>
-          <div className={styles.logo} >E-Office</div>
+          
           <div className={styles.content}>
             <h1 className={styles.text}>업무의 모든 것을 <br />하나의 플랫폼에서</h1>
             <div className={styles.buttons}>
@@ -27,4 +27,4 @@ const Header = () => {
       );
 };
 
-export default Header;
+export default Splash;
