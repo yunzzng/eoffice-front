@@ -70,7 +70,7 @@ function Login() {
                         </div>
                     </div>
                     <div className={styles.oauthButtons}>
-                        <button onClick={handleClickRead} className={`${styles.button} ${styles.emailButton}`}>로그인</button>
+                        <button onClick={handleClickRead} className={`${styles.button} ${styles.emailButton}`}>Login</button>
                         <button onClick={handleClickGoogle} className={`${styles.button} ${styles.googleButton}`} />
                         <button onClick={handleClickKaKao} className={`${styles.button} ${styles.kakaoButton}`} />
                     </div>
