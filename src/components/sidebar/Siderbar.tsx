@@ -1,5 +1,4 @@
-
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 import computerImg from '../../../public/images/computerImage.png';
 import { SidebarContext } from "../../context/SidebarContext";
@@ -7,13 +6,14 @@ import { useContext } from "react";
 
 
 const Sidebar = () => {
-    const {selectedMenu, setSelectedMenu} = useContext(SidebarContext);
-    const navigate = useNavigate();
+  const { selectedMenu, setSelectedMenu } = useContext(SidebarContext);
+  const navigate = useNavigate();
 
-    const handleClickMenu = (menu: string, path:string) => {
-        setSelectedMenu(menu);
-        navigate(path);
-    }
+  const handleClickMenu = (menu: string, path: string) => {
+    setSelectedMenu(menu);
+    navigate(path);
+  };
+
 
     return(
         <div className={styles.sidebar_box}>
@@ -44,5 +44,6 @@ const Sidebar = () => {
         </div>
     );
 }
+
 
 export default Sidebar;

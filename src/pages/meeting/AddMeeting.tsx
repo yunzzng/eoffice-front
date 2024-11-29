@@ -1,3 +1,4 @@
+
 import Sidebar from "../../components/sidebar/Siderbar";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
@@ -83,9 +84,10 @@ const AddMeeting = () => {
                     </div>
                 </div>
             </div>
-        <NavigateButtons label="회의실 등록하기" onClick={}/>
+        <NavigateButtons label="회의실 등록하기" onClick={handleSubmit}/>
         </div> 
     )
 }
+
 
 export default AddMeeting;

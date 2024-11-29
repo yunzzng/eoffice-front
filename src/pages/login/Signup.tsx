@@ -1,8 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Signup.module.css';
-import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
 
 function Signup() {
   const [userDetails, setUserDetails] = useState({
@@ -44,7 +42,7 @@ function Signup() {
         console.log('회원가입 성공:', data);
         navigate('/login');
       } else {
-        const errorData = await response.json(); 
+        const errorData = await response.json();
         if (errorData.message === '이미 존재하는 이메일입니다.') {
           alert('이미 사용 중인 이메일입니다. 다른 이메일을 사용하세요.');
         } else {
@@ -55,20 +53,25 @@ function Signup() {
     } catch (err) {
       console.error('회원가입 중 오류 발생:', err);
     }
-};
+  };
 
   const navigateToLogin = () => {
-      navigate('/login');
+    navigate('/login');
   };
 
   return (
       <div className={styles.signupContainer}>
+          <header className={styles.header}>
+              <h1 className={styles.logoText}>E-Office</h1>
+              <img src="../../../public/img/guestuserImage.png" className={styles.userIcon} alt="User Icon" />
+          </header>
+
           <div className={styles.mainContent}>
             <div className={styles.leftSection}>
               <div className={styles.inputField}>
                 <div className={styles.inputRow}>
                   <label className={styles.inputLabel}>이름</label>
-                    <input type="text" name="name" value={userDetails.name} onChange={handleInputChange} className={styles.input} placeholder="이름 입력" />
+                   <input type="text" name="name" value={userDetails.name} onChange={handleInputChange} className={styles.input} placeholder="이름 입력" />
                 </div>
                 <div className={styles.inputRow}>
                   <label className={styles.inputLabel}>이메일</label>
@@ -90,6 +93,7 @@ function Signup() {
                 <button onClick={navigateToLogin} className={styles.loginButton}>로그인</button>
               </div>
           </div>
+        <footer className={styles.footer}>© 2024 E-Office. All Rights Reserved.</footer>
       </div>
   );
 }

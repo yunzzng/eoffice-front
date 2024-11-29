@@ -6,34 +6,33 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 
 function Login() {
-    const [readUser, setReadUser] = useState({ email: '', password: '' });
-    const [userData, setUserData] = useState({ id: '', email: '', name: '' });
-    const navigate = useNavigate();
+  const [readUser, setReadUser] = useState({ email: '', password: '' });
+  const [userData, setUserData] = useState({ id: '', email: '', name: '' });
+  const navigate = useNavigate();
 
-    const handleReadDB = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setReadUser((prev) => ({ ...prev, [name]: value }));
-    };
+  const handleReadDB = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setReadUser((prev) => ({ ...prev, [name]: value }));
+  };
 
-    const handleClickRead = async () => {
-        const { email, password } = readUser;
-        if (!email || !password) {
-            alert('이메일과 비밀번호를 입력하세요.');
-            return;
-        }
-        try {
-            const response = await fetch('/api/user/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
+  const handleClickRead = async () => {
+    const { email, password } = readUser;
+    if (!email || !password) {
+      alert('이메일과 비밀번호를 입력하세요.');
+      return;
+    }
+    try {
+      const response = await fetch('/api/user/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
             if (response.ok) {
                 const data = await response.json();
                 if (!data.isError && data.user) {
-                    localStorage.setItem('token', data.token); 
-                    console.log('로그인 한 유저의 토큰',data.token);
                     alert('로그인 성공!');
+                    localStorage.setItem('token', data.token); 
                     navigate('/home');
                     setUserData({ id: data.user._id, email: data.user.email, name: data.user.name });
                 } else {
@@ -47,12 +46,13 @@ function Login() {
         }
     };
 
-    const handleClickGoogle = () => window.location.href = "/api/oauth/google";
-    const handleClickKaKao = () => window.location.href = "/api/oauth/kakao";
-    const navigateToSignup = () => navigate("/signup");
+  const handleClickGoogle = () => (window.location.href = '/api/oauth/google');
+  const handleClickKaKao = () => (window.location.href = '/api/oauth/kakao');
+  const navigateToSignup = () => navigate('/signup');
 
     return (
         <div className={styles.loginContainer}>
+            <Header />
             <div className={styles.mainContent}>
                 <div className={styles.leftSection}>
                     <img src="../../../public/img/computerImage.png" className={styles.image} />

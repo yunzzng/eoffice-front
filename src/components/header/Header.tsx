@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+
 
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
@@ -40,8 +41,9 @@ const Header = () => {
     };
 
     useEffect(() => {
-        fetchUser();
-    },[]);
+    fetchUser();
+    }, []);
+
 
     return(
         <div className={styles.header}>
@@ -57,7 +59,8 @@ const Header = () => {
                 </div>
             }
         </div>
-    )
-}
+        )
+
+};
 
 export default Header;
