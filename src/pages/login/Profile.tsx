@@ -13,11 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const EditProfile = () => {
   const navigator = useNavigate();
 
-
-  const token =
-    localStorage.getItem('token') ;
-    console.log(token);
-
+  const token = localStorage.getItem('token') ?? '';
 
   const [passwords, setPassword] = useState({
     password: '',
@@ -72,8 +68,6 @@ const EditProfile = () => {
           body: formData,
         });
 
-        console.log(editProfileRequest);
-
         if (editProfileRequest.status === 200) {
           const { isError, user } = await editProfileRequest.json();
 
@@ -119,21 +113,21 @@ const EditProfile = () => {
     }
   };
 
- // 로컬 스토리지
- const getProfileFetch = async () => {
-  try {
-    const LoadProfileRequest = await fetch('/api/user/update', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  // 로컬 스토리지
+  const getProfileFetch = async () => {
+    try {
+      const LoadProfileRequest = await fetch('/api/user/update', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    if (LoadProfileRequest.status === 200) {
-      const LoadProfileData = await LoadProfileRequest.json();
+      if (LoadProfileRequest.status === 200) {
+        const LoadProfileData = await LoadProfileRequest.json();
 
-      if (LoadProfileData) {
-        const { isError, user } = LoadProfileData;
+        if (LoadProfileData) {
+          const { isError, user } = LoadProfileData;
 
           if (!isError && user) {
             const { profileImage } = user;
@@ -142,37 +136,37 @@ const EditProfile = () => {
           }
         }
       } else if (LoadProfileRequest.status === 401) {
-      const { isError, message } = await LoadProfileRequest.json();
+        const { isError, message } = await LoadProfileRequest.json();
 
-      if (!isError) {
-        alert(`${message}`);
-        localStorage.removeItem('token');
-        navigator('/Login');
+        if (!isError) {
+          alert(`${message}`);
+          localStorage.removeItem('token');
+          navigator('/Login');
+          return;
+        }
+      } else if (LoadProfileRequest.status === 400) {
+        const { isError, message } = await LoadProfileRequest.json();
+
+        if (isError) {
+          alert(`${message}`);
+          return;
+        }
+      } else if (LoadProfileRequest.status === 500) {
+        const { isError, message } = await LoadProfileRequest.json();
+
+        if (isError) {
+          alert(`${message}`);
+          return;
+        }
+      } else {
+        alert('서버와 통신을 실패했습니다. 다시 시도해주세요.');
         return;
       }
-    } else if (LoadProfileRequest.status === 400) {
-      const { isError, message } = await LoadProfileRequest.json();
-
-      if (isError) {
-        alert(`${message}`);
-        return;
-      }
-    } else if (LoadProfileRequest.status === 500) {
-      const { isError, message } = await LoadProfileRequest.json();
-
-      if (isError) {
-        alert(`${message}`);
-        return;
-      }
-    } else {
-      alert('서버와 통신을 실패했습니다. 다시 시도해주세요.');
+    } catch (err) {
+      alert('시스템 에러 발생!');
       return;
     }
-  } catch (err) {
-    alert('시스템 에러 발생!');
-    return;
-  }
-
+  };
   useEffect(() => {
     getProfileFetch();
   }, []);

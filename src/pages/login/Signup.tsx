@@ -1,8 +1,8 @@
 import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Signup.module.css';
-import Footer from '../../components/footer/Footer';
-import Header from '../../components/header/Header';
+// import Footer from '../../components/footer/Footer';
+// import Header from '../../components/header/Header';
 
 function Signup() {
   const [userDetails, setUserDetails] = useState({
