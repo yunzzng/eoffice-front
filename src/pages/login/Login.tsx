@@ -1,8 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Login.module.css';
-import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
 
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
