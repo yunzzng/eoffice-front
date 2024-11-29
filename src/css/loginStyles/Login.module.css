@@ -162,11 +162,11 @@
 }
 
 .googleButton {
-  background-image: url('/image/google_login_img.png');
+    background-image: url("../../../public/images/google_login_img.png");
 }
 
 .kakaoButton {
-  background-image: url('/image/kakao_login_img.png');
+    background-image: url("../../../public/images/kakao_login_img.png");
 }
 
 .buttonImage {
