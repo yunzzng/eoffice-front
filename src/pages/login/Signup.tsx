@@ -87,7 +87,7 @@ function Signup() {
                 <button onClick={handleSignup} className={styles.signupButton}>회원가입</button>
               </div>
               <div className={styles.rightSection}>
-                <img src="../../../public/img/computerImage.png" className={styles.image} alt="Computer" />
+                <img src="../../../public/images/computerImage.png" className={styles.image} alt="Computer" />
                 <button onClick={navigateToLogin} className={styles.loginButton}>로그인</button>
               </div>
           </div>

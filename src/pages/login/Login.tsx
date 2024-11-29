@@ -57,7 +57,7 @@ function Login() {
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
           <img
-            src="../../../public/image/computerImage.png"
+            src="../../../public/images/computerImage.png"
             className={styles.image}
           />
           <button onClick={navigateToSignup} className={styles.signupButton}>
