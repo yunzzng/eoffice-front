@@ -1,5 +1,5 @@
 import styles from './Splash.module.css';
-import computerImage from '../../../public/image/computerImage.png';
+import computerImage from '../../../public/images/computerImage.png';
 import { useNavigate } from 'react-router-dom';
 
 const Splash = () => {

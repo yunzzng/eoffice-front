@@ -1,6 +1,8 @@
 import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Signup.module.css';
+import Footer from '../../components/footer/Footer';
+import Header from '../../components/header/Header';
 
 function Signup() {
   const [userDetails, setUserDetails] = useState({
@@ -124,7 +126,7 @@ function Signup() {
         </div>
         <div className={styles.rightSection}>
           <img
-            src="../../../public/images/computerImage.png"
+            src="../../../public/img/computerImage.png"
             className={styles.image}
             alt="Computer"
           />

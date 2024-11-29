@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './Sidebar.module.css';
-import computerImg from '../../../public/image/computerImage.png';
+import computerImg from '/images/computerImage.png';
 import { SidebarContext } from '../../context/SidebarContext';
 import { useContext } from 'react';
 
