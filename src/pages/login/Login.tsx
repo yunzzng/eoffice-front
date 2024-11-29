@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Login.module.css';
+import styles2 from '../../components/footer/Footer_login.module.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 
@@ -30,8 +31,9 @@ function Login() {
             if (response.ok) {
                 const data = await response.json();
                 if (!data.isError && data.user) {
-                    alert('로그인 성공!');
                     localStorage.setItem('token', data.token); 
+                    console.log('로그인 한 유저의 토큰',data.token);
+                    alert('로그인 성공!');
                     navigate('/home');
                     setUserData({ id: data.user._id, email: data.user.email, name: data.user.name });
                 } else {
@@ -51,7 +53,6 @@ function Login() {
 
     return (
         <div className={styles.loginContainer}>
-            <Header />
             <div className={styles.mainContent}>
                 <div className={styles.leftSection}>
                     <img src="../../../public/img/computerImage.png" className={styles.image} />

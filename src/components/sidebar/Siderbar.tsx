@@ -1,7 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 import styles from './Sidebar.module.css';
-import computerImg from '../../../public/img/computerImage.png';
+import computerImg from '../../../public/images/computerImage.png';
 import { SidebarContext } from "../../context/SidebarContext";
 import { useContext } from "react";
 
@@ -18,7 +18,8 @@ const Sidebar = () => {
     return(
         <div className={styles.sidebar_box}>
             <div className={styles.sidebar_h1_box}>
-                <h1 className={styles.sidebar_h1}>E-office</h1>
+                <h1 className={`${selectedMenu === 'E-office' ? styles.sidebar_h1 : styles.sidebar_h1}`}>
+                    <a onClick={() => handleClickMenu('E-office', '/home')}>E-office</a></h1>
             </div>
             <div className={styles.sidebar_ul_box}> 
                 <ul className={styles.sidebar_ul}>

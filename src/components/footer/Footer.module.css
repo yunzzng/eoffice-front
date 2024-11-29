@@ -1,13 +1,11 @@
-body{
-  color: #cdcd;
-}
+
 
 .footer_box{
   background-color: #434343;
   position: fixed;
   left: 200px;
   bottom: 0;
-  height: 80px;
+  height: 60px;
   padding: 0 20px;
   width: calc(100vw - 200px);
   display: flex;
@@ -43,6 +41,7 @@ body{
 
 .footer_copyright{
   font-size: 10px;
+  color: #cdcd;
 }
 
 .footer_sns_box{
