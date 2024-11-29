@@ -17,7 +17,7 @@ const HomePage = () => {
                   <div className={styles.default_image}>
                     <img
                       className={styles.logo_image}
-                      src="../../../public/img/default-image.png"
+                      src="../../../public/images/default-image.png"
                       alt="프로필 이미지"
                     />
                   </div>
@@ -28,7 +28,7 @@ const HomePage = () => {
                     <div className={styles.arrow_image}>
                       <img
                         className={styles.logo_image}
-                        src="../../../public/img/arrow.png"
+                        src="../../../public/images/arrow.png"
                         alt="화살표"
                       />
                     </div>
@@ -38,7 +38,7 @@ const HomePage = () => {
                   <div className={styles.default_image}>
                     <img
                       className={styles.logo_image}
-                      src="../../../public/img/default-image.png"
+                      src="../../../public/images/default-image.png"
                       alt="프로필 이미지"
                     />
                   </div>
@@ -50,7 +50,7 @@ const HomePage = () => {
                     <div className={styles.arrow_image}>
                       <img
                         className={styles.logo_image}
-                        src="../../../public/img/arrow.png"
+                        src="../../../public/images/arrow.png"
                         alt="화살표"
                       />
                     </div>

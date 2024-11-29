@@ -55,11 +55,11 @@ function Login() {
 
   return (
     <div className={styles.loginContainer}>
-      <Header />
+      {/* <Header /> */}
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
           <img
-            src="../../../public/img/computerImage.png"
+            src="../../../public/images/computerImage.png"
             className={styles.image}
           />
           <button onClick={navigateToSignup} className={styles.signupButton}>
@@ -108,7 +108,7 @@ function Login() {
             />
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

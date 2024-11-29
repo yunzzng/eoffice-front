@@ -77,14 +77,13 @@ ul {
 .label {
   font-size: 2rem;
   font-weight: bold;
+ 
 }
 
 .input {
   width: 20rem;
-
   border: none;
   padding: 1rem;
-
   background-color: #f1f1f1;
 }
 

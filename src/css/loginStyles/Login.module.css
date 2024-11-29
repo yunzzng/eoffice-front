@@ -161,12 +161,12 @@
 }
 
 .googleButton {
-    background-image: url("/img/google_login_img.png");
+    background-image: url("/images/google_login_img.png");
 }
 
 
 .kakaoButton {
-    background-image: url("/img/kakao_login_img.png");
+    background-image: url("/images/kakao_login_img.png");
 }
 
 .buttonImage {

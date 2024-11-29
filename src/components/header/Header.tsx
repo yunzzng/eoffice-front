@@ -3,31 +3,40 @@ import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 import profileimg from "../../../public/images/profile-img.png";
+import guestprofile from "../../../public/images/guest_profile.png";
 
 interface User {
     _id: string;
+    name: string;
+    email: string;
 }
 
 const Header = () => {
-    const [user, setUser] = useState<User>({_id:''});
+    const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
 
     const fetchUser = async() => {
+        const token = localStorage.getItem("token");
         try{
+            if(!token) {
+                console.log("토큰이 없습니다.")
+                return;
+            }
             const response = await fetch("/api/user/profile", {
-                method: "POST",
-                body: JSON.stringify({user}),
+                method: "GET",
                 headers: {
-                    "Content-Type" : "application/json"
+                    Authorization: `Bearer ${token}`,
                 }
             });
             if(response.ok) {
-                console.log(response);
+                console.log('유저 정보 가져오기 성공',response);
                 const data = await response.json();
                 setUser(data.user);
+            }else{
+                console.log('유저정보 가져오기 실패');
             }
         }catch(err) {
-            console.log('사용자 정보 에러',err)
+            console.log('유저 정보 가져오기 x',err)
         }
     };
 
@@ -39,13 +48,13 @@ const Header = () => {
         <div className={styles.header}>
             {user ? (
                 <div className={styles.header_box1}>
-                    <h1 className={styles.logo}>eoffice  </h1>
+                    <h1 className={styles.logo}>E-office  </h1>
                     <a onClick={() => {navigate('/profile')}}>
-                      <img src={profileimg} alt="사용자 프로필 이미지" className={styles.header_profile_img}/>
+                        <img src={profileimg} alt="사용자 프로필 이미지" className={styles.header_profile_img}/>
                     </a>
                 </div>
             ) : <div>
-                    <h1 className={styles.logo}> E-Office </h1>
+                    <img src={guestprofile} alt="게스트 프로필 이미지" className={styles.header_profile_img} />
                 </div>
             }
         </div>

@@ -1,6 +1,4 @@
-body{
-  color: #cdcd;
-}
+
 
 .footer_box{
   background-color: #434343;
@@ -43,6 +41,7 @@ body{
 
 .footer_copyright{
   font-size: 10px;
+  color: #cdcdcd;
 }
 
 .footer_sns_box{
