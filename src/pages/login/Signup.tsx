@@ -66,7 +66,7 @@ function Signup() {
       <header className={styles.header}>
         <h1 className={styles.logoText}>E-Office</h1>
         <img
-          src="../../../public/img/guestuserImage.png"
+          src="../../../public/image/guestuserImage.png"
           className={styles.userIcon}
           alt="User Icon"
         />
@@ -126,7 +126,7 @@ function Signup() {
         </div>
         <div className={styles.rightSection}>
           <img
-            src="../../../public/img/computerImage.png"
+            src="../../../public/image/computerImage.png"
             className={styles.image}
             alt="Computer"
           />

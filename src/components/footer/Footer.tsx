@@ -1,7 +1,7 @@
 import styles from './Footer.module.css';
-import youtube from '../../../public/image/logos_youtube-icon.png';
-import instagram from '../../../public/image/skill-icons_instagram.png';
-import linkedin from '../../../public/image/devicon_linkedin.png';
+import youtube from '../../../public/images/logos_youtube-icon.png';
+import instagram from '../../../public/images/skill-icons_instagram.png';
+import linkedin from '../../../public/images/devicon_linkedin.png';
 
 const Footer = () => {
   return (
