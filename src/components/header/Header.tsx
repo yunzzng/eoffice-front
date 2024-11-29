@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
-import profileimg from "../../../public/img/profile-img.png";
+import profileimg from "../../../public/images/profile-img.png";
 
 interface User {
     _id: string;
