@@ -1,13 +1,13 @@
-import Sidebar from "../../components/sidebar/Siderbar";
-import Footer from "../../components/footer/Footer";
+import Sidebar from '../../components/sidebar/Siderbar';
+import Footer from '../../components/footer/Footer';
 
 const AddMeeting = () => {
-    return (
-        <>
-        <Sidebar />
-        <Footer />
-        </>
-    )
-}
+  return (
+    <>
+      <Sidebar />
+      <Footer />
+    </>
+  );
+};
 
 export default AddMeeting;

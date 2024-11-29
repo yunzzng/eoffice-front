@@ -1,8 +1,8 @@
 import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Signup.module.css';
-import Footer from '../../components/footer/Footer';
-import Header from '../../components/header/Header';
+// import Footer from '../../components/footer/Footer';
+// import Header from '../../components/header/Header';
 
 function Signup() {
   const [userDetails, setUserDetails] = useState({
@@ -44,7 +44,7 @@ function Signup() {
         console.log('회원가입 성공:', data);
         navigate('/login');
       } else {
-        const errorData = await response.json(); 
+        const errorData = await response.json();
         if (errorData.message === '이미 존재하는 이메일입니다.') {
           alert('이미 사용 중인 이메일입니다. 다른 이메일을 사용하세요.');
         } else {
@@ -55,10 +55,10 @@ function Signup() {
     } catch (err) {
       console.error('회원가입 중 오류 발생:', err);
     }
-};
+  };
 
   const navigateToLogin = () => {
-      navigate('/login');
+    navigate('/login');
   };
 
   return (
@@ -87,7 +87,7 @@ function Signup() {
                 <button onClick={handleSignup} className={styles.signupButton}>회원가입</button>
               </div>
               <div className={styles.rightSection}>
-                <img src="../../../public/images/computerImage.png" className={styles.image} alt="Computer" />
+                <img src="../../../public/img/computerImage.png" className={styles.image} alt="Computer" />
                 <button onClick={navigateToLogin} className={styles.loginButton}>로그인</button>
               </div>
           </div>

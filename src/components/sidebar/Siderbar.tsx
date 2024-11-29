@@ -61,11 +61,21 @@ const Sidebar = () => {
           <li className={styles.sidebar_li}>
             <a
               className={`${
+                selectedMenu === '회의록' ? styles.selected : styles.sidebar_a
+              }`}
+              onClick={() => handleClickMenu('회의록', '/minuteslist')}
+            >
+              회의록
+            </a>
+          </li>
+          <li className={styles.sidebar_li}>
+            <a
+              className={`${
                 selectedMenu === '회의록 작성'
                   ? styles.selected
                   : styles.sidebar_a
               }`}
-              onClick={() => handleClickMenu('회의록 작성', '/editmeeting')}
+              onClick={() => handleClickMenu('회의록 작성', '/createminutes')}
             >
               회의록 작성
             </a>
