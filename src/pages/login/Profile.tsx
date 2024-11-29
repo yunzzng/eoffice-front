@@ -13,14 +13,14 @@ import { useNavigate } from 'react-router-dom';
 const EditProfile = () => {
   const navigator = useNavigate();
 
-  const token =
-    localStorage.getItem('token') ??
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDgyYTg1M2FiOTE0NDQ1OTYxYTUzNSIsImVtYWlsIjoibWpoMUBlbGljZS5jb20iLCJpYXQiOjE3MzI3OTYzNDMsImV4cCI6MTczMjc5OTk0M30.yYgnT2Z8FEaRscQpXS5wFC0HSNxa4UpqvOsyeMN1z5M';
+  const token = localStorage.getItem('token') ?? '';
 
   const [passwords, setPassword] = useState({
     password: '',
     passwordComfirmed: '',
   });
+
+  const [loadProfileImage, setLoadProfileImage] = useState<string>();
 
   const [inputFile, setInputFile] = useState<File>();
   const [srcUrl, setSrcUrl] = useState<string>();
@@ -62,7 +62,7 @@ const EditProfile = () => {
 
       try {
         const editProfileRequest = await fetch('/api/user/update', {
-          method: 'PUT',
+          method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -75,7 +75,9 @@ const EditProfile = () => {
           const { isError, user } = await editProfileRequest.json();
 
           if (!isError && user) {
-            console.log(user);
+            const { profileImage } = user;
+
+            setLoadProfileImage(profileImage);
           } else {
             alert('일치하는 유저가 없습니다.');
             return;
@@ -114,14 +116,14 @@ const EditProfile = () => {
     }
   };
 
-  // 로컬 스토리지
   const getProfileFetch = async () => {
     try {
-      const LoadProfileRequest = await fetch('/', {
+      const LoadProfileRequest = await fetch('/api/user/update', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        body: '',
       });
 
       if (LoadProfileRequest.status === 200) {
@@ -131,7 +133,9 @@ const EditProfile = () => {
           const { isError, user } = LoadProfileData;
 
           if (!isError && user) {
-            console.log(user);
+            const { profileImage } = user;
+
+            setLoadProfileImage(profileImage);
           }
         } else {
           alert('일치하는 유저가 없습니다.');
@@ -171,7 +175,7 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    // getProfileFetch();
+    getProfileFetch();
   }, []);
 
   return (
@@ -188,7 +192,9 @@ const EditProfile = () => {
                   <img
                     className={styles.logo_image}
                     src={
-                      srcUrl ? srcUrl : '../../../public/img/default-image.png'
+                      srcUrl || loadProfileImage
+                        ? srcUrl || loadProfileImage
+                        : '../../../public/images/default-image.png'
                     }
                     alt="프로필 이미지"
                   />

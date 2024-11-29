@@ -59,7 +59,7 @@ function Login() {
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
           <img
-            src="../../../public/img/computerImage.png"
+            src="../../../public/image/computerImage.png"
             className={styles.image}
           />
           <button onClick={navigateToSignup} className={styles.signupButton}>
@@ -109,6 +109,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
