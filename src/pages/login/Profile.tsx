@@ -78,9 +78,9 @@ const EditProfile = () => {
           const { isError, user } = await editProfileRequest.json();
 
           if (!isError && user) {
-            console.log(user);
-            navigator("/home");
-            
+            const { profileImage } = user;
+
+            setLoadProfileImage(profileImage);
           } else {
             alert('일치하는 유저가 없습니다.');
             return;
@@ -135,16 +135,13 @@ const EditProfile = () => {
       if (LoadProfileData) {
         const { isError, user } = LoadProfileData;
 
-        if (!isError && user) {
-          const { profileImage } = user;
+          if (!isError && user) {
+            const { profileImage } = user;
 
-          setLoadProfileImage(profileImage);
+            setLoadProfileImage(profileImage);
+          }
         }
-      } else {
-        alert('일치하는 유저가 없습니다.');
-        return;
-      }
-    } else if (LoadProfileRequest.status === 401) {
+      } else if (LoadProfileRequest.status === 401) {
       const { isError, message } = await LoadProfileRequest.json();
 
       if (!isError) {
@@ -175,9 +172,6 @@ const EditProfile = () => {
     alert('시스템 에러 발생!');
     return;
   }
-};
-
-
 
   useEffect(() => {
     getProfileFetch();
@@ -199,7 +193,7 @@ const EditProfile = () => {
                     src={
                       srcUrl || loadProfileImage
                         ? srcUrl || loadProfileImage
-                        : '/images/default-image.png'
+                        : '../../../public/images/default-image.png'
                     }
                   />
                 </label>
