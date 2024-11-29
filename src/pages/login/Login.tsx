@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Login.module.css';
+import styles2 from '../../components/footer/Footer_login.module.css';
 import Header from '../../components/header/Header';
 // import Footer from '../../components/footer/Footer';
 
