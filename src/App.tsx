@@ -11,9 +11,6 @@ import ReserrveMeeting from './pages/meeting/ReserveMeeting';
 import Splash from './components/splash/Splash';
 import Home from './pages/login/Home';
 import ErrorPage from './components/ErrorPage';
-import Sidebar from './components/sidebar/Siderbar';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
 import { SidebarProvider } from './context/SidebarContext';
 
 export default function RootApp() {
