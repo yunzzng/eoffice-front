@@ -2,6 +2,8 @@ import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Login.module.css';
 
+type OauthProviders = 'google' | 'kakao'; // OAuth 제공자 타입 정의
+
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
   const [userData, setUserData] = useState({ id: '', email: '', name: '' });
@@ -47,8 +49,11 @@ function Login() {
     }
   };
 
-  const handleClickGoogle = () => (window.location.href = '/api/oauth/google');
-  const handleClickKaKao = () => (window.location.href = '/api/oauth/kakao');
+  // OAuth 로그인 함수
+  const handleClickOauth = (provider: OauthProviders) => {
+    window.location.href = `/api/oauth/${provider}`;
+  };
+
   const navigateToSignup = () => navigate('/signup');
 
   return (
@@ -97,11 +102,11 @@ function Login() {
               Login
             </button>
             <button
-              onClick={handleClickGoogle}
+              onClick={() => handleClickOauth('google')}
               className={`${styles.button} ${styles.googleButton}`}
             />
             <button
-              onClick={handleClickKaKao}
+              onClick={() => handleClickOauth('kakao')}
               className={`${styles.button} ${styles.kakaoButton}`}
             />
           </div>

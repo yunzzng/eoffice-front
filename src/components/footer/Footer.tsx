@@ -1,6 +1,5 @@
 
 import styles from "./Footer.module.css";
-import styles2 from "./Footer_login.module.css";
 import youtube from "../../../public/images/logos_youtube-icon.png";
 import instagram from "../../../public/images/skill-icons_instagram.png";
 import linkedin from "../../../public/images/devicon_linkedin.png";
