@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Button.module.css";
@@ -15,4 +16,4 @@ export const NavigateButtons : React.FC<NavigateButtonsProps> = ({label, onClick
         </button>
     )
 }
- 
+
