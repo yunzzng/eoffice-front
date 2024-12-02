@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./button.module.css";
 
 interface NavigateButtonsProps {
     label: string;
