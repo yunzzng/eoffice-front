@@ -63,15 +63,31 @@ const AddMeeting = () => {
                 <div className={styles.addmeeting_input_box}>
                     <div className={styles.addmeeting_input_name_box}>
                         <label className={styles.addmeeting_input_label}>이름</label>
-                        <input className={styles.addmeeting_input}/>
+                        <input
+                            name="name"
+                            value={inputValue.name}
+                            onChange={handleInputChange}
+                            className={styles.addmeeting_input}
+                        />
                     </div >
                     <div className={styles.addmeeting_input_name_box}>
                         <label className={styles.addmeeting_input_label}>위치</label>
-                        <input className={styles.addmeeting_input}/>
+                        <input
+                            name="location"
+                            value={inputValue.location}
+                            onChange={handleInputChange}
+                            className={styles.addmeeting_input}
+                        />
                     </div>
                     <div className={styles.addmeeting_input_name_box}>
                         <label className={styles.addmeeting_input_label}>인원</label>
-                        <input className={styles.addmeeting_input}/>
+                        <input
+                            name="person"
+                            type="number"
+                            value={inputValue.person}
+                            onChange={handleInputChange}
+                            className={styles.addmeeting_input}
+                        />
                     </div>
                     <NavigateButtons label="회의실 등록하기" onClick={handleSubmit}/>
                 </div>
