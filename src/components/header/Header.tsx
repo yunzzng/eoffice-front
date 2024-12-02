@@ -1,16 +1,11 @@
 import { useEffect, useState } from 'react';
-
+import {User} from "../../types/user";
 
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 import profileimg from "../../../public/images/ix_user-profile-filled.png";
 import guestprofile from "../../../public/images/guest_profile.png";
 
-interface User {
-    _id: string;
-    name: string;
-    email: string;
-}
 
 const Header = () => {
     const [user, setUser] = useState<User | null>(null);
@@ -56,7 +51,6 @@ const Header = () => {
                     </a>
                 </div>
             ) : <div>
-                   <img src={guestprofile} alt="게스트 프로필 이미지" className={styles.header_profile_img} />
                 </div>
             }
         </div>
