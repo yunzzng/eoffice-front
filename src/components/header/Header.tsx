@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
-
+import {User} from "../../types/user";
 
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 import profileimg from "../../../public/images/ix_user-profile-filled.png";
 
-interface User {
-    _id: string;
-    name: string;
-    email: string;
-}
 
 const Header = () => {
     const [user, setUser] = useState<User | null>(null);
@@ -55,7 +50,6 @@ const Header = () => {
                     </a>
                 </div>
             ) : <div>
-                    <h1 className={styles.logo}> E-Office </h1>
                 </div>
             }
         </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./Button.module.css";
 
 interface NavigateButtonsProps {
     label: string;
@@ -9,7 +10,7 @@ interface NavigateButtonsProps {
 export const NavigateButtons : React.FC<NavigateButtonsProps> = ({label, onClick}) => {
 
     return (
-        <button onClick={onClick}>
+        <button onClick={onClick} className={styles.button}>
             {label}
         </button>
     )
