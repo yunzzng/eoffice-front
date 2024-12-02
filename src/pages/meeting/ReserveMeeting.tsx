@@ -1,8 +1,8 @@
 import Sidebar from "../../components/sidebar/Siderbar";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
-import { NavigateButtons } from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
+import { NavigateButtons } from "../../components/button/Button";
 import { ImageUpload } from "../../context/ImgUploadContext";
 import { ChangeEvent, useState } from "react";
 
