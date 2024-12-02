@@ -2,7 +2,7 @@
 import Sidebar from "../../components/sidebar/Siderbar";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
-import { NavigateButtons } from "../../components/Button/Button";
+import { NavigateButtons } from "../../components/button/Button";
 import styles from "../../css/meetingStyles/AddMeeting.module.css";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
