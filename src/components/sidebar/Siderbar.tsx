@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 import computerImg from '../../../public/images/computerImage.png';
-import { SidebarContext } from "../../context/SidebarContext";
-import { useContext } from "react";
-
+import { SidebarContext } from '../../context/SidebarContext';
+import { useContext } from 'react';
 
 const Sidebar = () => {
   const { selectedMenu, setSelectedMenu } = useContext(SidebarContext);

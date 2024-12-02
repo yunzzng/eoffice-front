@@ -4,6 +4,7 @@ import {User} from "../../types/user";
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 import profileimg from "../../../public/images/ix_user-profile-filled.png";
+import guestprofile from "../../../public/images/guest_profile.png";
 
 
 const Header = () => {
@@ -14,7 +15,7 @@ const Header = () => {
         const token = localStorage.getItem("token");
         try{
             if(!token) {
-                console.log("토큰이 없음")
+                console.log("토큰이 없습니다.")
                 return;
             }
             const response = await fetch("/api/user/profile", {

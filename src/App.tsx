@@ -6,7 +6,7 @@ import AddMeeting from './pages/meeting/AddMeeting';
 import CreateMinutes from './pages/meeting/CreateMinutes';
 import EditMeeting from './pages/meeting/EditMeeting';
 import MeetingList from './pages/meeting/MeetingList';
-// import MinutesList from './pages/meeting/MinutesList';
+import MinutesList from './pages/meeting/MinutesList';
 import ReserrveMeeting from './pages/meeting/ReserveMeeting';
 import Splash from './components/splash/Splash';
 import Home from './pages/login/Home';
@@ -27,7 +27,7 @@ export default function RootApp() {
           <Route path="/createminutes" element={<CreateMinutes />} />
           <Route path="/editmeeting" element={<EditMeeting />} />
           <Route path="/meetinglist" element={<MeetingList />} />
-          {/* <Route path="/minuteslist" element={<MinutesList />} /> */}
+          <Route path="/minuteslist" element={<MinutesList />} />
           <Route path="/reservemeeting" element={<ReserrveMeeting />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

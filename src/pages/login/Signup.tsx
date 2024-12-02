@@ -60,41 +60,75 @@ function Signup() {
   };
 
   return (
-      <div className={styles.signupContainer}>
-          <header className={styles.header}>
-              <h1 className={styles.logoText}>E-Office</h1>
-              <img src="../../../public/img/guestuserImage.png" className={styles.userIcon} alt="User Icon" />
-          </header>
+    <div className={styles.signupContainer}>
 
-          <div className={styles.mainContent}>
-            <div className={styles.leftSection}>
-              <div className={styles.inputField}>
-                <div className={styles.inputRow}>
-                  <label className={styles.inputLabel}>이름</label>
-                   <input type="text" name="name" value={userDetails.name} onChange={handleInputChange} className={styles.input} placeholder="이름 입력" />
-                </div>
-                <div className={styles.inputRow}>
-                  <label className={styles.inputLabel}>이메일</label>
-                  <input type="email" name="email" value={userDetails.email} onChange={handleInputChange} className={styles.input} placeholder="이메일 입력" />
-                </div>
-                <div className={styles.inputRow}>
-                  <label className={styles.inputLabel}>비밀번호</label>
-                  <input type="password"  name="password" value={userDetails.password} onChange={handleInputChange} className={styles.input} placeholder="비밀번호 입력" />
-                </div>
-                <div className={styles.inputRow}>
-                  <label className={styles.inputLabel}>비밀번호 확인</label>
-                  <input type="password" name="confirmPassword" value={userDetails.confirmPassword} onChange={handleInputChange} className={styles.input} placeholder="비밀번호 확인" />
-                </div>
-              </div>
-                <button onClick={handleSignup} className={styles.signupButton}>회원가입</button>
-              </div>
-              <div className={styles.rightSection}>
-                <img src="../../../public/img/computerImage.png" className={styles.image} alt="Computer" />
-                <button onClick={navigateToLogin} className={styles.loginButton}>로그인</button>
-              </div>
+      <div className={styles.mainContent}>
+        <div className={styles.leftSection}>
+          <div className={styles.inputField}>
+            <div className={styles.inputRow}>
+              <label className={styles.inputLabel}>이름</label>
+              <input
+                type="text"
+                name="name"
+                value={userDetails.name}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="이름 입력"
+              />
+            </div>
+            <div className={styles.inputRow}>
+              <label className={styles.inputLabel}>이메일</label>
+              <input
+                type="email"
+                name="email"
+                value={userDetails.email}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="이메일 입력"
+              />
+            </div>
+            <div className={styles.inputRow}>
+              <label className={styles.inputLabel}>비밀번호</label>
+              <input
+                type="password"
+                name="password"
+                value={userDetails.password}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="비밀번호 입력"
+              />
+            </div>
+            <div className={styles.inputRow}>
+              <label className={styles.inputLabel}>비밀번호 확인</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={userDetails.confirmPassword}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="비밀번호 확인"
+              />
+            </div>
           </div>
-        <footer className={styles.footer}>© 2024 E-Office. All Rights Reserved.</footer>
+          <button onClick={handleSignup} className={styles.signupButton}>
+            회원가입
+          </button>
+        </div>
+        <div className={styles.rightSection}>
+          <img
+            src="../../../public/image/computerImage.png"
+            className={styles.image}
+            alt="Computer"
+          />
+          <button onClick={navigateToLogin} className={styles.loginButton}>
+            로그인
+          </button>
+        </div>
       </div>
+      <footer className={styles.footer}>
+        © 2024 E-Office. All Rights Reserved.
+      </footer>
+    </div>
   );
 }
 
