@@ -15,4 +15,3 @@ export const NavigateButtons : React.FC<NavigateButtonsProps> = ({label, onClick
         </button>
     )
 }
- 
