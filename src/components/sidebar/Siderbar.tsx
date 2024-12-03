@@ -25,7 +25,7 @@ const Sidebar = () => {
         <div className={styles.sidebar_box}>
             <div className={styles.sidebar_h1_box}>
                 <h1 className={`${selectedMenu === 'E-office' ? styles.sidebar_h1 : styles.sidebar_h1}`}>
-                    <a onClick={() => handleClickMenu('E-office', '/home')}>E-office</a></h1>
+                    <a onClick={() => handleClickMenu('E-office', '/home')} className={styles.sidebar_logo_a}>E-office</a></h1>
             </div>
             <div className={styles.sidebar_ul_box}> 
                 <ul className={styles.sidebar_ul}>
