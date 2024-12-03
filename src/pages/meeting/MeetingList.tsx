@@ -16,6 +16,7 @@ interface addPostType {
 const MeetingList = () => {
     const navigate = useNavigate();
     const [post,setPost] = useState<addPostType[]>([]);
+    
 
     const handleEditClick = (id:string) => {
         navigate(`/editmeeting/${id}`);

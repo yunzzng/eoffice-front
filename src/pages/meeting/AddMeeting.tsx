@@ -6,10 +6,11 @@ import styles from "../../css/meetingStyles/AddMeeting.module.css";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageUpload } from "../../context/ImgUploadContext";
-import {addPostType} from "../../types/addmeetind";
+import {addPostType} from "../../types/addmeeting";
 
 
 const AddMeeting = () => {
+    const a = 1;
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState<addPostType>({
         name: "",
@@ -30,7 +31,7 @@ const AddMeeting = () => {
     //회의실 등록하기 버튼
     const handleSubmit = async() => {
         const token = localStorage.getItem("token");
-        if(!inputValue.location || !inputValue.name || inputValue.person <= 0) {
+        if(!inputValue.location || !inputValue.name || isNaN(inputValue.person)) { //person <=0 거나 숫자가아니면 isNaN분기처리
             alert("모든 입력 칸을 작성해주세요");
             return;
         }
