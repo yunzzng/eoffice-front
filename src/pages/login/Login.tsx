@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Login.module.css';
 
-type OauthProviders = 'google' | 'kakao'; // OAuth 제공자 타입 정의
+type OauthProviders = 'google' | 'kakao'; 
 
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
