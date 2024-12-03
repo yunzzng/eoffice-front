@@ -61,7 +61,7 @@ ul {
 
 .main_content {
   display: flex;
-
+  margin-left: 200px;
   min-width: 100rem;
   flex-direction: column;
   align-items: center;
