@@ -1,12 +1,15 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Siderbar';
 import styles from '../../css/meetingStyles/CreateMinutes.module.css';
-
-import { useState } from 'react';
+import Input from '../../components/Input/Input';
+import InputBox from '../../components/Input/InputBox';
+import Label from '../../components/Input/Label';
 
 const CreateMinutes = () => {
+  const token = localStorage.getItem('token') ?? '';
+
   const [meetingInput, setMeetingInput] = useState({
     meetingTitle: '',
     meetingDate: '',
@@ -32,23 +35,20 @@ const CreateMinutes = () => {
 
   const handleSubmitMeetingData = async () => {
     if (meetingInput.meetingTitle === '') {
-      alert('회의제목을 입력해주세요.');
-      return;
+      alert('회의 제목을 입력해주세요.');
     } else if (meetingInput.meetingDate === '') {
       alert('일시를 입력해주세요.');
-      return;
-    } else if (meetingInput.meetingAttendee === null) {
+    } else if (meetingInput.meetingAttendee > 0) {
       alert('참가자 수를 입력해주세요.');
-      return;
     } else if (meetingInput.meetingContent === '') {
-      alert('회의내용을 입력해주세요.');
-      return;
+      alert('회의 내용을 입력해주세요.');
     } else {
       try {
         const meetingDataRequest = await fetch('/api/meeting/minutes', {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             title: meetingInput.meetingTitle,
@@ -85,45 +85,47 @@ const CreateMinutes = () => {
           <main className={styles.main}>
             <div className={styles.main_content}>
               <div className={styles.inputs_wrap}>
-                <div className={styles.input_wrap}>
-                  <label className={styles.label} htmlFor="meetingTitle">
+                <InputBox className={styles.input_wrap}>
+                  <Label className={styles.label} htmlFor={'meetingTitle'}>
                     회의제목
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     className={styles.input}
-                    type="text"
-                    id="meetingTitle"
-                    name="meetingTitle"
+                    type={'text'}
+                    id={'meetingTitle'}
+                    name={'meetingTitle'}
                     value={meetingInput.meetingTitle}
                     onChange={handleOnChangeInput}
                   />
-                </div>
-                <div className={styles.input_wrap}>
-                  <label className={styles.label} htmlFor="meetingDate">
+                </InputBox>
+
+                <InputBox className={styles.input_wrap}>
+                  <Label className={styles.label} htmlFor={'meetingDate'}>
                     일시
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     className={styles.input}
-                    type="date"
-                    id="meetingDate"
-                    name="meetingDate"
+                    type={'date'}
+                    id={'meetingDate'}
+                    name={'meetingDate'}
                     value={meetingInput.meetingDate}
                     onChange={handleOnChangeInput}
                   />
-                </div>
-                <div className={styles.input_wrap}>
-                  <label className={styles.label} htmlFor="meetingAttendee">
+                </InputBox>
+
+                <InputBox className={styles.input_wrap}>
+                  <Label className={styles.label} htmlFor={'meetingAttendee'}>
                     참여자
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     className={styles.input}
-                    type="number"
-                    id="meetingAttendee"
-                    name="meetingAttendee"
+                    type={'number'}
+                    id={'meetingAttendee'}
+                    name={'meetingAttendee'}
                     value={meetingInput.meetingAttendee}
                     onChange={handleOnChangeInput}
                   />
-                </div>
+                </InputBox>
 
                 <div className={styles.input_wrap}>
                   <label className={styles.label} htmlFor="meetingContent">
