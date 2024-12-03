@@ -1,18 +1,10 @@
-
-
-.addmeeting_box {
+.addmeeting_total_box{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 500px;
-}
-
-.addmeeting_default_img{
-    width: 20rem;
-}
-
-.addmeeting_input_file{
-    display: none;
+    margin-left: 100px;
+    margin-top: 100px;
 }
 
 .addmeeting_input_box{

@@ -10,8 +10,15 @@ const Sidebar = () => {
 
   const handleClickMenu = (menu: string, path: string) => {
     setSelectedMenu(menu);
-    navigate(path);
+    navigate(path, { replace: true });
   };
+
+  const Menu = [
+    { label: '회의실 등록', path: '/addmeeting' },
+    { label: '회의실 수정/삭제', path: '/editmeeting' },
+    { label: '회의실 예약', path: '/reservemeeting' },
+    { label: '회의록 작성', path: '/createminutes' },
+  ];
 
   return (
     <div className={styles.sidebar_box}>
@@ -21,61 +28,30 @@ const Sidebar = () => {
             selectedMenu === 'E-office' ? styles.sidebar_h1 : styles.sidebar_h1
           }`}
         >
-          <a onClick={() => handleClickMenu('E-office', '/home')}>E-office</a>
+          <a
+            onClick={() => handleClickMenu('E-office', '/home')}
+            className={styles.sidebar_logo_a}
+          >
+            E-office
+          </a>
         </h1>
       </div>
       <div className={styles.sidebar_ul_box}>
         <ul className={styles.sidebar_ul}>
-          <li className={styles.sidebar_li}>
-            <a
-              className={`${
-                selectedMenu === '회의실 등록'
-                  ? styles.selected
-                  : styles.sidebar_a
-              }`}
-              onClick={() => handleClickMenu('회의실 등록', '/addmeeting')}
-            >
-              회의실 등록
-            </a>
-          </li>
-          <li className={styles.sidebar_li}>
-            <a
-              className={`${
-                selectedMenu === '회의실 수정/삭제'
-                  ? styles.selected
-                  : styles.sidebar_a
-              }`}
-              onClick={() =>
-                handleClickMenu('회의실 수정/삭제', '/editmeeting')
-              }
-            >
-              회의실 수정/삭제
-            </a>
-          </li>
-          <li className={styles.sidebar_li}>
-            <a
-              className={`${
-                selectedMenu === '회의실 예약'
-                  ? styles.selected
-                  : styles.sidebar_a
-              }`}
-              onClick={() => handleClickMenu('회의실 예약', '/reservemeeting')}
-            >
-              회의실 예약
-            </a>
-          </li>
-          <li className={styles.sidebar_li}>
-            <a
-              className={`${
-                selectedMenu === '회의록 작성'
-                  ? styles.selected
-                  : styles.sidebar_a
-              }`}
-              onClick={() => handleClickMenu('회의록 작성', '/editmeeting')}
-            >
-              회의록 작성
-            </a>
-          </li>
+          {Menu.map((item, index) => (
+            <li className={styles.sidebar_li} key={index}>
+              <a
+                className={`${
+                  selectedMenu === item.label
+                    ? styles.selected
+                    : styles.sidebar_a
+                }`}
+                onClick={() => handleClickMenu(item.label, item.path)}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
       <div className={styles.sidebar_bottom_box}>
@@ -93,6 +69,7 @@ const Sidebar = () => {
         </li>
         <img src={computerImg} className={styles.sidebar_img} />
       </div>
+      {/* 메뉴 늘어나면 map으로 */}
     </div>
   );
 };

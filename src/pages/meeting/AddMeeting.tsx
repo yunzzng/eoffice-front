@@ -1,53 +1,69 @@
-
 import Sidebar from "../../components/sidebar/Siderbar";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
-import { NavigateButtons } from "../../context/ButtonContext";
+import { NavigateButtons } from "../../components/button/Button";
 import styles from "../../css/meetingStyles/AddMeeting.module.css";
 import { ChangeEvent, useState } from "react";
-import Rectangle from '../../../public/images/Rectangle 27.png';
 import { useNavigate } from "react-router-dom";
+import { ImageUpload } from "../../context/ImgUploadContext";
+import {addPostType} from "../../types/addmeeting";
+
 
 const AddMeeting = () => {
+    const a = 1;
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
+    const [inputValue, setInputValue] = useState<addPostType>({
         name: "",
         location:"",
-        person: ""
-    });
+        person: 0
+    }); //회의실 이름,위치,인원 
 
-    const [inputFile, setInputFile] = useState<File>();
+    const [inputFile, setInputFile] = useState<File>(); //회의실 이미지
 
 
     //이름,위치,인원 input Change
     const handleInputChange = (e:ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
-        setFormData({...formData, [name] : value});
+        setInputValue({...inputValue, [name] : value});
     }
 
-    //이미지 업로드
-    const handleImageUpload = (e:ChangeEvent<HTMLInputElement>) => {
-        if(!e.target.files) {
-            return;
-        }
-
-        if(e.target.files[0]) {
-            setInputFile(e.target.files[0]);
-        }
-    }
 
     //회의실 등록하기 버튼
     const handleSubmit = async() => {
-        try{
-            const response = await fetch('/api', {
-                method: "POST"
-
-            });
-        }catch(err) {
-            console.log('데이터 저장 실패', err)
+        const token = localStorage.getItem("token");
+        if(!inputValue.location || !inputValue.name || isNaN(inputValue.person)) { //person <=0 거나 숫자가아니면 isNaN분기처리
+            alert("모든 입력 칸을 작성해주세요");
+            return;
         }
 
-        navigate('/meetinglist');
+        const formData = new FormData(); //서버로 전송 할 객체 생성
+
+        formData.append("name", inputValue.name);
+        formData.append("location", inputValue.location);
+        formData.append("person", inputValue.person.toString());
+        if(inputFile) {
+            formData.append("file", inputFile);
+        }
+
+        try{
+            const response = await fetch('/api/meeting/meetingrooms', {
+                method: "POST",
+                body: formData,
+                headers: {
+                    Authorization: `Bearer ${token}` 
+                },
+            });
+            if(response.ok) {
+                console.log('데이터 저장 성공');
+                navigate('/meetinglist');
+            }else{
+                console.log('api요청 실패');
+                return;
+            }
+        }catch(err) {
+            console.log('데이터 저장 실패', err);
+        }
+        
     }
 
     return (
@@ -55,36 +71,24 @@ const AddMeeting = () => {
         <Header />
         <Sidebar />
         <Footer />
-            <div className={styles.addmeeting_box}>
-                <label htmlFor="Image">
-                    <img
-                        className={styles.addmeeting_default_img}
-                        src={Rectangle}
-                        alt="프로필 이미지"
-                        />
-                </label>
-                <input
-                    className={styles.addmeeting_input_file}
-                    type="file"
-                    name="profileImage"
-                    id="Image"
-                    />
+            <div className={styles.addmeeting_total_box}>
+                <ImageUpload setUploadImg={setInputFile} />
                 <div className={styles.addmeeting_input_box}>
                     <div className={styles.addmeeting_input_name_box}>
                         <label className={styles.addmeeting_input_label}>이름</label>
-                        <input className={styles.addmeeting_input}/>
+                        <input className={styles.addmeeting_input} onChange={handleInputChange} name="name"/>
                     </div >
                     <div className={styles.addmeeting_input_name_box}>
                         <label className={styles.addmeeting_input_label}>위치</label>
-                        <input className={styles.addmeeting_input}/>
+                        <input className={styles.addmeeting_input} onChange={handleInputChange} name="location"/>
                     </div>
                     <div className={styles.addmeeting_input_name_box}>
                         <label className={styles.addmeeting_input_label}>인원</label>
-                        <input className={styles.addmeeting_input}/>
+                        <input type='number' className={styles.addmeeting_input} onChange={handleInputChange} name="person"/>
                     </div>
+                    <NavigateButtons label="회의실 등록하기" onClick={handleSubmit}/>
                 </div>
             </div>
-        <NavigateButtons label="회의실 등록하기" onClick={handleSubmit}/>
         </div> 
     )
 }

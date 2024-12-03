@@ -1,0 +1,16 @@
+.img_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+    margin-left: 100px;
+}
+
+.default_img{
+    width: 20rem;
+    height: 30rem;
+}
+
+.input_file{
+    display: none;
+}

@@ -17,7 +17,7 @@ export const SidebarProvider: FC<SidebarProps> = (props) => {
 
     return(
         <SidebarContext.Provider value={{selectedMenu, setSelectedMenu}}>
-                {children}
+            {children}
         </SidebarContext.Provider>
     )
 }

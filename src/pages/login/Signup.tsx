@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Signup.module.css';
 
@@ -9,20 +9,18 @@ function Signup() {
     password: '',
     confirmPassword: '',
   });
+
   const navigate = useNavigate();
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSignup = async () => {
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); 
+    
     const { name, email, password, confirmPassword } = userDetails;
-
-    if (!email || !name || !password || !confirmPassword) {
-      alert('모든 필드를 입력하세요.');
-      return;
-    }
 
     if (password !== confirmPassword) {
       alert('비밀번호가 일치하지 않습니다.');
@@ -37,9 +35,7 @@ function Signup() {
       });
 
       if (response.ok) {
-        const data = await response.json();
         alert('회원가입 성공!');
-        console.log('회원가입 성공:', data);
         navigate('/login');
       } else {
         const errorData = await response.json();
@@ -48,22 +44,16 @@ function Signup() {
         } else {
           alert('회원가입 실패. 다시 시도하세요.');
         }
-        console.error('회원가입 실패:', errorData);
       }
     } catch (err) {
       console.error('회원가입 중 오류 발생:', err);
     }
   };
 
-  const navigateToLogin = () => {
-    navigate('/login');
-  };
-
   return (
     <div className={styles.signupContainer}>
-
       <div className={styles.mainContent}>
-        <div className={styles.leftSection}>
+        <form onSubmit={handleSignup} className={styles.leftSection}>
           <div className={styles.inputField}>
             <div className={styles.inputRow}>
               <label className={styles.inputLabel}>이름</label>
@@ -74,6 +64,7 @@ function Signup() {
                 onChange={handleInputChange}
                 className={styles.input}
                 placeholder="이름 입력"
+                required
               />
             </div>
             <div className={styles.inputRow}>
@@ -85,6 +76,7 @@ function Signup() {
                 onChange={handleInputChange}
                 className={styles.input}
                 placeholder="이메일 입력"
+                required
               />
             </div>
             <div className={styles.inputRow}>
@@ -96,6 +88,9 @@ function Signup() {
                 onChange={handleInputChange}
                 className={styles.input}
                 placeholder="비밀번호 입력"
+                pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                title="비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다."
+                required
               />
             </div>
             <div className={styles.inputRow}>
@@ -107,27 +102,28 @@ function Signup() {
                 onChange={handleInputChange}
                 className={styles.input}
                 placeholder="비밀번호 확인"
+                required
               />
             </div>
           </div>
-          <button onClick={handleSignup} className={styles.signupButton}>
+          <button type="submit" className={styles.signupButton}>
             회원가입
           </button>
-        </div>
+        </form>
         <div className={styles.rightSection}>
           <img
-            src="../../../public/image/computerImage.png"
+            src="../../../public/images/computerImage.png"
             className={styles.image}
             alt="Computer"
           />
-          <button onClick={navigateToLogin} className={styles.loginButton}>
+          <button
+            onClick={() => navigate('/login')}
+            className={styles.loginButton}
+          >
             로그인
           </button>
         </div>
       </div>
-      <footer className={styles.footer}>
-        © 2024 E-Office. All Rights Reserved.
-      </footer>
     </div>
   );
 }
