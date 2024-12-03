@@ -10,6 +10,7 @@ import {addPostType} from "../../types/addmeeting";
 
 
 const AddMeeting = () => {
+    const a = 1;
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState<addPostType>({
         name: "",
