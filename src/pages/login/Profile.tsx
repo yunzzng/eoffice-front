@@ -4,9 +4,9 @@ import styles from '../../css/loginStyles/Profile.module.css';
 import Sidebar from '../../components/sidebar/Siderbar';
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Input from '../../components/Input/input';
-import InputBox from '../../components/Input/inputBox';
-import Label from '../../components/Input/label';
+import Input from '../../components/Input/Input';
+import InputBox from '../../components/Input/InputBox';
+import Label from '../../components/Input/Label';
 
 /** api call
  * 로드 시 이미지 가져오는 패치 하나 /api/editprofile/loadimage
@@ -51,13 +51,10 @@ const EditProfile = () => {
 
     if (passwords.password === '' || passwords.passwordComfirmed === '') {
       alert('비밀번호를 입력해주세요.');
-      return;
     } else if (passwords.password !== passwords.passwordComfirmed) {
       alert('비밀번호가 일치하지 않습니다.');
-      return;
     } else if (!inputFile) {
       alert('사진을 넣어주세요');
-      return;
     } else {
       formData.append('password', passwords.password);
       formData.append('profileImage', inputFile);
@@ -76,11 +73,9 @@ const EditProfile = () => {
 
           if (!isError && user) {
             const { profileImage } = user;
-
             setLoadProfileImage(profileImage);
           } else {
             alert('일치하는 유저가 없습니다.');
-            return;
           }
         } else if (editProfileRequest.status === 401) {
           const { isError, message } = await editProfileRequest.json();
@@ -134,8 +129,8 @@ const EditProfile = () => {
 
           if (!isError && user) {
             const { profileImage } = user;
-
             setLoadProfileImage(profileImage);
+            navigator('/home');
           }
         }
       } else if (LoadProfileRequest.status === 401) {
@@ -163,7 +158,6 @@ const EditProfile = () => {
         }
       } else {
         alert('서버와 통신을 실패했습니다. 다시 시도해주세요.');
-        return;
       }
     } catch (err) {
       alert('시스템 에러 발생!');
@@ -196,36 +190,36 @@ const EditProfile = () => {
                 </Label>
                 <Input
                   className={styles.input_file}
-                  type="file"
-                  name="profileImage"
-                  id="profileImage"
+                  type={'file'}
+                  name={'profileImage'}
+                  id={'profileImage'}
                   onChange={handleInputFile}
                 />
               </InputBox>
 
               <div className={styles.inputs_wrap}>
                 <InputBox className={styles.input_wrap}>
-                  <Label className={styles.label} htmlFor="password">
+                  <Label className={styles.label} htmlFor={'password'}>
                     비밀번호
                   </Label>
                   <Input
                     className={styles.input}
-                    type="text"
-                    id="password"
-                    name="password"
+                    type={'password'}
+                    id={'password'}
+                    name={'password'}
                     onChange={handlePasswordOnChange}
                   />
                 </InputBox>
 
                 <InputBox className={styles.input_wrap}>
-                  <Label className={styles.label} htmlFor="passwordComfirmed">
+                  <Label className={styles.label} htmlFor={'passwordComfirmed'}>
                     비밀번호 확인
                   </Label>
                   <Input
                     className={styles.input}
-                    type="text"
-                    id="passwordComfirmed"
-                    name="passwordComfirmed"
+                    type={'password'}
+                    id={'passwordComfirmed'}
+                    name={'passwordComfirmed'}
                     onChange={handlePasswordOnChange}
                   />
                 </InputBox>

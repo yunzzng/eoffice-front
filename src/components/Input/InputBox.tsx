@@ -1,6 +1,6 @@
 import { Children, PropsWithChildren, ReactElement } from 'react';
-import Label from './label';
-import Input from './input';
+import Label from './Label';
+import Input from './Input';
 
 export interface BaseProps extends PropsWithChildren {}
 

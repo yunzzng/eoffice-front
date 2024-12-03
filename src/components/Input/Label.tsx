@@ -1,4 +1,4 @@
-import { BaseProps } from './inputBox';
+import { BaseProps } from './InputBox';
 
 interface LabelProps extends BaseProps {
   htmlFor?: string;

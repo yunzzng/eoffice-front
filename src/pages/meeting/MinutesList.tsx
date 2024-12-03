@@ -21,6 +21,7 @@ const MinutesList = () => {
     page: (DEFAULT_PAGE_INDEX + 1).toString(),
   });
 
+  const token = localStorage.getItem('token') ?? '';
   const currentPage = searchParam.get('page') || '1';
 
   const handleChangePage = (pageIndex: number) => {
@@ -29,13 +30,20 @@ const MinutesList = () => {
 
   const initfetch = async () => {
     try {
-      const getMinutesRequest = await fetch('/api/meeting/minuteslist');
+      const getMinutesRequest = await fetch('/api/meeting/minutes/list', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (getMinutesRequest.status === 200) {
         const { isError, data } = await getMinutesRequest.json();
 
+        console.log(getMinutesRequest);
+
         if (!isError) {
           setMinutes(data);
+          console.log(data);
         }
       }
     } catch (err) {

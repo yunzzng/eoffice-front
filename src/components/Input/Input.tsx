@@ -1,13 +1,13 @@
 import { ChangeEvent } from 'react';
-import { BaseProps } from './inputBox';
+import { BaseProps } from './InputBox';
 
 interface InputProps extends BaseProps {
-  type?: 'number' | 'text' | 'email' | 'password' | 'file';
+  type?: 'number' | 'text' | 'email' | 'password' | 'file' | 'date';
   name?: string;
   id?: string;
   placeholder?: string;
   className?: string;
-  value?: string;
+  value?: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
