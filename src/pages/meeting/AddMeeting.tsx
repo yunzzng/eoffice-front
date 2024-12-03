@@ -6,19 +6,16 @@ import styles from "../../css/meetingStyles/AddMeeting.module.css";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageUpload } from "../../context/ImgUploadContext";
+import {addPostType} from "../../types/addmeeting";
 
-interface addPostType {
-    name: string;
-    location: string;
-    person: number;
-}
 
 const AddMeeting = () => {
+    const a = 1;
     const navigate = useNavigate();
-    const [inputValue, setInputValue] = useState({
+    const [inputValue, setInputValue] = useState<addPostType>({
         name: "",
         location:"",
-        person: ""
+        person: 0
     }); //회의실 이름,위치,인원 
 
     const [inputFile, setInputFile] = useState<File>(); //회의실 이미지
@@ -33,7 +30,8 @@ const AddMeeting = () => {
 
     //회의실 등록하기 버튼
     const handleSubmit = async() => {
-        if(!inputValue.location || !inputValue.name || !inputValue.person) {
+        const token = localStorage.getItem("token");
+        if(!inputValue.location || !inputValue.name || isNaN(inputValue.person)) { //person <=0 거나 숫자가아니면 isNaN분기처리
             alert("모든 입력 칸을 작성해주세요");
             return;
         }
@@ -42,7 +40,7 @@ const AddMeeting = () => {
 
         formData.append("name", inputValue.name);
         formData.append("location", inputValue.location);
-        formData.append("person", inputValue.person);
+        formData.append("person", inputValue.person.toString());
         if(inputFile) {
             formData.append("file", inputFile);
         }
@@ -51,9 +49,13 @@ const AddMeeting = () => {
             const response = await fetch('/api/meeting/meetingrooms', {
                 method: "POST",
                 body: formData,
+                headers: {
+                    Authorization: `Bearer ${token}` 
+                },
             });
             if(response.ok) {
                 console.log('데이터 저장 성공');
+                navigate('/meetinglist');
             }else{
                 console.log('api요청 실패');
                 return;
@@ -61,7 +63,7 @@ const AddMeeting = () => {
         }catch(err) {
             console.log('데이터 저장 실패', err);
         }
-        navigate('/meetinglist');
+        
     }
 
     return (
@@ -82,7 +84,7 @@ const AddMeeting = () => {
                     </div>
                     <div className={styles.addmeeting_input_name_box}>
                         <label className={styles.addmeeting_input_label}>인원</label>
-                        <input className={styles.addmeeting_input} onChange={handleInputChange} name="person"/>
+                        <input type='number' className={styles.addmeeting_input} onChange={handleInputChange} name="person"/>
                     </div>
                     <NavigateButtons label="회의실 등록하기" onClick={handleSubmit}/>
                 </div>

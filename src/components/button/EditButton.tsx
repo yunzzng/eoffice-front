@@ -1,3 +1,4 @@
+
 import styles from "./EditButton.module.css";
 import pencil from "../../../public/images/mdi_pencil.png";
 
@@ -9,8 +10,9 @@ export const EditButton : React.FC<EditButtonProps> = ({onClick}) => {
 
     return(
         <div>
-            <a onClick={onClick}><img src={pencil} /></a>
+            <a onClick={onClick}><img src={pencil} className={styles.edit_button}/></a>
         </div>
     )
 }
+
 
