@@ -4,6 +4,9 @@ import styles from '../../css/loginStyles/Profile.module.css';
 import Sidebar from '../../components/sidebar/Siderbar';
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Input from '../../components/Input/input';
+import InputBox from '../../components/Input/inputBox';
+import Label from '../../components/Input/label';
 
 /** api call
  * 로드 시 이미지 가져오는 패치 하나 /api/editprofile/loadimage
@@ -180,8 +183,8 @@ const EditProfile = () => {
           <Header />
           <main className={styles.main}>
             <div className={styles.main_content}>
-              <div className={styles.default_image}>
-                <label htmlFor="profileImage">
+              <InputBox className={styles.default_image}>
+                <Label htmlFor={'profileImage'}>
                   <img
                     className={styles.logo_image}
                     src={
@@ -190,43 +193,43 @@ const EditProfile = () => {
                         : '../../../public/images/default-image.png'
                     }
                   />
-                </label>
-                <input
+                </Label>
+                <Input
                   className={styles.input_file}
                   type="file"
                   name="profileImage"
                   id="profileImage"
                   onChange={handleInputFile}
                 />
-              </div>
+              </InputBox>
 
               <div className={styles.inputs_wrap}>
-                <div className={styles.input_wrap}>
-                  <label className={styles.label} htmlFor="password">
+                <InputBox className={styles.input_wrap}>
+                  <Label className={styles.label} htmlFor="password">
                     비밀번호
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     className={styles.input}
                     type="text"
                     id="password"
                     name="password"
                     onChange={handlePasswordOnChange}
                   />
-                </div>
+                </InputBox>
 
-                <div className={styles.input_wrap}>
-                  <label className={styles.label} htmlFor="passwordComfirmed">
+                <InputBox className={styles.input_wrap}>
+                  <Label className={styles.label} htmlFor="passwordComfirmed">
                     비밀번호 확인
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     className={styles.input}
                     type="text"
                     id="passwordComfirmed"
                     name="passwordComfirmed"
                     onChange={handlePasswordOnChange}
                   />
-                </div>
-                {/* {JSON.stringify(passwords)} */}
+                </InputBox>
+                {JSON.stringify(passwords)}
               </div>
 
               <button className={styles.button} onClick={handleOnSubmit}>

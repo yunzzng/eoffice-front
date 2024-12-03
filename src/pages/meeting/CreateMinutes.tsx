@@ -1,10 +1,8 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Siderbar';
 import styles from '../../css/meetingStyles/CreateMinutes.module.css';
-
-import { useState } from 'react';
 
 const CreateMinutes = () => {
   const [meetingInput, setMeetingInput] = useState({
