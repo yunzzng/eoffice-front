@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import styles from "../components/ImgUpload/ImgUpload.module.css";
+import styles from "../components/imageUpload/ImageUpload.module.css";
 import Rectangle from "../../public/images/Rectangle 27.png";
 
 interface ImageUploadProps{

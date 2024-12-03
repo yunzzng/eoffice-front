@@ -22,12 +22,16 @@ const MeetingList = () => {
     }
 
     const getPost = async() => {
+        const token = localStorage.getItem("token");
         try{
-            const response = await fetch("/api", {
-                method: "GET"
+            const response = await fetch("/api/meeting/meetingrooms/list", {
+                method: "GET",
+                headers: {
+                    Autorization: `Bearer ${token}`
+                }
             });
             if(response.ok) {
-                const data = await response.json();
+                const {data} = await response.json();
                 console.log(data);
                 setPost(data);
             }else{
@@ -52,8 +56,7 @@ const MeetingList = () => {
                 {post.map((post) => (
                     <li key={post.id}>
                         <img src={post.file} />
-                        <label>이름</label>
-                        <input name="name" value={post.name} />
+                        <p>{post.name}</p>
                         <EditButton onClick={() => handleEditClick(post.id)}/>
                     </li>
                 ))}
