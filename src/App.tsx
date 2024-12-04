@@ -12,6 +12,7 @@ import Splash from './components/splash/Splash';
 import Home from './pages/login/Home';
 import ErrorPage from './components/ErrorPage';
 import { SidebarProvider } from './context/SidebarContext';
+import OauthLoading from './pages/login/OauthLoading';
 
 export default function RootApp() {
   return (
@@ -31,7 +32,7 @@ export default function RootApp() {
           <Route path='/editmeeting/:id' element={<EditMeeting/>} />
           <Route path="/minuteslist" element={<MinutesList />} />
           <Route path="/reservemeeting" element={<ReserveMeeting />} />
-          <Route path='/reservemeeting/:id' element={<ReserveMeeting/>} />
+          <Route path="/oauthloading" element={<OauthLoading />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>

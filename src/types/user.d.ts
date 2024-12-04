@@ -1,5 +1,5 @@
 export interface User {
-    _id: ObjectId;
+    _id: string;
     name: string;
     email: string;
     profileImage: string;

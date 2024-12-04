@@ -1,25 +1,31 @@
-import { useState, ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Login.module.css';
+import InputBox from '../../components/input/InputBox';
+import Input from '../../components/input/Input';
+import Label from '../../components/input/Label';
+import computerImage from '../../../public/images/computerImage.png';
 
-type OauthProviders = 'google' | 'kakao'; // OAuth 제공자 타입 정의
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+type OauthProviders = 'google' | 'kakao';
+
+const patternRegex =
+  '^(?=.*[a-zA-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
 
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
-  const [userData, setUserData] = useState({ id: '', email: '', name: '' });
   const navigate = useNavigate();
 
-  const handleReadDB = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setReadUser((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleClickRead = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     const { email, password } = readUser;
-    if (!email || !password) {
-      alert('이메일과 비밀번호를 입력하세요.');
-      return;
-    }
+
     try {
       const response = await fetch('/api/user/login', {
         method: 'POST',
@@ -33,23 +39,17 @@ function Login() {
           alert('로그인 성공!');
           localStorage.setItem('token', data.token);
           navigate('/home');
-          setUserData({
-            id: data.user._id,
-            email: data.user.email,
-            name: data.user.name,
-          });
         } else {
           alert('사용자 정보를 찾을 수 없습니다.');
         }
       } else {
-        alert('조회 실패');
+        alert('로그인 실패. 다시 시도하세요.');
       }
     } catch (err) {
-      console.log('조회 중 오류 발생:', err);
+      console.error('로그인 중 오류 발생:', err);
     }
   };
 
-  // OAuth 로그인 함수
   const handleClickOauth = (provider: OauthProviders) => {
     window.location.href = `/api/oauth/${provider}`;
   };
@@ -58,49 +58,52 @@ function Login() {
 
   return (
     <div className={styles.loginContainer}>
-      {/* <Header /> */}
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
-          <img
-            src="../../../public/images/computerImage.png"
-            className={styles.image}
-          />
+          <img src={computerImage} className={styles.image} alt="Computer" />
           <button onClick={navigateToSignup} className={styles.signupButton}>
             회원가입
           </button>
         </div>
         <div className={styles.rightSection}>
-          <div className={styles.inputField}>
-            <div className={styles.inputRow}>
-              <label className={styles.inputLabel}>이메일</label>
-              <input
-                type="email"
-                name="email"
+          <form onSubmit={handleSubmit} className={styles.inputField}>
+            <InputBox className={styles.inputRow}>
+              <Label className={styles.inputLabel}>이메일</Label>
+              <Input
+                type={'email'}
+                name={'email'}
                 value={readUser.email}
-                onChange={handleReadDB}
+                onChange={handleInputChange}
                 className={styles.input}
-                placeholder="이메일 입력"
+                placeholder={'이메일 입력'}
+                required={true}
               />
-            </div>
-            <div className={styles.inputRow}>
-              <label className={styles.inputLabel}>비밀번호</label>
-              <input
-                type="password"
-                name="password"
+            </InputBox>
+
+            <InputBox className={styles.inputRow}>
+              <Label className={styles.inputLabel}>비밀번호</Label>
+              <Input
+                type={'password'}
+                name={'password'}
                 value={readUser.password}
-                onChange={handleReadDB}
+                onChange={handleInputChange}
                 className={styles.input}
-                placeholder="비밀번호 입력"
+                placeholder={'비밀번호 입력'}
+                pattern={patternRegex}
+                title={
+                  '비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다.'
+                }
+                required={true}
               />
-            </div>
-          </div>
-          <div className={styles.oauthButtons}>
+            </InputBox>
             <button
-              onClick={handleClickRead}
+              type="submit"
               className={`${styles.button} ${styles.emailButton}`}
             >
               Login
             </button>
+          </form>
+          <div className={styles.oauthButtons}>
             <button
               onClick={() => handleClickOauth('google')}
               className={`${styles.button} ${styles.googleButton}`}
