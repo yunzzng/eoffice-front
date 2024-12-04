@@ -2,8 +2,11 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import styles from '../../css/loginStyles/Home.module.css';
 import Sidebar from '../../components/sidebar/Siderbar';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  const navigator = useNavigate();
+
   return (
     <>
       <div className={styles.container}>
@@ -13,7 +16,10 @@ const HomePage = () => {
           <main className={styles.main}>
             <div className={styles.main_content}>
               <div className={styles.main_content_item}>
-                <div className={styles.navigation_wrap}>
+                <div
+                  className={styles.navigation_wrap}
+                  onClick={() => navigator('/addmeeting')}
+                >
                   <div className={styles.default_image}>
                     <img
                       className={styles.logo_image}
@@ -21,7 +27,10 @@ const HomePage = () => {
                       alt="프로필 이미지"
                     />
                   </div>
-                  <a className={styles.navigation}>
+                  <a
+                    className={styles.navigation}
+                    onClick={() => navigator('/addmeeting')}
+                  >
                     <p className={styles.navigation_title}>
                       회의실 등록하러 가기
                     </p>
@@ -34,7 +43,10 @@ const HomePage = () => {
                     </div>
                   </a>
                 </div>
-                <div className={styles.navigation_wrap}>
+                <div
+                  className={styles.navigation_wrap}
+                  onClick={() => navigator('/reservemeeting')}
+                >
                   <div className={styles.default_image}>
                     <img
                       className={styles.logo_image}

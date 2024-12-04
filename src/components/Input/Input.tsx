@@ -9,10 +9,24 @@ interface InputProps extends BaseProps {
   className?: string;
   value?: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  pattern?: string;
+  title?: string;
+  required?: boolean;
 }
 
 const Input = (props: InputProps) => {
-  const { type, name, id, placeholder, className, value, onChange } = props;
+  const {
+    type,
+    name,
+    id,
+    placeholder,
+    className,
+    value,
+    onChange,
+    pattern,
+    title,
+    required,
+  } = props;
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e);
@@ -28,6 +42,9 @@ const Input = (props: InputProps) => {
         className={className}
         value={value}
         onChange={handleOnChange}
+        pattern={pattern}
+        title={title}
+        required={required}
       />
     </>
   );
