@@ -28,7 +28,7 @@ const MeetingList = () => {
             const response = await fetch("/api/meeting/meetingrooms/list", {
                 method: "GET",
                 headers: {
-                    Autorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
             });
             if(response.ok) {
