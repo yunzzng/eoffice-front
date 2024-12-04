@@ -4,7 +4,7 @@ interface CardImageProps extends BaseProps {
   className?: string;
   src?: string;
   alt?: string;
-  onClick: () => {};
+  onClick: () => void;
 }
 
 const CardImage = (props: CardImageProps) => {
@@ -16,14 +16,14 @@ const CardImage = (props: CardImageProps) => {
 
   return (
     <>
-      <div>
+
         <img
           src={src}
           alt={alt}
           className={className}
           onClick={handleOnClick}
         />
-      </div>
+
     </>
   );
 };

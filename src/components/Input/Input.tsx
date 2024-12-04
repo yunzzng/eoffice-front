@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 import { BaseProps } from './InputBox';
 
 interface InputProps extends BaseProps {
-  type?: 'number' | 'text' | 'email' | 'password' | 'file' | 'date';
+  type?: 'number' | 'text' | 'email' | 'password' | 'file' | 'date' | 'time';
   name?: string;
   id?: string;
   placeholder?: string;
@@ -12,6 +12,7 @@ interface InputProps extends BaseProps {
   pattern?: string;
   title?: string;
   required?: boolean;
+  readonly?: boolean;
 }
 
 const Input = (props: InputProps) => {

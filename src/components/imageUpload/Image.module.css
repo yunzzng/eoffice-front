@@ -9,6 +9,7 @@
 .default_img{
     width: 20rem;
     height: 30rem;
+    border: solid;
 }
 
 .input_file{

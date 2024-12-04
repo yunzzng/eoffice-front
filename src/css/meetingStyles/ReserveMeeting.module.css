@@ -1,0 +1,91 @@
+.meetingroom_title{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.meetingroome_name_value{
+    margin-left: 200px;
+}
+
+.reservemeeting_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    margin-left: 100px;
+    gap: 50px;
+}
+
+.reservemeeting_buttons_box{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.inputBox_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.input_group{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.label{
+    text-align: right;
+    margin-right: 10px;
+}
+
+.input{
+    border:none;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    height: 40px;
+    width: 280px;
+}
+
+
+/* .reserve_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    height: 80vh;
+}
+
+.reserve_left_box{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+}
+
+.reserve_title{
+    display: flex;
+    justify-content: center;
+}
+
+.reserve_total{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input_group{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input_group label{
+    text-align: right;
+    margin-right: 10px;
+} */
+

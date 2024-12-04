@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import {User} from "../../types/user";
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
-
-
+import guestprofile from "../../../public/images/guest_profile.png";
 
 
 const Header = () => {
@@ -49,7 +48,7 @@ const Header = () => {
                     <a onClick={() => {navigate('/profile')}}>
                         <img src={user.profileImage} alt="사용자 프로필 이미지" className={styles.header_profile_img}/>
                     </a>
-                </div>
+                    </div>
             ) : <div>
                 </div>
             }

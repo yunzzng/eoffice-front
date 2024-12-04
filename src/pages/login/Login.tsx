@@ -1,7 +1,16 @@
+import styles from '../../css/loginStyles/Login.module.css';
+import InputBox from '../../components/input/InputBox';
+import Input from '../../components/input/Input';
+import Label from '../../components/input/Label';
+import computerImg from '../../../public/images/computerImage.png';
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../../css/loginStyles/Login.module.css';
-import computerImg from '../../../public/images/computerImage.png';
+
+
+
+const patternRegex =
+  '^(?=.*[a-zA-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
 
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
@@ -62,32 +71,35 @@ function Login() {
         </div>
         <div className={styles.rightSection}>
           <form onSubmit={handleSubmit} className={styles.inputField}>
-            <div className={styles.inputRow}>
-              <label className={styles.inputLabel}>이메일</label>
-              <input
-                type="email"
-                name="email"
+            <InputBox className={styles.inputRow}>
+              <Label className={styles.inputLabel}>이메일</Label>
+              <Input
+                type={'email'}
+                name={'email'}
                 value={readUser.email}
                 onChange={handleInputChange}
                 className={styles.input}
-                placeholder="이메일 입력"
-                required
+                placeholder={'이메일 입력'}
+                required={true}
               />
-            </div>
-            <div className={styles.inputRow}>
-              <label className={styles.inputLabel}>비밀번호</label>
-              <input
-                type="password"
-                name="password"
+            </InputBox>
+
+            <InputBox className={styles.inputRow}>
+              <Label className={styles.inputLabel}>비밀번호</Label>
+              <Input
+                type={'password'}
+                name={'password'}
                 value={readUser.password}
                 onChange={handleInputChange}
                 className={styles.input}
-                placeholder="비밀번호 입력"
-                pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-                title="비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다."
-                required
+                placeholder={'비밀번호 입력'}
+                pattern={patternRegex}
+                title={
+                  '비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다.'
+                }
+                required={true}
               />
-            </div>
+            </InputBox>
             <button
               type="submit"
               className={`${styles.button} ${styles.emailButton}`}

@@ -1,4 +1,3 @@
-import { ChangeEvent, useState } from 'react';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Siderbar';
@@ -7,8 +6,13 @@ import Input from '../../components/input/Input';
 import Label from '../../components/input/Label';
 import InputBox from '../../components/input/InputBox';
 
+import { ChangeEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const CreateMinutes = () => {
-  const token = localStorage.getItem('token') ?? '';
+  const navigator = useNavigate();
+
+  const token = localStorage.getItem('jwtToken');
 
   const [meetingInput, setMeetingInput] = useState({
     meetingTitle: '',
@@ -38,7 +42,7 @@ const CreateMinutes = () => {
       alert('회의 제목을 입력해주세요.');
     } else if (meetingInput.meetingDate === '') {
       alert('일시를 입력해주세요.');
-    } else if (meetingInput.meetingAttendee > 0) {
+    } else if (meetingInput.meetingAttendee <= 0) {
       alert('참가자 수를 입력해주세요.');
     } else if (meetingInput.meetingContent === '') {
       alert('회의 내용을 입력해주세요.');
@@ -58,12 +62,10 @@ const CreateMinutes = () => {
           }),
         });
 
-        if (meetingDataRequest) {
-          const meetingData = await meetingDataRequest.json();
-
-          if (meetingData) {
-            console.log(meetingData);
-          }
+        if (meetingDataRequest.status === 201) {
+          const { message } = await meetingDataRequest.json();
+          alert(`${message}`);
+          navigator('/minuteslist');
         } else {
           alert('등록 요청에 실패했습니다. 다시 시도해주세요.');
           return;
