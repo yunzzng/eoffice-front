@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Login.module.css';
 
-type OauthProviders = 'google' | 'kakao'; 
+type OauthProviders = 'google' | 'kakao';
 
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
@@ -89,7 +89,10 @@ function Login() {
                 required
               />
             </div>
-            <button type="submit" className={`${styles.button} ${styles.emailButton}`}>
+            <button
+              type="submit"
+              className={`${styles.button} ${styles.emailButton}`}
+            >
               Login
             </button>
           </form>

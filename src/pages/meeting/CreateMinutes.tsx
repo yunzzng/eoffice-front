@@ -3,9 +3,9 @@ import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Siderbar';
 import styles from '../../css/meetingStyles/CreateMinutes.module.css';
-import Input from '../../components/Input/Input';
-import InputBox from '../../components/Input/InputBox';
-import Label from '../../components/Input/Label';
+import Input from '../../components/input/Input';
+import InputBox from '../../components/input/InputBox';
+import Label from '../../components/input/Label';
 
 const CreateMinutes = () => {
   const token = localStorage.getItem('token') ?? '';

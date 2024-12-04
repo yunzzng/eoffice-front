@@ -15,13 +15,3 @@ const Card = (props: CardProps) => {
 };
 
 export default Card;
-
-// {/* <Card className={'class1'}>
-//   {posts.map((post) => (
-//     <CardItem className={'class2'} id={post.id}>
-//       <CardImage className={'class3'} src={post.file} alt={'회의실 이미지'} />
-//       <CardTitle className={'class4'}>{post.name}</CardTitle>
-//       {/* <EditButton onClick={() => handleEditClick(post.id)} /> */}
-//     </CardItem>
-//   ))}
-// </Card>; */}
