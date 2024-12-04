@@ -4,7 +4,6 @@ import {User} from "../../types/user";
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 import profileimg from "../../../public/images/ix_user-profile-filled.png";
-import guestprofile from "../../../public/images/guest_profile.png";
 
 
 const Header = () => {
