@@ -2,12 +2,12 @@ import styles from '../../css/loginStyles/Login.module.css';
 import InputBox from '../../components/input/InputBox';
 import Input from '../../components/input/Input';
 import Label from '../../components/input/Label';
-import computerImage from '../../../public/images/computerImage.png';
+import computerImg from '../../../public/images/computerImage.png';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-type OauthProviders = 'google' | 'kakao';
+
 
 const patternRegex =
   '^(?=.*[a-zA-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
@@ -50,8 +50,8 @@ function Login() {
     }
   };
 
-  const handleClickOauth = (provider: OauthProviders) => {
-    window.location.href = `/api/oauth/${provider}`;
+  const handleClickOauth =() => {
+    window.location.href = `/api/oauth/google`;
   };
 
   const navigateToSignup = () => navigate('/signup');
@@ -60,7 +60,11 @@ function Login() {
     <div className={styles.loginContainer}>
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
-          <img src={computerImage} className={styles.image} alt="Computer" />
+          <img
+            src={computerImg}
+            className={styles.image}
+            alt="Computer"
+          />
           <button onClick={navigateToSignup} className={styles.signupButton}>
             회원가입
           </button>
@@ -105,12 +109,8 @@ function Login() {
           </form>
           <div className={styles.oauthButtons}>
             <button
-              onClick={() => handleClickOauth('google')}
+              onClick={() => handleClickOauth}
               className={`${styles.button} ${styles.googleButton}`}
-            />
-            <button
-              onClick={() => handleClickOauth('kakao')}
-              className={`${styles.button} ${styles.kakaoButton}`}
             />
           </div>
         </div>
