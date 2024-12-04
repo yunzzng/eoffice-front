@@ -2,8 +2,14 @@ import Sidebar from "../../components/sidebar/Siderbar";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import { EditButton } from "../../components/button/EditButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
+import Card from "../../components/card/Card";
+import CardImage from "../../components/card/CardImage";
+import CardItem from "../../components/card/CardItem";
+import CardTitle from "../../components/card/CardTitle";
+import styles from "../../css/meetingStyles/MeetingList.module.css";
+
 
 interface addPostType {
     id:string;
@@ -16,14 +22,18 @@ interface addPostType {
 const MeetingList = () => {
     const navigate = useNavigate();
     const [post,setPost] = useState<addPostType[]>([]);
-    
+    const token = localStorage.getItem("token");
+
 
     const handleEditClick = (id:string) => {
         navigate(`/editmeeting/${id}`);
     }
 
+    const handleReserveClick = (id:string) => {
+        navigate(`/reservemeeting/${id}`);
+    }
+
     const getPost = async() => {
-        const token = localStorage.getItem("token");
         try{
             const response = await fetch("/api/meeting/meetingrooms/list", {
                 method: "GET",
@@ -34,7 +44,16 @@ const MeetingList = () => {
             if(response.ok) {
                 const {data} = await response.json();
                 console.log(data);
-                setPost(data);
+
+                const mappingData = data.map((item:any) => ({
+                    id: item._id,
+                    name: item.name,
+                    location: item.location,
+                    person : item.person,
+                    file: item.file,
+                    createdAt: item.createdAt,
+                }))
+                setPost(mappingData);
             }else{
                 console.log('회의실 정보 요청 실패');
             }
@@ -53,15 +72,22 @@ const MeetingList = () => {
         <Sidebar />
         <Footer />
         <div>
-            <ul>
+            <Card className={styles.card_box}>
                 {post.map((post) => (
-                    <li key={post.id}>
-                        <img src={post.file} />
-                        <p>{post.name}</p>
-                        <EditButton onClick={() => handleEditClick(post.id)}/>
-                    </li>
+                    <CardItem className={styles.card} id={post.id}>
+                        <CardImage
+                            className={styles.card_img}
+                            src={post.file}
+                            alt={'회의실 이미지'}
+                            onClick={() => handleReserveClick(post.id)}
+                        />
+                        <div className={styles.post_title_box}>
+                            <CardTitle className={styles.post_name} onClick={() => handleReserveClick(post.id)}>{post.name}</CardTitle>
+                            <EditButton onClick={() => handleEditClick(post.id)} />
+                        </div>
+                    </CardItem>
                 ))}
-            </ul>
+            </Card>
         </div>
         </>
     )

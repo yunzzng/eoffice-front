@@ -18,6 +18,8 @@ const EditProfile = () => {
 
   const token = localStorage.getItem('jwtToken');
 
+  
+
   const [passwords, setPassword] = useState({
     password: '',
     passwordComfirmed: '',

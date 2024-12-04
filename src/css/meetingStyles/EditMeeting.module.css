@@ -1,0 +1,49 @@
+.meetingroom_title{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.meetingroome_name_value{
+    margin-left: 200px;
+}
+
+.editmeeting_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    margin-left: 100px;
+    gap: 50px;
+}
+
+.inputBox_box {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.inputBox {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.input{
+    border:none;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    height: 40px;
+    width: 280px;
+}
+
+.editmeeting_buttons_box{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    
+}
+
+.h1{
+    margin-left: 20px;
+}
