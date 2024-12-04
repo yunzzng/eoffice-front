@@ -162,11 +162,11 @@
 }
 
 .googleButton {
-    background-image: url("../../../public/images/google_login_img.png");
+  background-image: url('../../../public/img/google_login_img.png');
 }
 
 .kakaoButton {
-    background-image: url("../../../public/images/kakao_login_img.png");
+  background-image: url('../../../public/img/kakao_login_img.png');
 }
 
 .buttonImage {
@@ -174,4 +174,3 @@
   height: auto;
   margin-right: 10px;
 }
-

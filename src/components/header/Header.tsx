@@ -3,7 +3,7 @@ import { User } from '../../types/user';
 
 import styles from './Header.module.css';
 import { useNavigate } from 'react-router-dom';
-import profileimg from '../../../public/images/ix_user-profile-filled.png';
+import profileimg from '../../../public/img/ix_user-profile-filled.png';
 
 const Header = () => {
   const [user, setUser] = useState<User | null>(null);

@@ -1,4 +1,3 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Signup from './pages/login/Signup';
 import Login from './pages/login/Login';
 import Profile from './pages/login/Profile';
@@ -13,6 +12,8 @@ import Home from './pages/login/Home';
 import ErrorPage from './components/ErrorPage';
 import { SidebarProvider } from './context/SidebarContext';
 import OauthLoading from './pages/login/OauthLoading';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 export default function RootApp() {
   return (
