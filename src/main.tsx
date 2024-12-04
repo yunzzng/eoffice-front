@@ -5,7 +5,7 @@ import './App.css';
 import { StrictMode } from 'react';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <StrictMode>
+  // <StrictMode>
       <RootApp />
-  </StrictMode>
+  // </StrictMode>
 );

@@ -15,6 +15,8 @@ const EditProfile = () => {
 
   const token = localStorage.getItem('token') ?? '';
 
+  
+
   const [passwords, setPassword] = useState({
     password: '',
     passwordComfirmed: '',
