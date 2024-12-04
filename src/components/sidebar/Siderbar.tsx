@@ -18,6 +18,7 @@ const Sidebar = () => {
     { label: '회의실 수정/삭제', path: '/editmeeting' },
     { label: '회의실 예약', path: '/reservemeeting' },
     { label: '회의록 작성', path: '/createminutes' },
+    { label: '회의록 보기', path: '/minuteslist' },
   ];
 
   return (

@@ -16,7 +16,7 @@ import Label from '../../components/input/Label';
 const EditProfile = () => {
   const navigator = useNavigate();
 
-  const token = localStorage.getItem('token') ?? '';
+  const token = localStorage.getItem('jwtToken');
 
   const [passwords, setPassword] = useState({
     password: '',
