@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Signup.module.css';
+import computerImg from '../../../public/images/computerImage.png';
 
 function Signup() {
   const [userDetails, setUserDetails] = useState({
@@ -112,7 +113,7 @@ function Signup() {
         </form>
         <div className={styles.rightSection}>
           <img
-            src="../../../public/images/computerImage.png"
+            src={computerImg}
             className={styles.image}
             alt="Computer"
           />

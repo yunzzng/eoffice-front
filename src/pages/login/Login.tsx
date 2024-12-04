@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/loginStyles/Login.module.css';
-
-type OauthProviders = 'google' | 'kakao';
+import computerImg from '../../../public/images/computerImage.png';
 
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
@@ -42,8 +41,8 @@ function Login() {
     }
   };
 
-  const handleClickOauth = (provider: OauthProviders) => {
-    window.location.href = `/api/oauth/${provider}`;
+  const handleClickOauth =() => {
+    window.location.href = `/api/oauth/google`;
   };
 
   const navigateToSignup = () => navigate('/signup');
@@ -53,7 +52,7 @@ function Login() {
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
           <img
-            src="../../../public/images/computerImage.png"
+            src={computerImg}
             className={styles.image}
             alt="Computer"
           />
@@ -98,12 +97,8 @@ function Login() {
           </form>
           <div className={styles.oauthButtons}>
             <button
-              onClick={() => handleClickOauth('google')}
+              onClick={() => handleClickOauth}
               className={`${styles.button} ${styles.googleButton}`}
-            />
-            <button
-              onClick={() => handleClickOauth('kakao')}
-              className={`${styles.button} ${styles.kakaoButton}`}
             />
           </div>
         </div>
