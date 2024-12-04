@@ -153,8 +153,7 @@
   background-color: #260054;
 }
 
-.googleButton,
-.kakaoButton {
+.googleButton {
   width: 100%;
   height: 50px;
   background-size: cover;

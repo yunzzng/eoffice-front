@@ -14,10 +14,10 @@ const AddMeeting = () => {
   const [inputValue, setInputValue] = useState<addPostType>({
     name: '',
     location: '',
-    person: 0,
+    personCount: 0,
   }); //회의실 이름,위치,인원
 
-  const [inputFile, setInputFile] = useState<File>(); //회의실 이미지
+  const [inputFile, setInputFile] = useState<File | string>(); //회의실 이미지
 
   //이름,위치,인원 input Change
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +28,11 @@ const AddMeeting = () => {
   //회의실 등록하기 버튼
   const handleSubmit = async () => {
     const token = localStorage.getItem('token');
-    if (!inputValue.location || !inputValue.name || isNaN(inputValue.person)) {
+    if (
+      !inputValue.location ||
+      !inputValue.name ||
+      isNaN(inputValue.personCount)
+    ) {
       //person <=0 거나 숫자가아니면 isNaN분기처리
       alert('모든 입력 칸을 작성해주세요');
       return;
@@ -38,7 +42,7 @@ const AddMeeting = () => {
 
     formData.append('name', inputValue.name);
     formData.append('location', inputValue.location);
-    formData.append('person', inputValue.person.toString());
+    formData.append('person', inputValue.personCount.toString());
     if (inputFile) {
       formData.append('file', inputFile);
     }

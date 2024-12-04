@@ -3,6 +3,7 @@ import computerImg from '../../../public/img/computerImage.png';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from '../../css/loginStyles/Signup.module.css';
 
 function Signup() {
   const [userDetails, setUserDetails] = useState({
@@ -113,7 +114,11 @@ function Signup() {
           </button>
         </form>
         <div className={styles.rightSection}>
-          <img src={computerImg} className={styles.image} alt="Computer" />
+          <img
+            src="../../../public/images/computerImage.png"
+            className={styles.image}
+            alt="Computer"
+          />
           <button
             onClick={() => navigate('/login')}
             className={styles.loginButton}

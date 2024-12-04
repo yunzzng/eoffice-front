@@ -1,18 +1,23 @@
 import Sidebar from '../../components/sidebar/Siderbar';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
+import styles from '../../css/meetingStyles/EditMeeting.module.css';
 import { ImageUpload } from '../../context/ImgUploadContext';
 import { addPostType } from '../../types/addmeeting';
+import { NavigateButtons } from '../../components/button/Button';
+import InputBox from '../../components/input/InputBox';
+import Input from '../../components/input/Input';
+import Label from '../../components/input/Label';
 
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const EditMeeting = () => {
-  const [uploadFile, setUploadFile] = useState<File>();
+  const [uploadFile, setUploadFile] = useState<File | string>();
   const [inputValue, setInputValue] = useState<addPostType>({
     name: '',
     location: '',
-    person: 0,
+    personCount: 0,
   });
   const navigate = useNavigate();
   const { id } = useParams();
@@ -30,6 +35,8 @@ const EditMeeting = () => {
       if (response.ok) {
         const { data } = await response.json();
         console.log(data);
+        console.log(data.file);
+        console.log(data.user);
         setInputValue(data);
         setUploadFile(data.file);
       } else '회의실 정보 요청 실패';
@@ -50,7 +57,11 @@ const EditMeeting = () => {
   const handlePostEdit = async () => {
     const token = localStorage.getItem('token');
 
-    if (!inputValue.name || !inputValue.location || inputValue.person <= 0) {
+    if (
+      !inputValue.name ||
+      !inputValue.location ||
+      inputValue.personCount <= 0
+    ) {
       alert('모든 입력 칸을 작성해주세요');
       return;
     }
@@ -64,7 +75,7 @@ const EditMeeting = () => {
 
     formData.append('name', inputValue.name);
     formData.append('location', inputValue.location);
-    formData.append('person', inputValue.person.toString());
+    formData.append('person', inputValue.personCount.toString());
     if (uploadFile) {
       formData.append('file', uploadFile);
     }
@@ -116,31 +127,87 @@ const EditMeeting = () => {
       <Header />
       <Sidebar />
       <Footer />
-      <div>
-        <ImageUpload setUploadImg={setUploadFile} />
+      <div className={styles.meetingroom_title}>
+        <h1 className={styles.meetingroome_name_value}>{inputValue.name}</h1>
+        <h1 className={styles.h1}>회의실 수정/삭제 페이지</h1>
       </div>
-      <div>
-        <div>
-          <label>이름</label>
-          <input onChange={handleInputChange} value={inputValue.name} />
+      <div className={styles.editmeeting_box}>
+        <ImageUpload
+          setUploadImg={setUploadFile}
+          initialImage={typeof uploadFile === 'string' ? uploadFile : undefined}
+        />
+        <div className={styles.inputBox_box}>
+          <InputBox>
+            <Label htmlFor="name" className={styles.label}>
+              회의 이름
+            </Label>
+            <Input
+              name="name"
+              id="name"
+              onChange={handleInputChange}
+              value={inputValue.name}
+              className={styles.input}
+            />
+          </InputBox>
+          <InputBox>
+            <Label htmlFor="location" className={styles.label}>
+              회의실 장소
+            </Label>
+            <Input
+              name="location"
+              id="location"
+              onChange={handleInputChange}
+              value={inputValue.location}
+              className={styles.input}
+            />
+          </InputBox>
+          <InputBox>
+            <Label htmlFor="person" className={styles.label}>
+              인원{' '}
+            </Label>
+            <Input
+              name="person"
+              id="person"
+              type="number"
+              onChange={handleInputChange}
+              value={inputValue.personCount}
+              className={styles.input}
+            />
+          </InputBox>
+          <div className={styles.editmeeting_buttons_box}>
+            <NavigateButtons label="수정하기" onClick={handlePostEdit} />
+            <NavigateButtons label="삭제하기" onClick={handlePostDelete} />
+          </div>
         </div>
-        <div>
-          <label>위치</label>
-          <input onChange={handleInputChange} value={inputValue.location} />
-        </div>
-        <div>
-          <label>인원</label>
-          <input
-            type="number"
-            onChange={handleInputChange}
-            value={inputValue.person}
-          />
-        </div>
-        <button onClick={handlePostEdit}>수정하기</button>
-        <button onClick={handlePostDelete}>삭제하기</button>
       </div>
     </>
   );
 };
+
+{
+  /* <div className={styles.editmeeting_box}>
+            <div>
+                <ImageUpload setUploadImg={setUploadFile} initialImage={typeof uploadFile === "string" ? uploadFile :undefined}/>
+            </div>
+            <div className={styles.editmeeting_input_box}>
+                <div className={styles.editmeeting_input_name_box}>
+                    <label>이름</label>
+                    <input onChange={handleInputChange} value={inputValue.name}/>
+                </div>
+                <div className={styles.editmeeting_input_name_box}>
+                    <label>위치</label>
+                    <input onChange={handleInputChange} value={inputValue.location}/>
+                </div>
+                <div className={styles.editmeeting_input_name_box}>
+                    <label>인원</label>
+                    <input type="number" onChange={handleInputChange} value={inputValue.person}/>
+                </div>
+                <div className={styles.editmeeting_buttons_box}>
+                    <NavigateButtons label="수정하기" onClick={handlePostEdit} />
+                    <NavigateButtons label="삭제하기" onClick={handlePostDelete} />
+                </div>
+            </div>
+        </div> */
+}
 
 export default EditMeeting;
