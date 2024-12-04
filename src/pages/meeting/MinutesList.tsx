@@ -16,12 +16,13 @@ type minutesProps = {
 };
 
 const MinutesList = () => {
+  const token = localStorage.getItem('jwtToken');
+
   const [minutes, setMinutes] = useState<minutesProps[]>([]);
   const [searchParam, setSearchParams] = useSearchParams({
     page: (DEFAULT_PAGE_INDEX + 1).toString(),
   });
 
-  const token = localStorage.getItem('token') ?? '';
   const currentPage = searchParam.get('page') || '1';
 
   const handleChangePage = (pageIndex: number) => {
