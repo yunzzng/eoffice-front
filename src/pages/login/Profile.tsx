@@ -4,9 +4,9 @@ import styles from '../../css/loginStyles/Profile.module.css';
 import Sidebar from '../../components/sidebar/Siderbar';
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Input from '../../components/Input/Input';
-import InputBox from '../../components/Input/InputBox';
-import Label from '../../components/Input/Label';
+import Input from '../../components/input/Input';
+import InputBox from '../../components/input/InputBox';
+import Label from '../../components/input/Label';
 
 /** api call
  * 로드 시 이미지 가져오는 패치 하나 /api/editprofile/loadimage
@@ -61,7 +61,7 @@ const EditProfile = () => {
 
       try {
         const editProfileRequest = await fetch('/api/user/update', {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -69,11 +69,11 @@ const EditProfile = () => {
         });
 
         if (editProfileRequest.status === 200) {
-          const { isError, user } = await editProfileRequest.json();
+          const { isError, message } = await editProfileRequest.json();
 
-          if (!isError && user) {
-            const { profileImage } = user;
-            setLoadProfileImage(profileImage);
+          if (!isError) {
+            alert(message);
+            navigator('/home');
           } else {
             alert('일치하는 유저가 없습니다.');
           }
@@ -83,16 +83,12 @@ const EditProfile = () => {
           if (!isError) {
             alert(`${message}`);
             localStorage.removeItem('token');
-            navigator('/Login');
+            navigator('/login');
             return;
           }
         } else if (editProfileRequest.status === 400) {
-          const { isError, message } = await editProfileRequest.json();
-
-          if (isError) {
-            alert(`${message}`);
-            return;
-          }
+          const { message } = await editProfileRequest.json();
+          alert(`${message}`);
         } else if (editProfileRequest.status === 500) {
           const { isError, message } = await editProfileRequest.json();
 
@@ -114,8 +110,7 @@ const EditProfile = () => {
   // 로컬 스토리지
   const getProfileFetch = async () => {
     try {
-      const LoadProfileRequest = await fetch('/api/user/update', {
-        method: 'POST',
+      const LoadProfileRequest = await fetch('/api/user/profile', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -130,16 +125,15 @@ const EditProfile = () => {
           if (!isError && user) {
             const { profileImage } = user;
             setLoadProfileImage(profileImage);
-            navigator('/home');
           }
         }
       } else if (LoadProfileRequest.status === 401) {
         const { isError, message } = await LoadProfileRequest.json();
 
-        if (!isError) {
+        if (isError) {
           alert(`${message}`);
           localStorage.removeItem('token');
-          navigator('/Login');
+          navigator('/login');
           return;
         }
       } else if (LoadProfileRequest.status === 400) {
