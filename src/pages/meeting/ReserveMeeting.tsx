@@ -9,7 +9,7 @@ import styles from "../../css/meetingStyles/ReserveMeeting.module.css";
 import InputBox from "../../components/input/InputBox";
 import Input from "../../components/input/Input";
 import Label from "../../components/input/Label";
-
+import { jwtDecode } from "jwt-decode";
 
 interface ReserveMeetingType {
     date: string;
@@ -76,9 +76,6 @@ const ReserveMeeting = () => {
         console.log("url에서 가져온 회의실 id",id);
     },[]);
 
-
-    
-
     const handleReserve = async() => {
 
         const formData = new FormData(); 
@@ -92,8 +89,9 @@ const ReserveMeeting = () => {
         try{
             const response = await fetch(`/api/reservations`, {
                 method:"POST",
-                body:formData,
+                body:JSON.stringify({roomId: id, date: inputValue.date, startTime:inputValue.time,participants:inputValue.participants, title: inputValue.title  }),
                 headers: {
+                    'Content-Type' :'application/json',
                     Authorization: `Bearer ${token}`
                 }
             });
