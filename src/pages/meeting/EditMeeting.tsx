@@ -83,6 +83,7 @@ const EditMeeting = () => {
             });
             if(response.ok) {
                 console.log('회의실 정보 수정 성공');
+                console.log(formData);
                 alert('회의실 수정이 완료되었습니다.');
                 navigate('/meetinglist');
             }else{

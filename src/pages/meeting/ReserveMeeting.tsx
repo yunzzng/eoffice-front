@@ -9,13 +9,12 @@ import styles from "../../css/meetingStyles/ReserveMeeting.module.css";
 import InputBox from "../../components/input/InputBox";
 import Input from "../../components/input/Input";
 import Label from "../../components/input/Label";
-import { jwtDecode } from "jwt-decode";
 
 interface ReserveMeetingType {
     date: string;
     time: string;
     location: string;
-    Participants: string;
+    participants: string;
     title:string; //회의실 예약할 때 회의실 제목
     name?:string; //회의실 등록할때 적었던 회의실 이름
 }
@@ -23,29 +22,18 @@ interface ReserveMeetingType {
 
 const ReserveMeeting = () => {
     const navigate = useNavigate();
-    // const [userId,setUserId] = useState<string | null>('');
     const [inputFile, setInputFile] = useState<File | string>();
     const [inputValue, setInputValue] = useState<ReserveMeetingType>({ 
         date: '',
         time: '',
         location: '',
-        Participants: '',
+        participants: '',
         title: '',
-        // name:'',
-    }); {/*회의실 등록하기 쪽이랑 이름 통일 ex)name? title? (name이랑 title다름)/ person? Participants*/}
+    }); 
     const {id} = useParams();
     const token = localStorage.getItem('token');
     
-    // useEffect(() => {
-    // if(token) {
-    //     const decodedToken = jwtDecode(token) as {id: string};
-    //     setUserId(decodedToken.id);
-    //     console.log('유저아이디' , userId);
-    // }else{
-    //     console.log('유저아이디 없음');
-    // }
-    // }, [token])
-    
+
 
     const handleInputChange = (e:ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -66,7 +54,13 @@ const ReserveMeeting = () => {
             if(response.ok) {
                 const {data} = await response.json();
                 console.log(data);
-                setInputValue(data);
+                setInputValue({
+                    date: '',
+                    time: '',
+                    location: data.location,
+                    participants:'',
+                    title: '',
+                });
                 setInputFile(data.file);
             }else{
                 console.log('회의실 정보 요청 실패');
@@ -81,26 +75,22 @@ const ReserveMeeting = () => {
         console.log("url에서 가져온 회의실 id",id);
     },[]);
 
-
-    
-
     const handleReserve = async() => {
 
         const formData = new FormData(); 
 
         formData.append("roomId", id || '');
-        // formData.append("userId", userId);
         formData.append("date", inputValue.date);
         formData.append("startTime", inputValue.time);
-        formData.append("participants", inputValue.Participants);
+        formData.append("participants", inputValue.participants);
         formData.append("title", inputValue.title);
-        // formData.append("name", inputValue.name);
 
         try{
             const response = await fetch(`/api/reservations`, {
                 method:"POST",
-                body:formData,
+                body:JSON.stringify({roomId: id, date: inputValue.date, startTime:inputValue.time,participants:inputValue.participants, title: inputValue.title  }),
                 headers: {
+                    'Content-Type' :'application/json',
                     Authorization: `Bearer ${token}`
                 }
             });
@@ -148,8 +138,8 @@ const ReserveMeeting = () => {
                             <Input name="time" id="time" type="time" onChange={handleInputChange} value={inputValue.time} className={styles.input}/>
                         </InputBox>
                         <InputBox className={styles.input_group}>
-                            <Label htmlFor="Participants" className={styles.label}>참여자 </Label> 
-                            <Input name="Participants" id="Participants" onChange={handleInputChange} value={inputValue.Participants} className={styles.input}/>
+                            <Label htmlFor="participants" className={styles.label}>참여자 </Label> 
+                            <Input name={'participants'} id={"participants"} onChange={handleInputChange} value={inputValue.participants} className={styles.input}/>
                         </InputBox>
                         <div className={styles.reservemeeting_buttons_box}>
                         <NavigateButtons label="회의실 예약하기" onClick={handleReserve} />
