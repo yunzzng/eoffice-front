@@ -12,11 +12,11 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 interface addPostType {
-  id: string;
-  name: string;
-  location: string;
-  person: number | string;
-  file: string;
+    id:string;
+    name: string;
+    location: string;
+    personCount: number | string;
+    file: string;
 }
 
 const MeetingList = () => {
@@ -44,57 +44,52 @@ const MeetingList = () => {
         const { data } = await response.json();
         console.log(data);
 
-        const mappingData = data.map((item: any) => ({
-          id: item._id,
-          name: item.name,
-          location: item.location,
-          person: item.person,
-          file: item.file,
-          createdAt: item.createdAt,
-        }));
-        setPost(mappingData);
-      } else {
-        console.log('회의실 정보 요청 실패');
-      }
-    } catch (err) {
-      console.log('회의실 정보 가져오기 실패', err);
-    }
-  };
+                const mappingData = data.map((item:any) => ({
+                    id: item._id,
+                    name: item.name,
+                    location: item.location,
+                    personCount : item.personCount,
+                    file: item.file,
+                    createdAt: item.createdAt,
+                }))
+                setPost(mappingData);
+            }else{
+                console.log('회의실 정보 요청 실패');
+            }
+        }catch(err) {
+            console.log('회의실 정보 가져오기 실패', err)
+        }
+    };
 
   useEffect(() => {
     getPost();
   }, []);
 
-  return (
-    <>
-      <Header />
-      <Sidebar />
-      <Footer />
-      <div>
-        <Card className={styles.card_box}>
-          {post.map((post) => (
-            <CardItem className={styles.card} id={post.id}>
-              <CardImage
-                className={styles.card_img}
-                src={post.file}
-                alt={'회의실 이미지'}
-                onClick={() => handleReserveClick(post.id)}
-              />
-              <div className={styles.post_title_box}>
-                <CardTitle
-                  className={styles.post_name}
-                  onClick={() => handleReserveClick(post.id)}
-                >
-                  {post.name}
-                </CardTitle>
-                <EditButton onClick={() => handleEditClick(post.id)} />
-              </div>
-            </CardItem>
-          ))}
-        </Card>
-      </div>
-    </>
-  );
-};
+    return (
+        <>
+        <Header />
+        <Sidebar />
+        <Footer />
+        <div>
+            <Card className={styles.card_box}>
+                {post.map((post) => (
+                    <CardItem className={styles.card} id={post.id}>
+                        <CardImage
+                            className={styles.card_img}
+                            src={post.file}
+                            alt={'회의실 이미지'}
+                            onClick={() => handleReserveClick(post.id)}
+                        />
+                        <div className={styles.post_title_box}>
+                            <CardTitle className={styles.post_name} onClick={() => handleReserveClick(post.id)}>{post.name}</CardTitle>
+                            <EditButton onClick={() => handleEditClick(post.id)} />
+                        </div>
+                    </CardItem>
+                ))}
+            </Card>
+        </div>
+        </>
+    )
+}
 
 export default MeetingList;
