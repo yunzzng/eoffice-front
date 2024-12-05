@@ -8,6 +8,7 @@ import { NavigateButtons } from '../../components/button/Button';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
   const navigate = useNavigate();
@@ -88,13 +89,7 @@ function Login() {
                 required={true}
               />
             </InputBox>
-            <NavigateButtons label="로그인" onClick={() => handleSubmit} />
-            {/* <button
-              type="submit"
-              className={`${styles.button} ${styles.emailButton}`}
-            >
-              Login
-            </button> */}
+            <NavigateButtons label="구글 로그인" onClick={() => handleClickOauth} />
           </form>
           <div className={styles.oauthButtons}>
           <NavigateButtons label="구글 로그인" onClick={() => handleClickOauth} />

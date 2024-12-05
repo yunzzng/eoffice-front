@@ -9,6 +9,7 @@ import styles from "../../css/meetingStyles/ReserveMeeting.module.css";
 import InputBox from "../../components/input/InputBox";
 import Input from "../../components/input/Input";
 import Label from "../../components/input/Label";
+import { jwtDecode } from "jwt-decode";
 
 interface ReserveMeetingType {
     date: string;
@@ -139,7 +140,7 @@ const ReserveMeeting = () => {
                         </InputBox>
                         <InputBox className={styles.input_group}>
                             <Label htmlFor="participants" className={styles.label}>참여자 </Label> 
-                            <Input name={'participants'} id={"participants"} onChange={handleInputChange} value={inputValue.participants} className={styles.input}/>
+                            <Input name="participants" id="participants" onChange={handleInputChange} value={inputValue.participants} className={styles.input}/>
                         </InputBox>
                         <div className={styles.reservemeeting_buttons_box}>
                         <NavigateButtons label="회의실 예약하기" onClick={handleReserve} />
