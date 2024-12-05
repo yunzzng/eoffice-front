@@ -58,9 +58,7 @@ function Login() {
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
           <img src={computerImage} className={styles.image} alt="Computer" />
-          <button onClick={navigateToSignup} className={styles.signupButton}>
-            회원가입
-          </button>
+          <NavigateButtons label='회원가입' onClick={navigateToSignup} className={styles.inputRow}/>
         </div>
         <div className={styles.rightSection}>
           <form onSubmit={handleSubmit} className={styles.inputField}>
@@ -89,10 +87,11 @@ function Login() {
                 required={true}
               />
             </InputBox>
-            <NavigateButtons label="구글 로그인" onClick={() => handleClickOauth} />
+            <NavigateButtons label='로그인' onClick={handleSubmit} className={styles.inputRow}/>
+            <NavigateButtons label="구글 로그인" onClick={handleClickOauth} className={styles.inputRow}/>
           </form>
           <div className={styles.oauthButtons}>
-          <NavigateButtons label="구글 로그인" onClick={() => handleClickOauth} />
+          <NavigateButtons label="구글 로그인" onClick={handleClickOauth} className={styles.inputRow}/>
             {/* <button
               onClick={() => handleClickOauth}
               className={`${styles.button} ${styles.googleButton}`}

@@ -20,13 +20,15 @@
 .reservemeeting_buttons_box {
   display: flex;
   gap: 30px;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .inputBox_box {
   display: flex;
   flex-direction: column;
 }
+
+
 
 .input_group {
   display: flex;

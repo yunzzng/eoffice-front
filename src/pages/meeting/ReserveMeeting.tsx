@@ -6,10 +6,11 @@ import { NavigateButtons } from "../../components/button/Button";
 import { ImageUpload } from "../../context/ImgUploadContext";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "../../css/meetingStyles/ReserveMeeting.module.css";
+import btnstyles from "../../components/button/Button.module.css";
 import InputBox from "../../components/input/InputBox";
 import Input from "../../components/input/Input";
 import Label from "../../components/input/Label";
-import { jwtDecode } from "jwt-decode";
+
 
 interface ReserveMeetingType {
     date: string;
@@ -143,7 +144,7 @@ const ReserveMeeting = () => {
                             <Input name="participants" id="participants" onChange={handleInputChange} value={inputValue.participants} className={styles.input}/>
                         </InputBox>
                         <div className={styles.reservemeeting_buttons_box}>
-                        <NavigateButtons label="회의실 예약하기" onClick={handleReserve} />
+                        <NavigateButtons label="회의실 예약하기" onClick={handleReserve} className={btnstyles.button}/>
                         </div>
                     </div>
                 </div>

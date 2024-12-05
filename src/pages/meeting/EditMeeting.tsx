@@ -2,6 +2,7 @@ import Sidebar from "../../components/sidebar/Siderbar";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import styles from "../../css/meetingStyles/EditMeeting.module.css";
+import btnstyles from "../../components/button/Button.module.css";
 import { ChangeEvent, useEffect, useState } from "react";
 import { ImageUpload } from "../../context/ImgUploadContext";
 import { addPostType } from "../../types/addmeeting";
@@ -33,8 +34,7 @@ const EditMeeting = () => {
                 console.log(data);
                 setInputValue({name: data.name,
                     location: data.location,
-                    personCount: data.personCount,})
-                    
+                    personCount: Number(data.personCount),})
                 setUploadFile(data.file);
             }else('회의실 정보 요청 실패');
         }catch(err) {
@@ -123,27 +123,26 @@ const EditMeeting = () => {
         <Sidebar />
         <Footer />
         <div className={styles.meetingroom_title}>
-        <h1 className={styles.meetingroome_name_value}>{inputValue.name}</h1>
         <h1 className={styles.h1}>회의실 수정/삭제 페이지</h1>
         </div>
         <div className={styles.editmeeting_box}>
             <ImageUpload setUploadImg={setUploadFile} initialImage={typeof uploadFile === "string" ? uploadFile :undefined}/>
             <div className={styles.inputBox_box}>
-                <InputBox >
+                <InputBox className={styles.inputBox}>
                     <Label htmlFor={"name"} className={styles.label}>회의실 이름</Label>
                     <Input name={"name"} id={"name"} onChange={handleInputChange} value={inputValue.name} className={styles.input}/>
                 </InputBox>
-                <InputBox >
+                <InputBox className={styles.inputBox}>
                     <Label htmlFor={"location"} className={styles.label}>회의실 장소</Label>
                     <Input name={"location"} id={"location"} onChange={handleInputChange} value={inputValue.location} className={styles.input}/>
                 </InputBox>
-                <InputBox >
+                <InputBox className={styles.inputBox}>
                     <Label htmlFor={"personCount"} className={styles.label}>인원 </Label>
-                    <Input name={"personCount"} id={"personCount"} type={"number"} onChange={handleInputChange} value={inputValue.personCount} className={styles.input}/>
+                    <Input name={"personCount"} id={"personCount"} type={"number"} onChange={handleInputChange} value={inputValue.personCount || 0} className={styles.input}/>
                 </InputBox>
                 <div className={styles.editmeeting_buttons_box}>
-                    <NavigateButtons label="수정하기" onClick={handlePostEdit} />
-                    <NavigateButtons label="삭제하기" onClick={handlePostDelete} />
+                    <NavigateButtons label="수정하기" onClick={handlePostEdit} className={btnstyles.button} />
+                    <NavigateButtons label="삭제하기" onClick={handlePostDelete} className={btnstyles.button} />
                 </div>
             </div>
         </div>

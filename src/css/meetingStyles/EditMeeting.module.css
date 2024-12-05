@@ -1,7 +1,8 @@
 .meetingroom_title {
   display: flex;
-  justify-content: center;
-  margin-top: 100px;
+    justify-content: center;
+    margin-top: 150px;
+    margin-left: 200px;
 }
 
 .meetingroome_name_value {
@@ -17,6 +18,16 @@
   gap: 50px;
 }
 
+.addmeeting_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  margin-left: 100px;
+  margin-top: 150px;
+  gap: 50px;
+}
+
 .inputBox_box {
   display: flex;
   flex-direction: column;
@@ -27,6 +38,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .input {
@@ -40,7 +52,7 @@
 .editmeeting_buttons_box {
   display: flex;
   gap: 30px;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .h1 {
