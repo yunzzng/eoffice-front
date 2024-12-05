@@ -84,7 +84,6 @@ const CreateMinutes = () => {
         <Header />
         <Sidebar />
         <div className={styles.main_container}>
-          <Header />
           <main className={styles.main}>
             <div className={styles.main_content}>
               <div className={styles.inputs_wrap}>
