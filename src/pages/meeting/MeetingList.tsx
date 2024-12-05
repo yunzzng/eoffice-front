@@ -12,11 +12,11 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 interface addPostType {
-  id: string;
-  name: string;
-  location: string;
-  person: number | string;
-  file: string;
+    id:string;
+    name: string;
+    location: string;
+    personCount: number | string;
+    file: string;
 }
 
 const MeetingList = () => {
@@ -44,22 +44,22 @@ const MeetingList = () => {
         const { data } = await response.json();
         console.log(data);
 
-        const mappingData = data.map((item: any) => ({
-          id: item._id,
-          name: item.name,
-          location: item.location,
-          person: item.person,
-          file: item.file,
-          createdAt: item.createdAt,
-        }));
-        setPost(mappingData);
-      } else {
-        console.log('회의실 정보 요청 실패');
-      }
-    } catch (err) {
-      console.log('회의실 정보 가져오기 실패', err);
-    }
-  };
+                const mappingData = data.map((item:any) => ({
+                    id: item._id,
+                    name: item.name,
+                    location: item.location,
+                    personCount : item.personCount,
+                    file: item.file,
+                    createdAt: item.createdAt,
+                }))
+                setPost(mappingData);
+            }else{
+                console.log('회의실 정보 요청 실패');
+            }
+        }catch(err) {
+            console.log('회의실 정보 가져오기 실패', err)
+        }
+    };
 
   useEffect(() => {
     getPost();

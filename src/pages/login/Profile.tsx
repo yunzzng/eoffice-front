@@ -21,13 +21,13 @@ const EditProfile = () => {
 
   
 
-  const [passwords, setPassword] = useState({
+  const [passwords, setPassword] = useState({ //사용자가 
     password: '',
     passwordComfirmed: '',
   });
 
-  const [loadProfileImage, setLoadProfileImage] = useState<string>();
-  const [inputFile, setInputFile] = useState<File>();
+  const [loadProfileImage, setLoadProfileImage] = useState<string>(); //맨 처음 이미지
+  const [inputFile, setInputFile] = useState<File>(); 
   const [srcUrl, setSrcUrl] = useState<string>();
 
   const handleInputFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -127,7 +127,7 @@ const EditProfile = () => {
 
           if (!isError && user) {
             const { profileImage } = user;
-            setLoadProfileImage(profileImage);
+            setLoadProfileImage(profileImage); //데이터 처음에 받은것을 image를 state에 넣어줌
           }
         }
       } else if (LoadProfileRequest.status === 401) {
@@ -163,7 +163,7 @@ const EditProfile = () => {
   };
   useEffect(() => {
     getProfileFetch();
-  }, []);
+  }, []);  //
 
   return (
     <>
