@@ -1,5 +1,6 @@
 import styles from '../../css/loginStyles/Signup.module.css';
 import computerImg from '../../../public/img/computerImage.png';
+import { NavigateButtons } from '../../components/button/Button';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

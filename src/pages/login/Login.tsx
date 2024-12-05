@@ -3,20 +3,21 @@ import InputBox from '../../components/input/InputBox';
 import Input from '../../components/input/Input';
 import Label from '../../components/input/Label';
 import computerImage from '../../../public/img/computerImage.png';
+import { NavigateButtons } from '../../components/button/Button';
 
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
   const navigate = useNavigate();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setReadUser((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { email, password } = readUser;
@@ -87,18 +88,20 @@ function Login() {
                 required={true}
               />
             </InputBox>
-            <button
+            <NavigateButtons label="로그인" onClick={() => handleSubmit} />
+            {/* <button
               type="submit"
               className={`${styles.button} ${styles.emailButton}`}
             >
               Login
-            </button>
+            </button> */}
           </form>
           <div className={styles.oauthButtons}>
-            <button
+          <NavigateButtons label="구글 로그인" onClick={() => handleClickOauth} />
+            {/* <button
               onClick={() => handleClickOauth}
               className={`${styles.button} ${styles.googleButton}`}
-            />
+            /> */}
           </div>
         </div>
       </div>
