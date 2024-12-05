@@ -22,6 +22,11 @@ function Login() {
 
     const { email, password } = readUser;
 
+    if (!email || !password) {
+      alert('이메일과 비밀번호를 모두 입력해 주세요.');
+      return;
+    }
+
     try {
       const response = await fetch('/api/user/login', {
         method: 'POST',
@@ -39,7 +44,7 @@ function Login() {
           alert('사용자 정보를 찾을 수 없습니다.');
         }
       } else {
-        alert('로그인 실패. 다시 시도하세요.');
+        alert('이메일 또는 비밀번호가 잘못되었습니다.');
       }
     } catch (err) {
       console.error('로그인 중 오류 발생:', err);
@@ -57,9 +62,7 @@ function Login() {
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
           <img src={computerImage} className={styles.image} alt="Computer" />
-          <button onClick={navigateToSignup} className={styles.signupButton}>
-            회원가입
-          </button>
+          <NavigateButtons label="회원가입" onClick={navigateToSignup} className={styles.signupButton} />
         </div>
         <div className={styles.rightSection}>
           <form onSubmit={handleSubmit} className={styles.inputField}>
@@ -88,20 +91,10 @@ function Login() {
                 required={true}
               />
             </InputBox>
-            <NavigateButtons
-              label="구글 로그인"
-              onClick={() => handleClickOauth}
-            />
           </form>
-          <div className={styles.oauthButtons}>
-            <NavigateButtons
-              label="구글 로그인"
-              onClick={() => handleClickOauth}
-            />
-            {/* <button
-              onClick={() => handleClickOauth}
-              className={`${styles.button} ${styles.googleButton}`}
-            /> */}
+          <div className={styles.buttons}>
+            <NavigateButtons label="로그인" onClick={() => handleSubmit} className={`${styles.button} ${styles.emailButton}`}/>
+            <NavigateButtons label="" onClick={ handleClickOauth}className={`${styles.button} ${styles.googleButton}`} />
           </div>
         </div>
       </div>
