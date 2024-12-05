@@ -5,10 +5,6 @@
   font-style: normal;
 }
 
-* {
-  font-family: 'elicefont';
-}
-
 /* 넓이 1024px 이하, 높이 500px 이하 */
 @media (max-width: 1024px) and (max-height: 500px) {
   .sidebar_box {
