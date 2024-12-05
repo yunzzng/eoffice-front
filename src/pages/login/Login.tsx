@@ -91,11 +91,11 @@ function Login() {
                 required={true}
               />
             </InputBox>
-          </form>
-          <div className={styles.buttons}>
+            <div className={styles.buttons}>
             <NavigateButtons label="로그인" onClick={() => handleSubmit} className={`${styles.button} ${styles.emailButton}`}/>
             <NavigateButtons label="" onClick={ handleClickOauth}className={`${styles.button} ${styles.googleButton}`} />
           </div>
+          </form>
         </div>
       </div>
     </div>
