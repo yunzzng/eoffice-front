@@ -87,7 +87,7 @@ const AddMeeting = () => {
                         <label className={styles.addmeeting_input_label}>인원</label>
                         <input type='number' className={styles.addmeeting_input} onChange={handleInputChange} name="person"/>
                     </div>
-                    <NavigateButtons label="회의실 등록하기" onClick={handleSubmit}/>
+                    <NavigateButtons label="회의실 등록하기" onClick={handleSubmit} className='' />
                 </div>
             </div>
         </div> 
