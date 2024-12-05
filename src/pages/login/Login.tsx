@@ -62,7 +62,11 @@ function Login() {
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
           <img src={computerImage} className={styles.image} alt="Computer" />
-          <NavigateButtons label="회원가입" onClick={navigateToSignup} className={styles.signupButton} />
+          <NavigateButtons
+            label="회원가입"
+            onClick={() => navigateToSignup}
+            className={styles.signupButton}
+          />
         </div>
         <div className={styles.rightSection}>
           <form onSubmit={handleSubmit} className={styles.inputField}>
@@ -92,10 +96,19 @@ function Login() {
               />
             </InputBox>
             <div className={styles.buttons}>
-            <NavigateButtons label="로그인" onClick={() => handleSubmit} className={`${styles.button} ${styles.emailButton}`}/>
-            <NavigateButtons label="" onClick={ handleClickOauth}className={`${styles.button} ${styles.googleButton}`} />
-          </div>
+              <NavigateButtons
+                label="로그인"
+                onClick={() => handleSubmit}
+                className={`${styles.button} ${styles.emailButton}`}
+              />
+              <NavigateButtons
+                label=""
+                onClick={handleClickOauth}
+                className={`${styles.button} ${styles.googleButton}`}
+              />
+            </div>          
           </form>
+          
         </div>
       </div>
     </div>

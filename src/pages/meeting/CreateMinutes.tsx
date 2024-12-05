@@ -8,6 +8,7 @@ import InputBox from '../../components/input/InputBox';
 
 import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { NavigateButtons } from '../../components/button/Button';
 
 const CreateMinutes = () => {
   const navigator = useNavigate();
@@ -80,8 +81,8 @@ const CreateMinutes = () => {
   return (
     <>
       <div className={styles.container}>
+        <Header />
         <Sidebar />
-
         <div className={styles.main_container}>
           <Header />
           <main className={styles.main}>
@@ -143,15 +144,11 @@ const CreateMinutes = () => {
                   ></textarea>
                 </div>
               </div>
-
-              {JSON.stringify(meetingInput)}
-
-              <button
+              <NavigateButtons
+                label={'작성완료'}
                 className={styles.button}
-                onClick={handleSubmitMeetingData}
-              >
-                작성완료
-              </button>
+                onClick={() => handleSubmitMeetingData}
+              ></NavigateButtons>
             </div>
           </main>
           <Footer />

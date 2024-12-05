@@ -6,6 +6,7 @@ import Input from '../../components/input/Input';
 import InputBox from '../../components/input/InputBox';
 import Label from '../../components/input/Label';
 import defaultImage from '../../../public/img/default-image.png';
+import { NavigateButtons } from '../../components/button/Button';
 
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -168,10 +169,10 @@ const EditProfile = () => {
   return (
     <>
       <div className={styles.container}>
+        <Header />
         <Sidebar />
 
         <div className={styles.main_container}>
-          <Header />
           <main className={styles.main}>
             <div className={styles.main_content}>
               <InputBox className={styles.default_image}>
@@ -222,9 +223,11 @@ const EditProfile = () => {
                 </InputBox>
               </div>
 
-              <button className={styles.button} onClick={handleOnSubmit}>
-                프로필 수정
-              </button>
+              <NavigateButtons
+                className={styles.button}
+                label={'프로필 수정'}
+                onClick={() => handleOnSubmit}
+              ></NavigateButtons>
             </div>
           </main>
           <Footer />

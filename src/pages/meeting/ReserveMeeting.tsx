@@ -1,14 +1,16 @@
-import Sidebar from '../../components/sidebar/Siderbar';
-import Footer from '../../components/footer/Footer';
-import Header from '../../components/header/Header';
-import { useNavigate, useParams } from 'react-router-dom';
-import { NavigateButtons } from '../../components/button/Button';
-import { ImageUpload } from '../../context/ImgUploadContext';
-import { ChangeEvent, useEffect, useState } from 'react';
-import styles from '../../css/meetingStyles/ReserveMeeting.module.css';
-import InputBox from '../../components/input/InputBox';
-import Input from '../../components/input/Input';
-import Label from '../../components/input/Label';
+import Sidebar from "../../components/sidebar/Siderbar";
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/header/Header";
+import { useNavigate, useParams } from "react-router-dom";
+import { NavigateButtons } from "../../components/button/Button";
+import { ImageUpload } from "../../context/ImgUploadContext";
+import { ChangeEvent, useEffect, useState } from "react";
+import styles from "../../css/meetingStyles/ReserveMeeting.module.css";
+import btnstyles from "../../components/button/Button.module.css";
+import InputBox from "../../components/input/InputBox";
+import Input from "../../components/input/Input";
+import Label from "../../components/input/Label";
+import { jwtDecode } from "jwt-decode";
 
 interface ReserveMeetingType {
   date: string;
@@ -189,7 +191,7 @@ const ReserveMeeting = () => {
             />
           </InputBox>
           <div className={styles.reservemeeting_buttons_box}>
-            <NavigateButtons label="회의실 예약하기" onClick={handleReserve} className='' />
+          <NavigateButtons label="회의실 예약하기" onClick={() => handleReserve} />
           </div>
         </div>
       </div>
