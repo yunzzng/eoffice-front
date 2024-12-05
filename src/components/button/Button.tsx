@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import { FC, FormEvent } from 'react';
 
 interface NavigateButtonsProps {
   label: string;
@@ -7,7 +7,7 @@ interface NavigateButtonsProps {
   className?: string;
 }
 
-export const NavigateButtons: React.FC<NavigateButtonsProps> = ({
+export const NavigateButtons: FC<NavigateButtonsProps> = ({
   label,
   onClick,
   className,

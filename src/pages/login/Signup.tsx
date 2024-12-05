@@ -1,10 +1,11 @@
 import styles from '../../css/loginStyles/Signup.module.css';
 import computerImg from '../../../public/img/computerImage.png';
+import { NavigateButtons } from '../../components/button/Button';
 import InputBox from '../../components/input/InputBox';
 import Input from '../../components/input/Input';
 import Label from '../../components/input/Label';
 
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Signup() {
@@ -15,20 +16,23 @@ function Signup() {
     confirmPassword: '',
   });
 
-  const patternRegex =
-    '^(?=.*[a-zA-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
-
   const navigate = useNavigate();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { name, email, password, confirmPassword } = userDetails;
+    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!passwordPattern.test(password)) {
+      alert('비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다.');
+      return;
+    }
 
     if (password !== confirmPassword) {
       alert('비밀번호가 일치하지 않습니다.');
@@ -58,6 +62,8 @@ function Signup() {
     }
   };
 
+  const navigateToLogin = () => navigate('/login');
+
   return (
     <div className={styles.signupContainer}>
       <div className={styles.mainContent}>
@@ -66,68 +72,68 @@ function Signup() {
             <InputBox className={styles.inputRow}>
               <Label className={styles.inputLabel}>이름</Label>
               <Input
-                type={'text'}
-                name={'name'}
+                type="text"
+                name="name"
                 value={userDetails.name}
                 onChange={handleInputChange}
                 className={styles.input}
-                placeholder={'이름 입력'}
+                placeholder="이름 입력"
                 required={true}
               />
             </InputBox>
+
             <InputBox className={styles.inputRow}>
               <Label className={styles.inputLabel}>이메일</Label>
               <Input
-                type={'email'}
-                name={'email'}
+                type="email"
+                name="email"
                 value={userDetails.email}
                 onChange={handleInputChange}
                 className={styles.input}
-                placeholder={'이메일 입력'}
+                placeholder="이메일 입력"
                 required={true}
               />
             </InputBox>
+
             <InputBox className={styles.inputRow}>
               <Label className={styles.inputLabel}>비밀번호</Label>
               <Input
-                type={'password'}
-                name={'password'}
+                type="password"
+                name="password"
                 value={userDetails.password}
                 onChange={handleInputChange}
                 className={styles.input}
-                placeholder={'비밀번호 입력'}
-                pattern={patternRegex}
-                title={
-                  '비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다.'
-                }
+                placeholder="비밀번호 입력"
                 required={true}
               />
             </InputBox>
+
             <InputBox className={styles.inputRow}>
               <Label className={styles.inputLabel}>비밀번호 확인</Label>
               <Input
-                type={'password'}
-                name={'confirmPassword'}
+                type="password"
+                name="confirmPassword"
                 value={userDetails.confirmPassword}
                 onChange={handleInputChange}
                 className={styles.input}
-                placeholder={'비밀번호 확인'}
+                placeholder="비밀번호 확인"
                 required={true}
               />
             </InputBox>
           </div>
-          <button type="submit" className={styles.signupButton}>
-            회원가입
-          </button>
+          <NavigateButtons
+            label="회원가입"
+            onClick={() => handleSignup}
+            className={styles.signupButton}
+          />
         </form>
         <div className={styles.rightSection}>
           <img src={computerImg} className={styles.image} alt="Computer" />
-          <button
-            onClick={() => navigate('/login')}
+          <NavigateButtons
+            label="로그인"
+            onClick={navigateToLogin}
             className={styles.loginButton}
-          >
-            로그인
-          </button>
+          />
         </div>
       </div>
     </div>
