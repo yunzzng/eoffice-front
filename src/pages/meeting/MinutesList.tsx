@@ -14,6 +14,7 @@ type minutesProps = {
   date: string;
   attendee: number;
   content: string;
+  createAt: string;
 };
 
 const MinutesList = () => {

@@ -91,6 +91,11 @@ ul {
   color: #6700e6;
 }
 
+.minutes_createAt {
+  flex-basis: 10rem;
+  color: #6700e6;
+}
+
 .minutes_content {
   padding: 1rem 5rem;
   height: 6rem;
