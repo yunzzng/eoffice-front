@@ -114,7 +114,7 @@ function Signup() {
         </form>
         <div className={styles.rightSection}>
           <img
-            src="../../../public/images/computerImage.png"
+            src={computerImg}
             className={styles.image}
             alt="Computer"
           />

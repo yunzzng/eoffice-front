@@ -29,6 +29,7 @@ const Header = () => {
         console.log('유저 정보 가져오기 성공', response);
         const data = await response.json(); //유저의 정보를 가져와서 사진이 없으면 defaultimg, 사진 업로드한게 있으면 보여주기
         setUser(data.user);
+        console.log(data.user);
       } else {
         console.log('유저정보 가져오기 실패');
       }
