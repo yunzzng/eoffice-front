@@ -144,7 +144,7 @@ const ReserveMeeting = () => {
                             <Input name="participants" id="participants" onChange={handleInputChange} value={inputValue.participants} className={styles.input}/>
                         </InputBox>
                         <div className={styles.reservemeeting_buttons_box}>
-                        <NavigateButtons label="회의실 예약하기" onClick={handleReserve} />
+                        <NavigateButtons label="회의실 예약하기" onClick={() => handleReserve} />
                         </div>
                     </div>
                 </div>
