@@ -1,17 +1,19 @@
-import React from 'react';
-import styles from './Button.module.css';
+import React, { FormEvent } from 'react';
 
 interface NavigateButtonsProps {
   label: string;
-  onClick: () => {};
+  onClick: () => void | ((e: FormEvent<HTMLFormElement>) => void);
+
+  className?: string;
 }
 
 export const NavigateButtons: React.FC<NavigateButtonsProps> = ({
   label,
   onClick,
+  className,
 }) => {
   return (
-    <button onClick={onClick} className={styles.button}>
+    <button onClick={onClick} className={className}>
       {label}
     </button>
   );
