@@ -5,6 +5,7 @@ import Sidebar from '../../components/sidebar/Siderbar';
 import Input from '../../components/input/Input';
 import InputBox from '../../components/input/InputBox';
 import Label from '../../components/input/Label';
+import defaultImage from '../../../public/img/default-image.png';
 
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,15 +20,14 @@ const EditProfile = () => {
 
   const token = localStorage.getItem('token');
 
-  
-
-  const [passwords, setPassword] = useState({ //사용자가 
+  const [passwords, setPassword] = useState({
+    //사용자가
     password: '',
     passwordComfirmed: '',
   });
 
   const [loadProfileImage, setLoadProfileImage] = useState<string>(); //맨 처음 이미지
-  const [inputFile, setInputFile] = useState<File>(); 
+  const [inputFile, setInputFile] = useState<File>();
   const [srcUrl, setSrcUrl] = useState<string>();
 
   const handleInputFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -163,7 +163,7 @@ const EditProfile = () => {
   };
   useEffect(() => {
     getProfileFetch();
-  }, []);  //
+  }, []); //
 
   return (
     <>
@@ -181,7 +181,7 @@ const EditProfile = () => {
                     src={
                       srcUrl || loadProfileImage
                         ? srcUrl || loadProfileImage
-                        : '../../../public/images/default-image.png'
+                        : defaultImage
                     }
                   />
                 </Label>
@@ -220,7 +220,6 @@ const EditProfile = () => {
                     onChange={handlePasswordOnChange}
                   />
                 </InputBox>
-                {JSON.stringify(passwords)}
               </div>
 
               <button className={styles.button} onClick={handleOnSubmit}>
