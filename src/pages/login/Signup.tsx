@@ -3,7 +3,6 @@ import computerImg from '../../../public/img/computerImage.png';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../../css/loginStyles/Signup.module.css';
 
 function Signup() {
   const [userDetails, setUserDetails] = useState({
