@@ -105,7 +105,7 @@ const ReserveMeeting = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      if (response.ok) {
+      if (response.status === 201) {
         console.log('회의실예약 성공');
         navigate('/home');
       } else {

@@ -14,10 +14,11 @@ type minutesProps = {
   date: string;
   attendee: number;
   content: string;
+  createAt: string;
 };
 
 const MinutesList = () => {
-  const token = localStorage.getItem('jwtToken');
+  const token = localStorage.getItem('token');
 
   const [minutes, setMinutes] = useState<minutesProps[]>([]);
   const [searchParam, setSearchParams] = useSearchParams({

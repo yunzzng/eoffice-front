@@ -22,6 +22,7 @@ const PageList = () => {
               <li className={styles.minutes_title}>{minute.title}</li>
               <li className={styles.minutes_date}>{minute.date}</li>
               <li className={styles.minutes_attendee}>{minute.attendee}</li>
+              <li className={styles.minutes_createAt}>{minute.createAt}</li>
             </ul>
 
             <div className={styles.minutes_content}>{minute.content}</div>

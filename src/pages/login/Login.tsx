@@ -7,8 +7,8 @@ import computerImage from '../../../public/img/computerImage.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const patternRegex =
-  '^(?=.*[a-zA-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
+// const patternRegex =
+//   '^(?=.*[a-zA-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
 
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
@@ -87,7 +87,7 @@ function Login() {
                 onChange={handleInputChange}
                 className={styles.input}
                 placeholder={'비밀번호 입력'}
-                pattern={patternRegex}
+                // pattern={patternRegex}
                 title={
                   '비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다.'
                 }

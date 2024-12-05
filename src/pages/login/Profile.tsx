@@ -5,6 +5,7 @@ import Sidebar from '../../components/sidebar/Siderbar';
 import Input from '../../components/input/Input';
 import InputBox from '../../components/input/InputBox';
 import Label from '../../components/input/Label';
+import defaultImage from '../../../public/img/default-image.png';
 
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -17,9 +18,7 @@ import { useNavigate } from 'react-router-dom';
 const EditProfile = () => {
   const navigator = useNavigate();
 
-  const token = localStorage.getItem('jwtToken');
-
-  
+  const token = localStorage.getItem('token');
 
   const [passwords, setPassword] = useState({
     password: '',
@@ -181,7 +180,7 @@ const EditProfile = () => {
                     src={
                       srcUrl || loadProfileImage
                         ? srcUrl || loadProfileImage
-                        : '../../../public/images/default-image.png'
+                        : defaultImage
                     }
                   />
                 </Label>
@@ -220,7 +219,6 @@ const EditProfile = () => {
                     onChange={handlePasswordOnChange}
                   />
                 </InputBox>
-                {JSON.stringify(passwords)}
               </div>
 
               <button className={styles.button} onClick={handleOnSubmit}>
