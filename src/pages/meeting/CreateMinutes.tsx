@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const CreateMinutes = () => {
   const navigator = useNavigate();
 
-  const token = localStorage.getItem('jwtToken');
+  const token = localStorage.getItem('token');
 
   const [meetingInput, setMeetingInput] = useState({
     meetingTitle: '',

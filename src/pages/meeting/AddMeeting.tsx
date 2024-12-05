@@ -42,7 +42,7 @@ const AddMeeting = () => {
 
     formData.append('name', inputValue.name);
     formData.append('location', inputValue.location);
-    formData.append('person', inputValue.personCount.toString());
+    formData.append('personCount', inputValue.personCount.toString());
     if (inputFile) {
       formData.append('file', inputFile);
     }
@@ -97,7 +97,7 @@ const AddMeeting = () => {
               type="number"
               className={styles.addmeeting_input}
               onChange={handleInputChange}
-              name="person"
+              name="personCount"
             />
           </div>
           <NavigateButtons label="회의실 등록하기" onClick={handleSubmit} />

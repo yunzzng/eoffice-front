@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 const EditProfile = () => {
   const navigator = useNavigate();
 
-  const token = localStorage.getItem('jwtToken');
+  const token = localStorage.getItem('token');
 
   
 
