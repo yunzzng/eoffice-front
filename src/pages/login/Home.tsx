@@ -2,8 +2,8 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import styles from '../../css/loginStyles/Home.module.css';
 import Sidebar from '../../components/sidebar/Siderbar';
-import defaultImage from '../../../public/images/default-image.png';
-import arrowImage from '../../../public/images/arrow.png';
+import defaultImage from '../../../public/img/default-image.png';
+import arrowImage from '../../../public/img/arrow.png';
 
 import { useNavigate } from 'react-router-dom';
 

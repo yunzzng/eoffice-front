@@ -2,11 +2,12 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import styles from '../../css/loginStyles/Profile.module.css';
 import Sidebar from '../../components/sidebar/Siderbar';
-import { useState, useEffect, ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Input from '../../components/input/Input';
 import InputBox from '../../components/input/InputBox';
 import Label from '../../components/input/Label';
+
+import { useState, useEffect, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /** api call
  * 로드 시 이미지 가져오는 패치 하나 /api/editprofile/loadimage
