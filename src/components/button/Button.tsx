@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 interface NavigateButtonsProps {
   label: string;
@@ -6,7 +6,7 @@ interface NavigateButtonsProps {
   className : string;
 }
 
-export const NavigateButtons: React.FC<NavigateButtonsProps> = ({
+export const NavigateButtons: FC<NavigateButtonsProps> = ({
   label,
   onClick,
   className,
