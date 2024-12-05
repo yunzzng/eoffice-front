@@ -74,7 +74,7 @@ const MeetingList = () => {
         <div>
             <Card className={styles.card_box}>
                 {post.map((post) => (
-                    <CardItem className={styles.card} id={post.id}>
+                    <CardItem className={styles.card} id={post.id} key={post.id} >
                         <CardImage
                             className={styles.card_img}
                             src={post.file}
