@@ -129,7 +129,7 @@ const EditMeeting = () => {
             <ImageUpload setUploadImg={setUploadFile} initialImage={typeof uploadFile === "string" ? uploadFile :undefined}/>
             <div className={styles.inputBox_box}>
                 <InputBox >
-                    <Label htmlFor={"name"} className={styles.label}>회의 이름</Label>
+                    <Label htmlFor={"name"} className={styles.label}>회의실 이름</Label>
                     <Input name={"name"} id={"name"} onChange={handleInputChange} value={inputValue.name} className={styles.input}/>
                 </InputBox>
                 <InputBox >

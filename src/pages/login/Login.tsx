@@ -6,6 +6,7 @@ import computerImage from '../../../public/img/computerImage.png';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { NavigateButtons } from '../../components/button/Button';
 
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
@@ -87,12 +88,7 @@ function Login() {
                 required={true}
               />
             </InputBox>
-            <button
-              type="submit"
-              className={`${styles.button} ${styles.emailButton}`}
-            >
-              Login
-            </button>
+            <NavigateButtons label='Login' onClick={() => handleSubmit} />
           </form>
           <div className={styles.oauthButtons}>
             <button
