@@ -13,14 +13,14 @@ const HomePage = () => {
   return (
     <>
       <div className={styles.container}>
+        <Header />
         <Sidebar />
         <div className={styles.main_container}>
-          <Header />
           <main className={styles.main}>
             <div className={styles.main_content}>
               <div className={styles.main_content_item}>
                 <div
-                  className={styles.navigation_wrap}
+                  className={`${styles.navigation_wrap} ${styles.cursor_pointer}`}
                   onClick={() => navigator('/addmeeting')}
                 >
                   <div className={styles.default_image}>
@@ -47,7 +47,7 @@ const HomePage = () => {
                   </a>
                 </div>
                 <div
-                  className={styles.navigation_wrap}
+                  className={`${styles.navigation_wrap} ${styles.cursor_pointer}`}
                   onClick={() => navigator('/reservemeeting')}
                 >
                   <div className={styles.default_image}>
@@ -58,7 +58,9 @@ const HomePage = () => {
                     />
                   </div>
 
-                  <a className={styles.navigation}>
+                  <a
+                    className={`${styles.navigation} ${styles.cursor_pointer}`}
+                  >
                     <p className={styles.navigation_title}>
                       회의실 예약하러 가기
                     </p>

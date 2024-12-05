@@ -42,7 +42,7 @@ ul {
 .main_content {
   min-width: 100rem;
 
-  padding: 3rem 5rem 0rem 26rem;
+  padding: 11rem 5rem 0rem 26rem;
   gap: 4rem;
 }
 
@@ -91,6 +91,11 @@ ul {
   color: #6700e6;
 }
 
+.minutes_createAt {
+  flex-basis: 10rem;
+  color: #6700e6;
+}
+
 .minutes_content {
   padding: 1rem 5rem;
   height: 6rem;
@@ -107,4 +112,6 @@ ul {
 .minutes_page {
   padding: 0.5rem;
   color: #6700e6;
+
+  cursor: pointer;
 }

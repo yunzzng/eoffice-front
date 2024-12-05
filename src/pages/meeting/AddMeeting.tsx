@@ -20,6 +20,7 @@ const AddMeeting = () => {
     personCount: 0,
   }); //회의실 이름,위치,인원
 
+  const token = localStorage.getItem('token');
   const [inputFile, setInputFile] = useState<File | string>(); //회의실 이미지
 
   //이름,위치,인원 input Change
@@ -30,7 +31,6 @@ const AddMeeting = () => {
 
   //회의실 등록하기 버튼
   const handleSubmit = async () => {
-    const token = localStorage.getItem('token');
     if (
       !inputValue.location ||
       !inputValue.name ||

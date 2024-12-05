@@ -5,6 +5,8 @@ import Sidebar from '../../components/sidebar/Siderbar';
 import Input from '../../components/input/Input';
 import InputBox from '../../components/input/InputBox';
 import Label from '../../components/input/Label';
+import defaultImage from '../../../public/img/default-image.png';
+import { NavigateButtons } from '../../components/button/Button';
 
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,15 +21,14 @@ const EditProfile = () => {
 
   const token = localStorage.getItem('token');
 
-  
-
-  const [passwords, setPassword] = useState({ //사용자가 
+  const [passwords, setPassword] = useState({
+    //사용자가
     password: '',
     passwordComfirmed: '',
   });
 
   const [loadProfileImage, setLoadProfileImage] = useState<string>(); //맨 처음 이미지
-  const [inputFile, setInputFile] = useState<File>(); 
+  const [inputFile, setInputFile] = useState<File>();
   const [srcUrl, setSrcUrl] = useState<string>();
 
   const handleInputFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -163,15 +164,15 @@ const EditProfile = () => {
   };
   useEffect(() => {
     getProfileFetch();
-  }, []);  //
+  }, []); //
 
   return (
     <>
       <div className={styles.container}>
+        <Header />
         <Sidebar />
 
         <div className={styles.main_container}>
-          <Header />
           <main className={styles.main}>
             <div className={styles.main_content}>
               <InputBox className={styles.default_image}>
@@ -181,7 +182,7 @@ const EditProfile = () => {
                     src={
                       srcUrl || loadProfileImage
                         ? srcUrl || loadProfileImage
-                        : '../../../public/images/default-image.png'
+                        : defaultImage
                     }
                   />
                 </Label>
@@ -220,12 +221,13 @@ const EditProfile = () => {
                     onChange={handlePasswordOnChange}
                   />
                 </InputBox>
-                {JSON.stringify(passwords)}
               </div>
 
-              <button className={styles.button} onClick={handleOnSubmit}>
-                프로필 수정
-              </button>
+              <NavigateButtons
+                className={styles.button}
+                label={'프로필 수정'}
+                onClick={() => handleOnSubmit}
+              ></NavigateButtons>
             </div>
           </main>
           <Footer />

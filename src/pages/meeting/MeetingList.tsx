@@ -22,6 +22,7 @@ interface addPostType {
 const MeetingList = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState<addPostType[]>([]);
+
   const token = localStorage.getItem('token');
 
   const handleEditClick = (id: string) => {

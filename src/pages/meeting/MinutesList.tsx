@@ -14,6 +14,7 @@ type minutesProps = {
   date: string;
   attendee: number;
   content: string;
+  createAt: string;
 };
 
 const MinutesList = () => {
@@ -61,10 +62,10 @@ const MinutesList = () => {
   return (
     <>
       <div className={styles.container}>
+        <Header />
         <Sidebar />
 
         <div className={styles.main_container}>
-          <Header />
           <main className={styles.main}>
             <div className={styles.main_content}>
               <div className={styles.minutes_list_container}>
