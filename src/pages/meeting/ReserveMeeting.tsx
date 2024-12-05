@@ -156,49 +156,6 @@ const ReserveMeeting = () => {
                         </div>
                     </div>
                 </div>
-            {/* <div className={styles.reserve_box}>
-                    <ImageUpload setUploadImg={setInputFile} initialImage={typeof inputFile === "string" ? inputFile :undefined}/>
-                <div>
-                    <div className={styles.input_group}>
-                        <label>회의 제목</label>
-                        <input 
-                            name="title" 
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className={styles.input_group}>
-                        <label>장소</label>
-                        <input 
-                            name="location"
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className={styles.input_group}>
-                        <label>날짜</label>
-                        <input 
-                            name="date" 
-                            type="date"
-                            onChange={handleChange}
-                            />
-                    </div>
-                    <div className={styles.input_group}>
-                        <label>시간</label>
-                        <input 
-                            name="time" 
-                            type="time"
-                            onChange={handleChange}
-                            />
-                    </div>
-                    <div className={styles.input_group}>
-                        <label>참여자</label>
-                        <input 
-                            name="Participants"
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <NavigateButtons label="회의실 예약하기" onClick={handleReserve} />
-                </div>
-            </div> */}
         </>
     )
 }

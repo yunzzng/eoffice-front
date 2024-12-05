@@ -21,7 +21,7 @@ const OauthLoading = () => {
       }
 
       try {
-        localStorage.setItem('jwtToken', token);
+        localStorage.setItem('token', token);
 
         alert('로그인 성공!');
         navigate('/home');

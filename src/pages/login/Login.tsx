@@ -2,7 +2,7 @@ import styles from '../../css/loginStyles/Login.module.css';
 import InputBox from '../../components/input/InputBox';
 import Input from '../../components/input/Input';
 import Label from '../../components/input/Label';
-import computerImage from '../../../public/images/computerImage.png';
+import computerImage from '../../../public/img/computerImage.png';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

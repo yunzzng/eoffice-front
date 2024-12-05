@@ -1,6 +1,8 @@
+import styles from '../../css/loginStyles/Signup.module.css';
+import computerImg from '../../../public/img/computerImage.png';
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../../css/loginStyles/Signup.module.css';
 
 function Signup() {
   const [userDetails, setUserDetails] = useState({
@@ -18,8 +20,8 @@ function Signup() {
   };
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); 
-    
+    e.preventDefault();
+
     const { name, email, password, confirmPassword } = userDetails;
 
     if (password !== confirmPassword) {
@@ -112,7 +114,7 @@ function Signup() {
         </form>
         <div className={styles.rightSection}>
           <img
-            src="../../../public/images/computerImage.png"
+            src={computerImg}
             className={styles.image}
             alt="Computer"
           />

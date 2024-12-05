@@ -3,8 +3,8 @@ import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Siderbar';
 import styles from '../../css/meetingStyles/CreateMinutes.module.css';
 import Input from '../../components/input/Input';
-import InputBox from '../../components/input/InputBox';
 import Label from '../../components/input/Label';
+import InputBox from '../../components/input/InputBox';
 
 import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const CreateMinutes = () => {
   const navigator = useNavigate();
 
-  const token = localStorage.getItem('jwtToken');
+  const token = localStorage.getItem('token');
 
   const [meetingInput, setMeetingInput] = useState({
     meetingTitle: '',
