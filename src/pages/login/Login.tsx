@@ -7,11 +7,6 @@ import computerImage from '../../../public/images/computerImage.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-type OauthProviders = 'google' | 'kakao';
-
-const patternRegex =
-  '^(?=.*[a-zA-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
-
 function Login() {
   const [readUser, setReadUser] = useState({ email: '', password: '' });
   const navigate = useNavigate();
@@ -50,8 +45,8 @@ function Login() {
     }
   };
 
-  const handleClickOauth = (provider: OauthProviders) => {
-    window.location.href = `/api/oauth/${provider}`;
+  const handleClickOauth = () => {
+    window.location.href = `/api/oauth/google`;
   };
 
   const navigateToSignup = () => navigate('/signup');
@@ -89,10 +84,6 @@ function Login() {
                 onChange={handleInputChange}
                 className={styles.input}
                 placeholder={'비밀번호 입력'}
-                pattern={patternRegex}
-                title={
-                  '비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다.'
-                }
                 required={true}
               />
             </InputBox>
@@ -105,12 +96,8 @@ function Login() {
           </form>
           <div className={styles.oauthButtons}>
             <button
-              onClick={() => handleClickOauth('google')}
+              onClick={() => handleClickOauth}
               className={`${styles.button} ${styles.googleButton}`}
-            />
-            <button
-              onClick={() => handleClickOauth('kakao')}
-              className={`${styles.button} ${styles.kakaoButton}`}
             />
           </div>
         </div>

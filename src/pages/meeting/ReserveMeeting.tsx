@@ -6,9 +6,9 @@ import { NavigateButtons } from "../../components/button/Button";
 import { ImageUpload } from "../../context/ImgUploadContext";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "../../css/meetingStyles/ReserveMeeting.module.css";
-import Input from "../../context/Input";
-import InputBox from "../../context/InputBox";
-import Label from "../../context/Label";
+import InputBox from "../../components/input/InputBox";
+import Input from "../../components/input/Input";
+import Label from "../../components/input/Label";
 import { jwtDecode } from "jwt-decode";
 
 interface ReserveMeetingType {
@@ -23,7 +23,7 @@ interface ReserveMeetingType {
 
 const ReserveMeeting = () => {
     const navigate = useNavigate();
-    const [userId,setUserId] = useState<string | null>('');
+    // const [userId,setUserId] = useState<string | null>('');
     const [inputFile, setInputFile] = useState<File | string>();
     const [inputValue, setInputValue] = useState<ReserveMeetingType>({ 
         date: '',
@@ -36,15 +36,15 @@ const ReserveMeeting = () => {
     const {id} = useParams();
     const token = localStorage.getItem('token');
     
-    useEffect(() => {
-    if(token) {
-        const decodedToken = jwtDecode(token) as {id: string};
-        setUserId(decodedToken.id);
-        console.log('유저아이디' , userId);
-    }else{
-        console.log('유저아이디 없음');
-    }
-    }, [token])
+    // useEffect(() => {
+    // if(token) {
+    //     const decodedToken = jwtDecode(token) as {id: string};
+    //     setUserId(decodedToken.id);
+    //     console.log('유저아이디' , userId);
+    // }else{
+    //     console.log('유저아이디 없음');
+    // }
+    // }, [token])
     
 
     const handleInputChange = (e:ChangeEvent<HTMLInputElement>) => {
@@ -85,14 +85,11 @@ const ReserveMeeting = () => {
     
 
     const handleReserve = async() => {
-        if(!userId) {
-            return;
-        }
 
         const formData = new FormData(); 
 
         formData.append("roomId", id || '');
-        formData.append("userId", userId);
+        // formData.append("userId", userId);
         formData.append("date", inputValue.date);
         formData.append("startTime", inputValue.time);
         formData.append("participants", inputValue.Participants);
@@ -111,6 +108,10 @@ const ReserveMeeting = () => {
                 console.log('회의실예약 성공');
                 navigate('/home');
             }else{
+                console.log(formData);
+                formData.forEach((value, key) => {
+                    console.log(key, value);
+                });
                 console.log('데이터 저장 실패');
             }
         }catch(err) {

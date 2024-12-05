@@ -7,9 +7,9 @@ import { ImageUpload } from "../../context/ImgUploadContext";
 import { addPostType } from "../../types/addmeeting";
 import { useNavigate, useParams } from "react-router-dom";
 import { NavigateButtons } from "../../components/button/Button";
-import InputBox from "../../context/InputBox";
-import Input from "../../context/Input";
-import Label from "../../context/Label";
+import InputBox from "../../components/input/InputBox";
+import Input from "../../components/input/Input";
+import Label from "../../components/input/Label";
 
 
 const EditMeeting = () => {
@@ -21,7 +21,6 @@ const EditMeeting = () => {
     const token = localStorage.getItem("token");
 
     const userData = async() => {
-        
         try{
             const response = await fetch(`/api/meeting/meetingrooms/${id}`, {
                 method:"GET",
@@ -32,9 +31,10 @@ const EditMeeting = () => {
             if(response.ok) {
                 const {data} = await response.json();
                 console.log(data);
-                console.log(data.file);
-                console.log(data.user);
-                setInputValue(data);
+                setInputValue({name: data.name,
+                    location: data.location,
+                    personCount: data.personCount,})
+                    
                 setUploadFile(data.file);
             }else('회의실 정보 요청 실패');
         }catch(err) {
@@ -68,7 +68,7 @@ const EditMeeting = () => {
 
         formData.append("name" , inputValue.name);
         formData.append("location", inputValue.location);
-        formData.append("person", inputValue.personCount.toString());
+        formData.append("personCount", inputValue.personCount.toString());
         if(uploadFile) {
             formData.append("file", uploadFile);
         }
@@ -129,16 +129,16 @@ const EditMeeting = () => {
             <ImageUpload setUploadImg={setUploadFile} initialImage={typeof uploadFile === "string" ? uploadFile :undefined}/>
             <div className={styles.inputBox_box}>
                 <InputBox >
-                    <Label htmlFor="name" className={styles.label}>회의 이름</Label>
-                    <Input name="name" id="name" onChange={handleInputChange} value={inputValue.name} className={styles.input}/>
+                    <Label htmlFor={"name"} className={styles.label}>회의 이름</Label>
+                    <Input name={"name"} id={"name"} onChange={handleInputChange} value={inputValue.name} className={styles.input}/>
                 </InputBox>
                 <InputBox >
-                    <Label htmlFor="location" className={styles.label}>회의실 장소</Label>
-                    <Input name="location" id="location" onChange={handleInputChange} value={inputValue.location} className={styles.input}/>
+                    <Label htmlFor={"location"} className={styles.label}>회의실 장소</Label>
+                    <Input name={"location"} id={"location"} onChange={handleInputChange} value={inputValue.location} className={styles.input}/>
                 </InputBox>
                 <InputBox >
-                    <Label htmlFor="person" className={styles.label}>인원 </Label>
-                    <Input name="person" id="person" type="number" onChange={handleInputChange} value={inputValue.personCount} className={styles.input}/>
+                    <Label htmlFor={"personCount"} className={styles.label}>인원 </Label>
+                    <Input name={"personCount"} id={"personCount"} type={"number"} onChange={handleInputChange} value={inputValue.personCount} className={styles.input}/>
                 </InputBox>
                 <div className={styles.editmeeting_buttons_box}>
                     <NavigateButtons label="수정하기" onClick={handlePostEdit} />
@@ -150,28 +150,5 @@ const EditMeeting = () => {
     )
 }
 
-{/* <div className={styles.editmeeting_box}>
-            <div>
-                <ImageUpload setUploadImg={setUploadFile} initialImage={typeof uploadFile === "string" ? uploadFile :undefined}/>
-            </div>
-            <div className={styles.editmeeting_input_box}>
-                <div className={styles.editmeeting_input_name_box}>
-                    <label>이름</label>
-                    <input onChange={handleInputChange} value={inputValue.name}/>
-                </div>
-                <div className={styles.editmeeting_input_name_box}>
-                    <label>위치</label>
-                    <input onChange={handleInputChange} value={inputValue.location}/>
-                </div>
-                <div className={styles.editmeeting_input_name_box}>
-                    <label>인원</label>
-                    <input type="number" onChange={handleInputChange} value={inputValue.person}/>
-                </div>
-                <div className={styles.editmeeting_buttons_box}>
-                    <NavigateButtons label="수정하기" onClick={handlePostEdit} />
-                    <NavigateButtons label="삭제하기" onClick={handlePostDelete} />
-                </div>
-            </div>
-        </div> */}
 
 export default EditMeeting;

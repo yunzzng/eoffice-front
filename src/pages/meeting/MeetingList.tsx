@@ -15,7 +15,7 @@ interface addPostType {
     id:string;
     name: string;
     location: string;
-    person: number | string;
+    personCount: number | string;
     file: string;
 }
 
@@ -49,7 +49,7 @@ const MeetingList = () => {
                     id: item._id,
                     name: item.name,
                     location: item.location,
-                    person : item.person,
+                    personCount : item.personCount,
                     file: item.file,
                     createdAt: item.createdAt,
                 }))
