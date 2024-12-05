@@ -1,14 +1,11 @@
 import styles from '../../css/loginStyles/Signup.module.css';
 import computerImg from '../../../public/img/computerImage.png';
 import InputBox from '../../components/input/InputBox';
-import Label from '../../components/input/Label';
 import Input from '../../components/input/Input';
+import Label from '../../components/input/Label';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const patternRegex =
-  '^(?=.*[a-zA-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
 
 function Signup() {
   const [userDetails, setUserDetails] = useState({
@@ -17,6 +14,9 @@ function Signup() {
     password: '',
     confirmPassword: '',
   });
+
+  const patternRegex =
+    '^(?=.*[a-zA-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
 
   const navigate = useNavigate();
 

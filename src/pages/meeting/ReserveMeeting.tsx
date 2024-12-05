@@ -4,51 +4,33 @@ import Header from '../../components/header/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import { NavigateButtons } from '../../components/button/Button';
 import { ImageUpload } from '../../context/ImgUploadContext';
-
-import styles from '../../css/meetingStyles/ReserveMeeting.module.css';
-import Input from '../../components/input/Input';
-import InputBox from '../../components/input/InputBox';
-import Label from '../../components/input/Label';
-
-import { jwtDecode } from 'jwt-decode';
 import { ChangeEvent, useEffect, useState } from 'react';
+import styles from '../../css/meetingStyles/ReserveMeeting.module.css';
+import InputBox from '../../components/input/InputBox';
+import Input from '../../components/input/Input';
+import Label from '../../components/input/Label';
 
 interface ReserveMeetingType {
   date: string;
   time: string;
   location: string;
-  Participants: string;
+  participants: string;
   title: string; //회의실 예약할 때 회의실 제목
   name?: string; //회의실 등록할때 적었던 회의실 이름
 }
 
 const ReserveMeeting = () => {
   const navigate = useNavigate();
-  const [userId, setUserId] = useState<string | null>('');
   const [inputFile, setInputFile] = useState<File | string>();
   const [inputValue, setInputValue] = useState<ReserveMeetingType>({
     date: '',
     time: '',
     location: '',
-    Participants: '',
+    participants: '',
     title: '',
-    // name:'',
   });
-  {
-    /*회의실 등록하기 쪽이랑 이름 통일 ex)name? title? (name이랑 title다름)/ person? Participants*/
-  }
   const { id } = useParams();
   const token = localStorage.getItem('token');
-
-  useEffect(() => {
-    if (token) {
-      const decodedToken = jwtDecode(token) as { id: string };
-      setUserId(decodedToken.id);
-      console.log('유저아이디', userId);
-    } else {
-      console.log('유저아이디 없음');
-    }
-  }, [token]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -67,7 +49,13 @@ const ReserveMeeting = () => {
       if (response.ok) {
         const { data } = await response.json();
         console.log(data);
-        setInputValue(data);
+        setInputValue({
+          date: '',
+          time: '',
+          location: data.location,
+          participants: '',
+          title: '',
+        });
         setInputFile(data.file);
       } else {
         console.log('회의실 정보 요청 실패');
@@ -83,32 +71,37 @@ const ReserveMeeting = () => {
   }, []);
 
   const handleReserve = async () => {
-    if (!userId) {
-      return;
-    }
-
     const formData = new FormData();
 
     formData.append('roomId', id || '');
-    formData.append('userId', userId);
     formData.append('date', inputValue.date);
     formData.append('startTime', inputValue.time);
-    formData.append('participants', inputValue.Participants);
+    formData.append('participants', inputValue.participants);
     formData.append('title', inputValue.title);
-    // formData.append("name", inputValue.name);
 
     try {
       const response = await fetch(`/api/reservations`, {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify({
+          roomId: id,
+          date: inputValue.date,
+          startTime: inputValue.time,
+          participants: inputValue.participants,
+          title: inputValue.title,
+        }),
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
       });
-      if (response.status === 201) {
+      if (response.ok) {
         console.log('회의실예약 성공');
         navigate('/home');
       } else {
+        console.log(formData);
+        formData.forEach((value, key) => {
+          console.log(key, value);
+        });
         console.log('데이터 저장 실패');
       }
     } catch (err) {
@@ -184,14 +177,14 @@ const ReserveMeeting = () => {
             />
           </InputBox>
           <InputBox className={styles.input_group}>
-            <Label htmlFor="Participants" className={styles.label}>
+            <Label htmlFor="participants" className={styles.label}>
               참여자{' '}
             </Label>
             <Input
-              name="Participants"
-              id="Participants"
+              name="participants"
+              id="participants"
               onChange={handleInputChange}
-              value={inputValue.Participants}
+              value={inputValue.participants}
               className={styles.input}
             />
           </InputBox>
@@ -200,49 +193,6 @@ const ReserveMeeting = () => {
           </div>
         </div>
       </div>
-      {/* <div className={styles.reserve_box}>
-                    <ImageUpload setUploadImg={setInputFile} initialImage={typeof inputFile === "string" ? inputFile :undefined}/>
-                <div>
-                    <div className={styles.input_group}>
-                        <label>회의 제목</label>
-                        <input 
-                            name="title" 
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className={styles.input_group}>
-                        <label>장소</label>
-                        <input 
-                            name="location"
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className={styles.input_group}>
-                        <label>날짜</label>
-                        <input 
-                            name="date" 
-                            type="date"
-                            onChange={handleChange}
-                            />
-                    </div>
-                    <div className={styles.input_group}>
-                        <label>시간</label>
-                        <input 
-                            name="time" 
-                            type="time"
-                            onChange={handleChange}
-                            />
-                    </div>
-                    <div className={styles.input_group}>
-                        <label>참여자</label>
-                        <input 
-                            name="Participants"
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <NavigateButtons label="회의실 예약하기" onClick={handleReserve} />
-                </div>
-            </div> */}
     </>
   );
 };

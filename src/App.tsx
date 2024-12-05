@@ -27,12 +27,13 @@ export default function RootApp() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/addmeeting" element={<AddMeeting />} />
           <Route path="/createminutes" element={<CreateMinutes />} />
-          <Route path="/editmeeting" element={<EditMeeting />} />
+          <Route path="/editmeeting" element={<MeetingList />} />
           
           <Route path="/meetinglist" element={<MeetingList />} />
           <Route path='/editmeeting/:id' element={<EditMeeting/>} />
           <Route path="/minuteslist" element={<MinutesList />} />
           <Route path="/reservemeeting" element={<ReserveMeeting />} />
+          <Route path="/reservemeeting/:id" element={<ReserveMeeting />} />
           <Route path="/oauthloading" element={<OauthLoading />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

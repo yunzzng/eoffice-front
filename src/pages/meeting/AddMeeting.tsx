@@ -40,12 +40,12 @@ const AddMeeting = () => {
 
     const formData = new FormData(); //서버로 전송 할 객체 생성
 
-    formData.append('name', inputValue.name);
-    formData.append('location', inputValue.location);
-    formData.append('person', inputValue.personCount.toString());
-    if (inputFile) {
-      formData.append('file', inputFile);
-    }
+        formData.append("name", inputValue.name);
+        formData.append("location", inputValue.location);
+        formData.append("personCount", inputValue.personCount.toString());
+        if(inputFile) {
+            formData.append("file", inputFile);
+        }
 
     try {
       const response = await fetch('/api/meeting/meetingrooms', {
@@ -67,44 +67,32 @@ const AddMeeting = () => {
     }
   };
 
-  return (
-    <div className={styles.addmeeting_main}>
-      <Header />
-      <Sidebar />
-      <Footer />
-      <div className={styles.addmeeting_total_box}>
-        <ImageUpload setUploadImg={setInputFile} />
-        <div className={styles.addmeeting_input_box}>
-          <div className={styles.addmeeting_input_name_box}>
-            <label className={styles.addmeeting_input_label}>이름</label>
-            <input
-              className={styles.addmeeting_input}
-              onChange={handleInputChange}
-              name="name"
-            />
-          </div>
-          <div className={styles.addmeeting_input_name_box}>
-            <label className={styles.addmeeting_input_label}>위치</label>
-            <input
-              className={styles.addmeeting_input}
-              onChange={handleInputChange}
-              name="location"
-            />
-          </div>
-          <div className={styles.addmeeting_input_name_box}>
-            <label className={styles.addmeeting_input_label}>인원</label>
-            <input
-              type="number"
-              className={styles.addmeeting_input}
-              onChange={handleInputChange}
-              name="person"
-            />
-          </div>
-          <NavigateButtons label="회의실 등록하기" onClick={handleSubmit} />
-        </div>
-      </div>
-    </div>
-  );
-};
+    return (
+        <div className={styles.addmeeting_main}>
+        <Header />
+        <Sidebar />
+        <Footer />
+            <div className={styles.addmeeting_total_box}>
+                <ImageUpload setUploadImg={setInputFile} />
+                <div className={styles.addmeeting_input_box}>
+                    <div className={styles.addmeeting_input_name_box}>
+                        <label className={styles.addmeeting_input_label}>이름</label>
+                        <input className={styles.addmeeting_input} onChange={handleInputChange} name="name"/>
+                    </div >
+                    <div className={styles.addmeeting_input_name_box}>
+                        <label className={styles.addmeeting_input_label}>위치</label>
+                        <input className={styles.addmeeting_input} onChange={handleInputChange} name="location"/>
+                    </div>
+                    <div className={styles.addmeeting_input_name_box}>
+                        <label className={styles.addmeeting_input_label}>인원</label>
+                        <input type='number' className={styles.addmeeting_input} onChange={handleInputChange} name="person"/>
+                    </div>
+                    <NavigateButtons label="회의실 등록하기" onClick={handleSubmit}/>
+                </div>
+            </div>
+        </div> 
+    )
+}
+
 
 export default AddMeeting;
