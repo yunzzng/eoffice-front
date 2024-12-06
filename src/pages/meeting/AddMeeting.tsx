@@ -43,12 +43,12 @@ const AddMeeting = () => {
 
     const formData = new FormData(); //서버로 전송 할 객체 생성
 
-        formData.append("name", inputValue.name);
-        formData.append("location", inputValue.location);
-        formData.append("personCount", inputValue.personCount.toString());
-        if(inputFile) {
-            formData.append("file", inputFile);
-        }
+    formData.append('name', inputValue.name);
+    formData.append('location', inputValue.location);
+    formData.append('personCount', inputValue.personCount.toString());
+    if (inputFile) {
+      formData.append('file', inputFile);
+    }
 
     try {
       const response = await fetch('/api/meeting/meetingrooms', {
@@ -70,34 +70,62 @@ const AddMeeting = () => {
     }
   };
 
-    return (
-        <div className={styles.addmeeting_main}>
-        <Header />
-        <Sidebar />
-        <Footer />
-            <div className={styles.addmeeting_box}>
-                <ImageUpload setUploadImg={setInputFile} />
-                <div className={styles.inputBox_box}>
-                    <InputBox className={styles.inputBox}>
-                        <Label htmlFor={"name"} className={styles.label}>회의실 이름</Label>
-                        <Input name={"name"} id={"name"} onChange={handleInputChange} value={inputValue.name} className={styles.input}/>
-                    </InputBox>
-                    <InputBox className={styles.inputBox}>
-                        <Label htmlFor={"location"} className={styles.label}>회의실 장소</Label>
-                        <Input name={"location"} id={"location"} onChange={handleInputChange} value={inputValue.location} className={styles.input}/>
-                    </InputBox>
-                    <InputBox className={styles.inputBox}>
-                        <Label htmlFor={"personCount"} className={styles.label}>인원 </Label>
-                        <Input name={"personCount"} id={"personCount"} type={"number"} onChange={handleInputChange} value={inputValue.personCount} className={styles.input}/>
-                    </InputBox>
-                    <div className={styles.editmeeting_buttons_box}>
-                        <NavigateButtons label="회의실 등록하기" onClick={ handleSubmit} className={btnstyles.button} />
-                    </div>
-                </div>
-            </div>
-        </div> 
-    )
-}
-
+  return (
+    <div className={styles.addmeeting_main}>
+      <Header />
+      <Sidebar />
+      <Footer />
+      <div className={styles.addmeeting_box}>
+        <ImageUpload setUploadImg={setInputFile} />
+        <div className={styles.inputBox_box}>
+          <InputBox className={styles.inputBox}>
+            <Label htmlFor={'name'} className={styles.label}>
+              회의실 이름
+            </Label>
+            <Input
+              name={'name'}
+              id={'name'}
+              onChange={handleInputChange}
+              value={inputValue.name}
+              className={styles.input}
+            />
+          </InputBox>
+          <InputBox className={styles.inputBox}>
+            <Label htmlFor={'location'} className={styles.label}>
+              회의실 장소
+            </Label>
+            <Input
+              name={'location'}
+              id={'location'}
+              onChange={handleInputChange}
+              value={inputValue.location}
+              className={styles.input}
+            />
+          </InputBox>
+          <InputBox className={styles.inputBox}>
+            <Label htmlFor={'personCount'} className={styles.label}>
+              인원{' '}
+            </Label>
+            <Input
+              name={'personCount'}
+              id={'personCount'}
+              type={'number'}
+              onChange={handleInputChange}
+              value={inputValue.personCount}
+              className={styles.input}
+            />
+          </InputBox>
+          <div className={styles.editmeeting_buttons_box}>
+            <NavigateButtons
+              label="회의실 등록하기"
+              onClick={handleSubmit}
+              className={btnstyles.button}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default AddMeeting;

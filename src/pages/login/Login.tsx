@@ -62,7 +62,7 @@ function Login() {
           <img src={computerImage} className={styles.image} alt="Computer" />
           <NavigateButtons
             label="회원가입"
-            onClick={navigateToSignup}
+            onClick={() => navigateToSignup}
             className={styles.signupButton}
           />
         </div>
