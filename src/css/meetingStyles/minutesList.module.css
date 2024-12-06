@@ -83,7 +83,7 @@ ul {
 }
 
 .minutes_date {
-  flex-basis: 10rem;
+  flex-basis: 13rem;
   color: #6700e6;
 }
 .minutes_attendee {
@@ -92,7 +92,7 @@ ul {
 }
 
 .minutes_createAt {
-  flex-basis: 10rem;
+  flex-basis: 14rem;
   color: #6700e6;
 }
 
