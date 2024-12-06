@@ -156,7 +156,8 @@ const EditMeeting = () => {
                 </div>
             </div>
         </div>
-        </>
+        </div>
+      </div>
     )
 }
 
