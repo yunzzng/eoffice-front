@@ -16,12 +16,13 @@ ul {
   display: flex;
   width: 100vw;
   height: 100vh;
+  
 }
 
 .main_container {
   width: 100%;
   height: 100vh;
-
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,12 +38,13 @@ ul {
 .main {
   width: 100%;
   height: 100%;
+  
 }
 
 .main_content {
   min-width: 100rem;
-
-  padding: 11rem 5rem 0rem 26rem;
+  
+  margin-top: 120px;
   gap: 4rem;
 }
 
@@ -51,7 +53,7 @@ ul {
   flex-direction: column;
 
   align-items: center;
-
+  margin-left: 200px;
   gap: 1rem;
   color: #000;
 }
@@ -107,11 +109,14 @@ ul {
 .minutes_page_wrap {
   display: flex;
   gap: 1rem;
+  margin-top: 20px;
 }
 
 .minutes_page {
-  padding: 0.5rem;
-  color: #6700e6;
-
+  color: #FFFFFF;
   cursor: pointer;
+  border: none;
+  background-color: #6700e6;
+  padding: 10px;
+  border-radius: 10px;
 }

@@ -2,14 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30rem;
+    height: 400px;
+    width: 300px;
     margin-left: 100px;
 }
 
 .default_img{
-    width: 20rem;
-    height: 30rem;
-    border: solid;
+    width: 300px;
+    height: 400px;
+    box-shadow: 0px 0px 10px 5px #c7c7c7;
 }
 
 .input_file{
