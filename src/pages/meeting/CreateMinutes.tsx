@@ -146,7 +146,7 @@ const CreateMinutes = () => {
               <NavigateButtons
                 label={'작성완료'}
                 className={styles.button}
-                onClick={() => handleSubmitMeetingData}
+                onClick={handleSubmitMeetingData}
               ></NavigateButtons>
             </div>
           </main>
