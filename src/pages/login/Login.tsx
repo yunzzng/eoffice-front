@@ -43,7 +43,9 @@ function Login() {
         } else {
           alert('사용자 정보를 찾을 수 없습니다.');
         }
-      } 
+      } else {
+        alert('서버와 통신에 실패했습니다. 다시 시도해주세요.');
+      }
     } catch (err) {
       console.error('로그인 중 오류 발생:', err);
     }
