@@ -40,11 +40,11 @@ function Login() {
           alert('로그인 성공!');
           localStorage.setItem('token', data.token);
           navigate('/home');
-        } else {
-          alert('사용자 정보를 찾을 수 없습니다.');
         }
-      } else {
-        alert('서버와 통신에 실패했습니다. 다시 시도해주세요.');
+      } else if (response.status === 400){
+        alert('사용자를 찾을 수 없습니다.');
+      } else if(response.status === 401) {
+        alert('이메일 또는 비밀번호가 일치하지 않습니다.');
       }
     } catch (err) {
       console.error('로그인 중 오류 발생:', err);
@@ -64,7 +64,7 @@ function Login() {
           <img src={computerImage} className={styles.image} alt="Computer" />
           <NavigateButtons
             label="회원가입"
-            onClick={() => navigateToSignup}
+            onClick={navigateToSignup}
             className={styles.signupButton}
           />
         </div>
