@@ -178,8 +178,11 @@ const EditMeeting = () => {
             />
           </InputBox>
           <div className={styles.editmeeting_buttons_box}>
-            <NavigateButtons label="수정하기" onClick={handlePostEdit} />
-            <NavigateButtons label="삭제하기" onClick={handlePostDelete} />
+            <NavigateButtons label="수정하기" onClick={() => handlePostEdit} />
+            <NavigateButtons
+              label="삭제하기"
+              onClick={() => handlePostDelete}
+            />
           </div>
         </div>
       </div>

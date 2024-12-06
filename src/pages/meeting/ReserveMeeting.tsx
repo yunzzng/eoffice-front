@@ -189,7 +189,10 @@ const ReserveMeeting = () => {
             />
           </InputBox>
           <div className={styles.reservemeeting_buttons_box}>
-            <NavigateButtons label="회의실 예약하기" onClick={handleReserve} />
+            <NavigateButtons
+              label="회의실 예약하기"
+              onClick={() => handleReserve}
+            />
           </div>
         </div>
       </div>

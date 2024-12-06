@@ -27,7 +27,8 @@ function Signup() {
     e.preventDefault();
 
     const { name, email, password, confirmPassword } = userDetails;
-    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordPattern =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!passwordPattern.test(password)) {
       alert('비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다.');
@@ -131,7 +132,7 @@ function Signup() {
           <img src={computerImg} className={styles.image} alt="Computer" />
           <NavigateButtons
             label="로그인"
-            onClick={navigateToLogin}
+            onClick={() => navigateToLogin}
             className={styles.loginButton}
           />
         </div>
