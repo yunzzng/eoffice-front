@@ -125,7 +125,8 @@ const AddMeeting = () => {
           </div>
         </div>
       </div>
-  );
-};
+    )
+}
+
 
 export default AddMeeting;
