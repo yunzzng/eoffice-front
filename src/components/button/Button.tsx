@@ -1,9 +1,8 @@
-import { FC, FormEvent } from 'react';
-import styles from './Button.module.css';
+import { FC} from 'react';
 
 interface NavigateButtonsProps {
   label: string;
-  onClick: () => void | Promise<void> |((e: FormEvent<HTMLFormElement>) => void);
+  onClick: () => void;
   className?: string;
 }
 

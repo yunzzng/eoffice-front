@@ -31,7 +31,7 @@ function Login() {
       const response = await fetch('/api/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email:readUser.email, password:readUser.password }),
       });
 
       if (response.ok) {
@@ -64,7 +64,7 @@ function Login() {
           <img src={computerImage} className={styles.image} alt="Computer" />
           <NavigateButtons
             label="회원가입"
-            onClick={() => navigateToSignup}
+            onClick={navigateToSignup}
             className={styles.signupButton}
           />
         </div>
