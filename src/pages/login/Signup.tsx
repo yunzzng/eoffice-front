@@ -43,7 +43,7 @@ function Signup() {
       const response = await fetch('/api/user/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name:userDetails.name, email:userDetails.email, password:userDetails.password }),
       });
 
       if (response.ok) {
