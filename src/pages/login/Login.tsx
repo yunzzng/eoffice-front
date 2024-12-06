@@ -31,7 +31,7 @@ function Login() {
       const response = await fetch('/api/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email:readUser.email, password:readUser.password }),
       });
 
       if (response.ok) {
@@ -43,9 +43,7 @@ function Login() {
         } else {
           alert('사용자 정보를 찾을 수 없습니다.');
         }
-      } else {
-        alert('이메일 또는 비밀번호가 잘못되었습니다.');
-      }
+      } 
     } catch (err) {
       console.error('로그인 중 오류 발생:', err);
     }
@@ -106,8 +104,9 @@ function Login() {
                 onClick={handleClickOauth}
                 className={`${styles.button} ${styles.googleButton}`}
               />
-            </div>
+            </div>          
           </form>
+          
         </div>
       </div>
     </div>

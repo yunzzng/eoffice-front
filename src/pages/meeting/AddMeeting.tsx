@@ -2,12 +2,15 @@ import Sidebar from '../../components/sidebar/Siderbar';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
 import { NavigateButtons } from '../../components/button/Button';
-import styles from '../../css/meetingStyles/AddMeeting.module.css';
+import styles from '../../css/meetingStyles/EditMeeting.module.css';
+import btnstyles from '../../components/button/Button.module.css';
 import { ImageUpload } from '../../context/ImgUploadContext';
 import { addPostType } from '../../types/addmeeting';
-
 import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Input from '../../components/input/Input';
+import InputBox from '../../components/input/InputBox';
+import Label from '../../components/input/Label';
 
 const AddMeeting = () => {
   const navigate = useNavigate();
@@ -72,39 +75,53 @@ const AddMeeting = () => {
       <Header />
       <Sidebar />
       <Footer />
-      <div className={styles.addmeeting_total_box}>
+      <div className={styles.addmeeting_box}>
         <ImageUpload setUploadImg={setInputFile} />
-        <div className={styles.addmeeting_input_box}>
-          <div className={styles.addmeeting_input_name_box}>
-            <label className={styles.addmeeting_input_label}>이름</label>
-            <input
-              className={styles.addmeeting_input}
+        <div className={styles.inputBox_box}>
+          <InputBox className={styles.inputBox}>
+            <Label htmlFor={'name'} className={styles.label}>
+              회의실 이름
+            </Label>
+            <Input
+              name={'name'}
+              id={'name'}
               onChange={handleInputChange}
-              name="name"
+              value={inputValue.name}
+              className={styles.input}
+            />
+          </InputBox>
+          <InputBox className={styles.inputBox}>
+            <Label htmlFor={'location'} className={styles.label}>
+              회의실 장소
+            </Label>
+            <Input
+              name={'location'}
+              id={'location'}
+              onChange={handleInputChange}
+              value={inputValue.location}
+              className={styles.input}
+            />
+          </InputBox>
+          <InputBox className={styles.inputBox}>
+            <Label htmlFor={'personCount'} className={styles.label}>
+              인원{' '}
+            </Label>
+            <Input
+              name={'personCount'}
+              id={'personCount'}
+              type={'number'}
+              onChange={handleInputChange}
+              value={inputValue.personCount}
+              className={styles.input}
+            />
+          </InputBox>
+          <div className={styles.editmeeting_buttons_box}>
+            <NavigateButtons
+              label="회의실 등록하기"
+              onClick={handleSubmit}
+              className={btnstyles.button}
             />
           </div>
-          <div className={styles.addmeeting_input_name_box}>
-            <label className={styles.addmeeting_input_label}>위치</label>
-            <input
-              className={styles.addmeeting_input}
-              onChange={handleInputChange}
-              name="location"
-            />
-          </div>
-          <div className={styles.addmeeting_input_name_box}>
-            <label className={styles.addmeeting_input_label}>인원</label>
-            <input
-              type="number"
-              className={styles.addmeeting_input}
-              onChange={handleInputChange}
-              name="person"
-            />
-          </div>
-          <NavigateButtons
-            label="회의실 등록하기"
-            onClick={() => handleSubmit}
-            className=""
-          />
         </div>
       </div>
     </div>

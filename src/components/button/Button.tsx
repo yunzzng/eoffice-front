@@ -1,16 +1,15 @@
-import { FC, FormEvent } from 'react';
+import { FC} from 'react';
 
 interface NavigateButtonsProps {
   label: string;
-  onClick: () => void | ((e: FormEvent<HTMLFormElement>) => void);
-
+  onClick: () => void;
   className?: string;
 }
 
 export const NavigateButtons: FC<NavigateButtonsProps> = ({
   label,
   onClick,
-  className,
+  className
 }) => {
   return (
     <button onClick={onClick} className={className}>

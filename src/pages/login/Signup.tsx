@@ -29,6 +29,17 @@ function Signup() {
     const { name, email, password, confirmPassword } = userDetails;
     const passwordPattern =
       /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (!name.trim()) {
+      alert('이름을 입력해주세요.');
+      return;
+    }
+
+    if (!emailPattern.test(email)) {
+      alert('올바른 이메일 형식을 입력해주세요.');
+      return;
+    }
 
     if (!passwordPattern.test(password)) {
       alert('비밀번호는 최소 8자, 문자, 숫자, 특수 문자를 포함해야 합니다.');
@@ -44,7 +55,11 @@ function Signup() {
       const response = await fetch('/api/user/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({
+          name: userDetails.name,
+          email: userDetails.email,
+          password: userDetails.password,
+        }),
       });
 
       if (response.ok) {

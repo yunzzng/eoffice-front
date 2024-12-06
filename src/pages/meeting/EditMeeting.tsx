@@ -2,6 +2,7 @@ import Sidebar from '../../components/sidebar/Siderbar';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
 import styles from '../../css/meetingStyles/EditMeeting.module.css';
+import btnstyles from '../../components/button/Button.module.css';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { ImageUpload } from '../../context/ImgUploadContext';
 import { addPostType } from '../../types/addmeeting';
@@ -46,7 +47,6 @@ const EditMeeting = () => {
       console.log('회의실 정보 가져오기 실패', err);
     }
   };
-
   useEffect(() => {
     userData();
   }, []);
@@ -131,7 +131,6 @@ const EditMeeting = () => {
       <Sidebar />
       <Footer />
       <div className={styles.meetingroom_title}>
-        <h1 className={styles.meetingroome_name_value}>{inputValue.name}</h1>
         <h1 className={styles.h1}>회의실 수정/삭제 페이지</h1>
       </div>
       <div className={styles.editmeeting_box}>
@@ -178,10 +177,15 @@ const EditMeeting = () => {
             />
           </InputBox>
           <div className={styles.editmeeting_buttons_box}>
-            <NavigateButtons label="수정하기" onClick={() => handlePostEdit} />
+            <NavigateButtons
+              label="수정하기"
+              onClick={handlePostEdit}
+              className={btnstyles.button}
+            />
             <NavigateButtons
               label="삭제하기"
-              onClick={() => handlePostDelete}
+              onClick={handlePostDelete}
+              className={btnstyles.button}
             />
           </div>
         </div>

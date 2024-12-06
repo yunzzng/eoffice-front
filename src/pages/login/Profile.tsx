@@ -226,7 +226,7 @@ const EditProfile = () => {
               <NavigateButtons
                 className={styles.button}
                 label={'프로필 수정'}
-                onClick={() => handleOnSubmit}
+                onClick={handleOnSubmit}
               ></NavigateButtons>
             </div>
           </main>
