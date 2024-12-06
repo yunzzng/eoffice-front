@@ -4,7 +4,6 @@ import Input from '../../components/input/Input';
 import Label from '../../components/input/Label';
 import computerImage from '../../../public/img/computerImage.png';
 import { NavigateButtons } from '../../components/button/Button';
-
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,10 +39,10 @@ function Login() {
           alert('로그인 성공!');
           localStorage.setItem('token', data.token);
           navigate('/home');
-        } else {
-          alert('사용자 정보를 찾을 수 없습니다.');
         }
-      } 
+      } else {
+        alert('이메일 또는 비밀번호가 일치하지 않습니다.');
+      }
     } catch (err) {
       console.error('로그인 중 오류 발생:', err);
     }
@@ -62,7 +61,7 @@ function Login() {
           <img src={computerImage} className={styles.image} alt="Computer" />
           <NavigateButtons
             label="회원가입"
-            onClick={() => navigateToSignup}
+            onClick={navigateToSignup}
             className={styles.signupButton}
           />
         </div>

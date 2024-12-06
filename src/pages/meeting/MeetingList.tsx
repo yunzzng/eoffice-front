@@ -67,7 +67,7 @@ const MeetingList = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <Header />
       <Sidebar />
       <Footer />
@@ -94,7 +94,7 @@ const MeetingList = () => {
           ))}
         </Card>
       </div>
-    </>
+    </div>
   );
 };
 
