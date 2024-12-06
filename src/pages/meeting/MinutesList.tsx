@@ -60,7 +60,6 @@ const MinutesList = () => {
   }, []);
 
   return (
-    <>
       <div className={styles.container}>
         <Header />
         <Sidebar />
@@ -81,7 +80,6 @@ const MinutesList = () => {
           <Footer />
         </div>
       </div>
-    </>
   );
 };
 

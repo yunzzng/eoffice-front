@@ -126,7 +126,7 @@ const EditMeeting = () => {
   };
 
   return (
-    <>
+    <div>
       <Header />
       <Sidebar />
       <Footer />
@@ -149,12 +149,12 @@ const EditMeeting = () => {
                     <Input name={"personCount"} id={"personCount"} type={"number"} onChange={handleInputChange} value={inputValue.personCount} className={styles.input}/>
                 </InputBox>
                 <div className={styles.editmeeting_buttons_box}>
-                    <NavigateButtons label="수정하기" onClick={()=>handlePostEdit} className={btnstyles.button} />
-                    <NavigateButtons label="삭제하기" onClick={()=>handlePostDelete} className={btnstyles.button} />
+                    <NavigateButtons label="수정하기" onClick={handlePostEdit} className={btnstyles.button} />
+                    <NavigateButtons label="삭제하기" onClick={handlePostDelete} className={btnstyles.button} />
                 </div>
             </div>
         </div>
-        </>
+        </div>
     )
 }
 

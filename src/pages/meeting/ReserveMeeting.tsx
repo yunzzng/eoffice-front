@@ -110,7 +110,7 @@ const ReserveMeeting = () => {
   };
 
   return (
-    <>
+    <div>
       <Header />
       <Sidebar />
       <Footer />
@@ -193,7 +193,7 @@ const ReserveMeeting = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
