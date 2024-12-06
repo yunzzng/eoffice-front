@@ -3,7 +3,7 @@ import styles from './Button.module.css';
 
 interface NavigateButtonsProps {
   label: string;
-  onClick: () => void | ((e: FormEvent<HTMLFormElement>) => void);
+  onClick: () => void | Promise<void> |((e: FormEvent<HTMLFormElement>) => void);
   className?: string;
 }
 

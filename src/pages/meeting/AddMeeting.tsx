@@ -91,7 +91,7 @@ const AddMeeting = () => {
                         <Input name={"personCount"} id={"personCount"} type={"number"} onChange={handleInputChange} value={inputValue.personCount} className={styles.input}/>
                     </InputBox>
                     <div className={styles.editmeeting_buttons_box}>
-                        <NavigateButtons label="회의실 등록하기" onClick={() => handleSubmit} className={btnstyles.button} />
+                        <NavigateButtons label="회의실 등록하기" onClick={handleSubmit} className={btnstyles.button} />
                     </div>
                 </div>
             </div>
