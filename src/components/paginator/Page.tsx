@@ -12,9 +12,9 @@ import {
 type minutesProps = {
   title: string;
   date: string;
-  attendee: number;
+  attendees: number;
   content: string;
-  createAt: string;
+  createdAt: string;
 };
 
 interface BaseProps extends PropsWithChildren {}
