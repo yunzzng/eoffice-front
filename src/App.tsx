@@ -1,40 +1,40 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React, { Suspense } from 'react';
 import { SidebarProvider } from './context/SidebarContext';
-import Splash from './components/splash/Splash';
-import Signup from './pages/login/Signup';
-import Login from './pages/login/Login';
-import AddMeeting from './pages/meeting/AddMeeting';
-import CreateMinutes from './pages/meeting/CreateMinutes';
-import MeetingList from './pages/meeting/MeetingList';
-import EditMeeting from './pages/meeting/EditMeeting';
-import MinutesList from './pages/meeting/MinutesList';
-import ReserveMeeting from './pages/meeting/ReserveMeeting';
-import OauthLoading from './pages/login/OauthLoading';
-import ErrorPage from './components/ErrorPage';
-import Home from './pages/login/Home';
-import Profile from './pages/login/Profile';
-// const Signup = React.lazy(() => import('./pages/login/Signup'));
-// const Login = React.lazy(() => import('./pages/login/Login'));
-// const Profile = React.lazy(() => import('./pages/login/Profile'));
-// const AddMeeting = React.lazy(() => import('./pages/meeting/AddMeeting'));
-// const CreateMinutes = React.lazy(() => import('./pages/meeting/CreateMinutes'));
-// const EditMeeting = React.lazy(() => import('./pages/meeting/EditMeeting'));
-// const MeetingList = React.lazy(() => import('./pages/meeting/MeetingList'));
-// const MinutesList = React.lazy(() => import('./pages/meeting/MinutesList'));
-// const ReserveMeeting = React.lazy(
-//   () => import('./pages/meeting/ReserveMeeting')
-// );
-// const Splash = React.lazy(() => import('./components/splash/Splash'));
-// const Home = React.lazy(() => import('./pages/login/Home'));
-// const ErrorPage = React.lazy(() => import('./components/ErrorPage'));
-// const OauthLoading = React.lazy(() => import('./pages/login/OauthLoading'));
+// import Splash from './components/splash/Splash';
+// import Signup from './pages/login/Signup';
+// import Login from './pages/login/Login';
+// import AddMeeting from './pages/meeting/AddMeeting';
+// import CreateMinutes from './pages/meeting/CreateMinutes';
+// import MeetingList from './pages/meeting/MeetingList';
+// import EditMeeting from './pages/meeting/EditMeeting';
+// import MinutesList from './pages/meeting/MinutesList';
+// import ReserveMeeting from './pages/meeting/ReserveMeeting';
+// import OauthLoading from './pages/login/OauthLoading';
+// import ErrorPage from './components/ErrorPage';
+// import Home from './pages/login/Home';
+// import Profile from './pages/login/Profile';
+const Signup = React.lazy(() => import('./pages/login/Signup'));
+const Login = React.lazy(() => import('./pages/login/Login'));
+const Profile = React.lazy(() => import('./pages/login/Profile'));
+const AddMeeting = React.lazy(() => import('./pages/meeting/AddMeeting'));
+const CreateMinutes = React.lazy(() => import('./pages/meeting/CreateMinutes'));
+const EditMeeting = React.lazy(() => import('./pages/meeting/EditMeeting'));
+const MeetingList = React.lazy(() => import('./pages/meeting/MeetingList'));
+const MinutesList = React.lazy(() => import('./pages/meeting/MinutesList'));
+const ReserveMeeting = React.lazy(
+  () => import('./pages/meeting/ReserveMeeting')
+);
+const Splash = React.lazy(() => import('./components/splash/Splash'));
+const Home = React.lazy(() => import('./pages/login/Home'));
+const ErrorPage = React.lazy(() => import('./components/ErrorPage'));
+const OauthLoading = React.lazy(() => import('./pages/login/OauthLoading'));
 
 export default function RootApp() {
   return (
     <SidebarProvider>
       <BrowserRouter>
-        {/* <Suspense fallback={<div>Loading...</div>}> */}
+        <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Splash />} />
             <Route path="/home" element={<Home />} />
@@ -53,7 +53,7 @@ export default function RootApp() {
             <Route path="/oauthloading" element={<OauthLoading />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
-        {/* </Suspense> */}
+        </Suspense>
       </BrowserRouter>
     </SidebarProvider>
   );
