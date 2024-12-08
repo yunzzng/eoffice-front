@@ -1,17 +1,27 @@
 import styles from './Sidebar.module.css';
 import computerImg from '../../../public/img/computerImage.png';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { SidebarContext } from '../../context/SidebarContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 const Sidebar = () => {
-  const { selectedMenu, setSelectedMenu } = useContext(SidebarContext);
-  const navigate = useNavigate();
+  const { pathName, setPathName } = useContext(SidebarContext); //현재 경로 
+  const [selectedMenu, setSelectedMenu] = useState<string>(''); //선택된 메뉴 경로
 
-  const handleClickMenu = (menu: string, path: string) => {
-    setSelectedMenu(menu);
-    navigate(path, { replace: true });
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    setPathName(path);
+    console.log(path)
+  },[]); 
+
+
+  const handleClickMenu = (path: string) => {
+    setSelectedMenu(path);
+    navigate(path);
   };
 
   const Menu = [
@@ -26,12 +36,10 @@ const Sidebar = () => {
     <div className={styles.sidebar_box}>
       <div className={styles.sidebar_h1_box}>
         <h1
-          className={`${
-            selectedMenu === 'E-office' ? styles.sidebar_h1 : styles.sidebar_h1
-          }`}
+          className={styles.sidebar_h1}
         >
           <a
-            onClick={() => handleClickMenu('E-office', '/home')}
+            onClick={() => handleClickMenu('/home')}
             className={styles.sidebar_logo_a}
           >
             E-office
@@ -44,11 +52,11 @@ const Sidebar = () => {
             <li className={styles.sidebar_li} key={index}>
               <a
                 className={`${
-                  selectedMenu === item.label
+                  pathName === item.path
                     ? styles.selected
                     : styles.sidebar_a
                 }`}
-                onClick={() => handleClickMenu(item.label, item.path)}
+                onClick={() => handleClickMenu(item.path)}
               >
                 {item.label}
               </a>
@@ -60,11 +68,11 @@ const Sidebar = () => {
         <li className={styles.sidebar_li}>
           <a
             className={`${
-              selectedMenu === '프로필 수정'
+              pathName === '/profile'
                 ? styles.selected
                 : styles.sidebar_a
             }`}
-            onClick={() => handleClickMenu('프로필 수정', '/profile')}
+            onClick={() => handleClickMenu('/profile')}
           >
             프로필 수정
           </a>
