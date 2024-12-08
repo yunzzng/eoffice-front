@@ -14,8 +14,9 @@
   padding: 20px;
   border: solid black;
   border-radius: 50px;
-  /* background-color: #FFEADD; */
   background-color: #f5efff;
+  width: 250px;
+  height: 300px;
 }
 
 .card_img {

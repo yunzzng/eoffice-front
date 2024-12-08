@@ -99,7 +99,7 @@ const ReserveMeeting = () => {
       });
       if (response.ok) {
         console.log('회의실예약 성공');
-        navigate('/home');
+        navigate('/meetinglist');
       } else {
         console.log(formData);
         formData.forEach((value, key) => {
