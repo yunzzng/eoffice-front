@@ -52,7 +52,7 @@ const Sidebar = () => {
             <li className={styles.sidebar_li} key={index}>
               <a
                 className={`${
-                  pathName === item.path
+                  selectedMenu === item.path
                     ? styles.selected
                     : styles.sidebar_a
                 }`}
