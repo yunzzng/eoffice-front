@@ -12,9 +12,9 @@ const DEFAULT_PAGE_INDEX = 0;
 type minutesProps = {
   title: string;
   date: string;
-  attendee: number;
+  attendees: number;
   content: string;
-  createAt: string;
+  createdAt: string;
 };
 
 const MinutesList = () => {
@@ -60,7 +60,6 @@ const MinutesList = () => {
   }, []);
 
   return (
-    <>
       <div className={styles.container}>
         <Header />
         <Sidebar />
@@ -81,7 +80,6 @@ const MinutesList = () => {
           <Footer />
         </div>
       </div>
-    </>
   );
 };
 

@@ -79,7 +79,6 @@ const CreateMinutes = () => {
   };
 
   return (
-    <>
       <div className={styles.container}>
         <Header />
         <Sidebar />
@@ -153,7 +152,6 @@ const CreateMinutes = () => {
           <Footer />
         </div>
       </div>
-    </>
   );
 };
 

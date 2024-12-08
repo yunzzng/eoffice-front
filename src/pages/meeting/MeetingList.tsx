@@ -67,36 +67,34 @@ const MeetingList = () => {
   }, []);
 
   return (
-    <>
+    <div>
+      <Header />
+      <Sidebar />
+      <Footer />
       <div>
-        <Header />
-        <Sidebar />
-        <Footer />
-        <div>
-          <Card className={styles.card_box}>
-            {post.map((post) => (
-              <CardItem className={styles.card} id={post.id} key={post.id}>
-                <CardImage
-                  className={styles.card_img}
-                  src={post.file}
-                  alt={'회의실 이미지'}
+        <Card className={styles.card_box}>
+          {post.map((post) => (
+            <CardItem className={styles.card} id={post.id} key={post.id}>
+              <CardImage
+                className={styles.card_img}
+                src={post.file}
+                alt={'회의실 이미지'}
+                onClick={() => handleReserveClick(post.id)}
+              />
+              <div className={styles.post_title_box}>
+                <CardTitle
+                  className={styles.post_name}
                   onClick={() => handleReserveClick(post.id)}
-                />
-                <div className={styles.post_title_box}>
-                  <CardTitle
-                    className={styles.post_name}
-                    onClick={() => handleReserveClick(post.id)}
-                  >
-                    {post.name}
-                  </CardTitle>
-                  <EditButton onClick={() => handleEditClick(post.id)} />
-                </div>
-              </CardItem>
-            ))}
-          </Card>
-        </div>
+                >
+                  {post.name}
+                </CardTitle>
+                <EditButton onClick={() => handleEditClick(post.id)} />
+              </div>
+            </CardItem>
+          ))}
+        </Card>
       </div>
-    </>
+    </div>
   );
 };
 

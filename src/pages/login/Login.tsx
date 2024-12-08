@@ -4,7 +4,6 @@ import Input from '../../components/input/Input';
 import Label from '../../components/input/Label';
 import computerImage from '../../../public/img/computerImage.png';
 import { NavigateButtons } from '../../components/button/Button';
-
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -41,9 +40,7 @@ function Login() {
           localStorage.setItem('token', data.token);
           navigate('/home');
         }
-      } else if (response.status === 400){
-        alert('사용자를 찾을 수 없습니다.');
-      } else if(response.status === 401) {
+      } else {
         alert('이메일 또는 비밀번호가 일치하지 않습니다.');
       }
     } catch (err) {
