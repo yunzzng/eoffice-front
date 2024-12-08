@@ -117,7 +117,7 @@ const CreateMinutes = () => {
 
                 <InputBox className={styles.input_wrap}>
                   <Label className={styles.label} htmlFor={'meetingAttendee'}>
-                    참여자
+                    인원
                   </Label>
                   <Input
                     className={styles.input}
