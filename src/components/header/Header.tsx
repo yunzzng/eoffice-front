@@ -13,7 +13,7 @@ const Header = () => {
 
   const fetchUser = async () => {
     const token = localStorage.getItem('token');
-    // const userId = localStorage.getItem("userId")
+
     try {
       if (!token) {
         console.log('토큰이 없습니다.');

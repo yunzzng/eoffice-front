@@ -8,6 +8,10 @@ import Label from '../../components/input/Label';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const passwordPattern =
+/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
 function Signup() {
   const [userDetails, setUserDetails] = useState({
     name: '',
@@ -27,9 +31,6 @@ function Signup() {
     e.preventDefault();
 
     const { name, email, password, confirmPassword } = userDetails;
-    const passwordPattern =
-      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if (!name.trim()) {
       alert('이름을 입력해주세요.');

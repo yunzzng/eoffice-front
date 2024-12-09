@@ -13,6 +13,7 @@ interface InputProps extends BaseProps {
   title?: string;
   required?: boolean;
   readonly?: boolean;
+  disabled?: boolean;
 }
 
 const Input = (props: InputProps) => {
@@ -27,6 +28,7 @@ const Input = (props: InputProps) => {
     pattern,
     title,
     required,
+    disabled
   } = props;
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +48,7 @@ const Input = (props: InputProps) => {
         pattern={pattern}
         title={title}
         required={required}
+        disabled={disabled}
       />
     </>
   );

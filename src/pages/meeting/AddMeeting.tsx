@@ -20,6 +20,7 @@ const AddMeeting = () => {
     personCount: 0,
   }); //회의실 이름,위치,인원
 
+
   const token = localStorage.getItem("token");
   const [inputFile, setInputFile] = useState<File | string>(); //회의실 이미지
 

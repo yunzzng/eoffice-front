@@ -29,8 +29,28 @@ const MeetingList = () => {
     navigate(`/editmeeting/${id}`);
   };
 
-  const handleReserveClick = (id: string) => {
-    navigate(`/reservemeeting/${id}`);
+  const handleReserveClick = async(id: string) => { 
+    try{
+      const response = await fetch(`/api/meeting/meetingrooms/${id}` , {
+        method:"GET",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      if(response.status===200) {
+        const {data} = await response.json(); //status
+        console.log(data);
+        console.log(data.status);
+        if(data.status === 'available'){
+          navigate(`/reservemeeting/${id}`);
+        }else{
+          alert('이미 예약 된 회의실 입니다.');
+          return;
+        }
+      }
+    }catch(err) {
+      console.log('status값 불러오기 실패', err);
+    }
   };
 
   const getPost = async () => {
