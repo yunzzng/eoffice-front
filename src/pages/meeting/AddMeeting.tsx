@@ -72,6 +72,7 @@ const AddMeeting = () => {
 
   return (
       <div className={styles.addmeeting_main}>
+        <Sidebar />
         <Header />
         <Sidebar />
         <Footer />

@@ -5,9 +5,10 @@
 
 .meetingroom_title {
   display: flex;
-    justify-content: center;
-    margin-top: 150px;
-    margin-left: 200px;
+  justify-content: center;
+  margin-top: 150px;
+  margin-left: 200px;
+  padding: 20px;
 }
 
 .meetingroome_name_value {
@@ -30,7 +31,7 @@
   height: 600px;
   box-shadow: 10px 10px 10px 10px #cdcdcd;
   margin-left: 100px;
-  margin-top: 120px;
+  margin-top: 150px;
   gap: 50px;
 }
 
@@ -44,7 +45,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .input {
@@ -62,6 +63,7 @@
 
 .h1 {
   margin-left: 20px;
+
 }
 
 .label{

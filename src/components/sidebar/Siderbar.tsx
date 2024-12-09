@@ -1,37 +1,43 @@
 import styles from './Sidebar.module.css';
 import computerImg from '../../../public/img/computerImage.png';
 
-import { useNavigate } from 'react-router-dom';
-import { SidebarContext } from '../../context/SidebarContext';
-import { useContext } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Sidebar = () => {
-  const { selectedMenu, setSelectedMenu } = useContext(SidebarContext);
+  const [pathName, setPathName] = useState('');
   const navigate = useNavigate();
 
-  const handleClickMenu = (menu: string, path: string) => {
-    setSelectedMenu(menu);
+  const handleClickMenu = (path: string) => {
     navigate(path, { replace: true });
   };
 
+  const location = useLocation();
+
   const Menu = [
-    {label:'회의실 등록', path:'/addmeeting'},
-    {label:'회의실 관리', path:'/meetinglist'},
-    // {label:'회의실 예약', path:'/reservemeeting'},
-    {label:'회의록 작성', path:'/createminutes'},
-    {label:'회의록 목록', path:'/minuteslist'},
+    { label: '회의실 등록', path: '/addmeeting' },
+    { label: '회의실 관리', path: '/meetinglist' },
+    // { label: '회의실 예약', path: '/reservemeeting' },
+    { label: '회의록 작성', path: '/createminutes' },
+    { label: '회의록 목록', path: '/minuteslist' },
   ];
+
+  useEffect(() => {
+    const { pathname } = location;
+    console.log(location);
+    setPathName(pathname);
+  }, []);
 
   return (
     <div className={styles.sidebar_box}>
       <div className={styles.sidebar_h1_box}>
         <h1
           className={`${
-            selectedMenu === 'E-office' ? styles.sidebar_h1 : styles.sidebar_h1
+            pathName === '/home' ? styles.sidebar_h1 : styles.sidebar_h1
           }`}
         >
           <a
-            onClick={() => handleClickMenu('E-office', '/home')}
+            onClick={() => handleClickMenu('/home')}
             className={styles.sidebar_logo_a}
           >
             E-office
@@ -44,11 +50,9 @@ const Sidebar = () => {
             <li className={styles.sidebar_li} key={index}>
               <a
                 className={`${
-                  selectedMenu === item.label
-                    ? styles.selected
-                    : styles.sidebar_a
+                  pathName === item.path ? styles.selected : styles.sidebar_a
                 }`}
-                onClick={() => handleClickMenu(item.label, item.path)}
+                onClick={() => handleClickMenu(item.path)}
               >
                 {item.label}
               </a>
@@ -60,13 +64,19 @@ const Sidebar = () => {
         <li className={styles.sidebar_li}>
           <a
             className={`${
-              selectedMenu === '프로필 수정'
-                ? styles.selected
-                : styles.sidebar_a
+              pathName === '/profile' ? styles.selected : styles.sidebar_a
             }`}
-            onClick={() => handleClickMenu('프로필 수정', '/profile')}
+            onClick={() => handleClickMenu('/profile')}
           >
             프로필 수정
+          </a>
+        </li>
+        <li className={styles.logout_button_li}>
+        <a
+            className={styles.logout}
+            onClick={() => handleClickMenu('/logout')} 
+          >
+            LOGOUT
           </a>
         </li>
         <img src={computerImg} className={styles.sidebar_img} />
