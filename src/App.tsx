@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React, { Suspense } from 'react';
+import Logout from './pages/login/Logout';
+
 // import Splash from './components/splash/Splash';
 // import Signup from './pages/login/Signup';
 // import Login from './pages/login/Login';
@@ -38,6 +40,7 @@ export default function RootApp() {
             <Route path="/home" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/addmeeting" element={<AddMeeting />} />
             <Route path="/createminutes" element={<CreateMinutes />} />

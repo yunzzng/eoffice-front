@@ -72,7 +72,12 @@ const Sidebar = () => {
           </a>
         </li>
         <li className={styles.logout_button_li}>
-          <button className={styles.logout}>LOGOUT</button>
+        <a
+            className={styles.logout}
+            onClick={() => handleClickMenu('/logout')} 
+          >
+            LOGOUT
+          </a>
         </li>
         <img src={computerImg} className={styles.sidebar_img} />
       </div>
