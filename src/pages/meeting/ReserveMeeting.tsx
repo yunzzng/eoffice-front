@@ -37,7 +37,6 @@ const ReserveMeeting = () => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
-    console.log(inputValue);
   };
 
   const getPost = async () => {
@@ -50,7 +49,6 @@ const ReserveMeeting = () => {
       });
       if (response.ok) {
         const { data } = await response.json();
-        console.log(data);
         setInputValue({
           date: '',
           time: '',
@@ -98,12 +96,10 @@ const ReserveMeeting = () => {
         },
       });
       if (response.ok) {
-        console.log('회의실예약 성공');
-        navigate('/home');
+        alert('회의실 예약 성공');
+        navigate('/meetinglist');
       } else {
-        console.log(formData);
         formData.forEach((value, key) => {
-          console.log(key, value);
         });
         console.log('데이터 저장 실패');
       }
