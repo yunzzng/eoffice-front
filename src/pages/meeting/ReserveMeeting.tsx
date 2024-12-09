@@ -108,31 +108,6 @@ const ReserveMeeting = () => {
     }
   };
 
-  const reservePrevent = async() => {
-    try{
-      const response = await fetch('/api', {
-        method:"GET",
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      if(response.ok) {
-        console.log('회의실 예약정보 가져오기 성공');
-        const data = await response.json();
-        setInputValue({
-          date: data.date,
-          time: data.time,
-          location: data.location,
-          participants: data.participants,
-          title: data.title,
-          name: data.name
-        });
-      }
-    }catch(err) {
-      console.log('회의실 예약정보 가져오기 실패', err);
-    }
-  }
-
   return (
     <div>
       <Header />
