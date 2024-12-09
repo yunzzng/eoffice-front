@@ -31,10 +31,7 @@ const HomePage = () => {
                       alt="프로필 이미지"
                     />
                   </div>
-                  <a
-                    className={styles.navigation}
-                    onClick={() => navigator('/addmeeting')}
-                  >
+                  <a className={styles.navigation}>
                     <p className={styles.navigation_title}>
                       회의실 등록하러 가기
                     </p>
@@ -49,7 +46,7 @@ const HomePage = () => {
                 </div>
                 <div
                   className={`${styles.navigation_wrap} ${styles.cursor_pointer}`}
-                  onClick={() => navigator('/reservemeeting')}
+                  onClick={() => navigator('/meetinglist')}
                 >
                   <div className={styles.default_image}>
                     <img
@@ -59,9 +56,7 @@ const HomePage = () => {
                     />
                   </div>
 
-                  <a
-                    className={`${styles.navigation} ${styles.cursor_pointer}`}
-                  >
+                  <a className={styles.navigation}>
                     <p className={styles.navigation_title}>
                       회의실 예약하러 가기
                     </p>
