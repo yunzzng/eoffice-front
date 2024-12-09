@@ -2,7 +2,8 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import styles from '../../css/loginStyles/Home.module.css';
 import Sidebar from '../../components/sidebar/Siderbar';
-import defaultImage from '../../../public/img/default-image.png';
+import addmeetingImage from '../../../public/img/add_meeing.png';
+import reservemeetingImage from '../../../public/img/reserve_meeting.png';
 import arrowImage from '../../../public/img/arrow.png';
 
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +27,7 @@ const HomePage = () => {
                   <div className={styles.default_image}>
                     <img
                       className={styles.logo_image}
-                      src={defaultImage}
+                      src={addmeetingImage}
                       alt="프로필 이미지"
                     />
                   </div>
@@ -53,7 +54,7 @@ const HomePage = () => {
                   <div className={styles.default_image}>
                     <img
                       className={styles.logo_image}
-                      src={defaultImage}
+                      src={reservemeetingImage}
                       alt="프로필 이미지"
                     />
                   </div>
