@@ -224,7 +224,7 @@ const EditProfile = () => {
               </div>
 
               <NavigateButtons
-                className={styles.button}
+                className={`${styles.button} ${styles.cursor_pointer}`}
                 label={'프로필 수정'}
                 onClick={handleOnSubmit}
               ></NavigateButtons>

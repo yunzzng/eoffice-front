@@ -90,6 +90,10 @@ ul {
   background-color: #f1f1f1;
 }
 
+.cursor_pointer {
+  cursor: pointer;
+}
+
 .button {
   width: 20rem;
 

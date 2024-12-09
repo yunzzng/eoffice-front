@@ -49,7 +49,7 @@ export default function RootApp() {
             <Route path="/meetinglist" element={<MeetingList />} />
             <Route path="/editmeeting/:id" element={<EditMeeting />} />
             <Route path="/minuteslist" element={<MinutesList />} />
-            <Route path="/reservemeeting" element={<ReserveMeeting/>} />
+            <Route path="/reservemeeting" element={<ReserveMeeting />} />
             <Route path="/reservemeeting/:id" element={<ReserveMeeting />} />
             <Route path="/oauthloading" element={<OauthLoading />} />
             <Route path="*" element={<ErrorPage />} />
