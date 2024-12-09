@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React, { Suspense } from 'react';
-import { SidebarProvider } from './context/SidebarContext';
 // import Splash from './components/splash/Splash';
 // import Signup from './pages/login/Signup';
 // import Login from './pages/login/Login';
@@ -32,7 +31,6 @@ const OauthLoading = React.lazy(() => import('./pages/login/OauthLoading'));
 
 export default function RootApp() {
   return (
-    <SidebarProvider>
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
@@ -55,6 +53,5 @@ export default function RootApp() {
           </Routes>
         </Suspense>
       </BrowserRouter>
-    </SidebarProvider>
   );
 }

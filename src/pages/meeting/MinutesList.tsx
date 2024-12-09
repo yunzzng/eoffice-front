@@ -63,7 +63,6 @@ const MinutesList = () => {
       <div className={styles.container}>
         <Header />
         <Sidebar />
-
         <div className={styles.main_container}>
           <main className={styles.main}>
             <div className={styles.main_content}>
