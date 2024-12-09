@@ -22,7 +22,6 @@ const EditMeeting = () => {
   });
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id);
   const token = localStorage.getItem('token');
 
   const userData = async () => {
@@ -35,7 +34,6 @@ const EditMeeting = () => {
       });
       if (response.ok) {
         const { data } = await response.json();
-        console.log(data);
         setInputValue({
           name: data.name,
           location: data.location,
@@ -93,7 +91,6 @@ const EditMeeting = () => {
       });
       if (response.ok) {
         console.log('회의실 정보 수정 성공');
-        console.log(formData);
         alert('회의실 수정이 완료되었습니다.');
         navigate('/meetinglist');
       } else {
@@ -115,7 +112,6 @@ const EditMeeting = () => {
         },
       });
       if (response.ok) {
-        console.log('회의실 삭제 성공');
         alert('회의실이 삭제 되었습니다.');
         navigate('/meetinglist');
       } else {

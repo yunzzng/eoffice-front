@@ -43,7 +43,6 @@ const MeetingList = () => {
       });
       if (response.ok) {
         const { data } = await response.json();
-        console.log(data);
 
                 const mappingData = data.map((item:any) => ({
                     id: item._id,
