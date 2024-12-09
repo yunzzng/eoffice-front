@@ -18,6 +18,7 @@ interface ReserveMeetingType {
   participants: string;
   title: string; //회의실 예약할 때 회의실 제목
   name?: string; //회의실 등록할때 적었던 회의실 이름
+  status ?: string;
 }
 
 const ReserveMeeting = () => {
@@ -29,8 +30,9 @@ const ReserveMeeting = () => {
     location: '',
     participants: '',
     title: '',
-    name: ''
+    name: '',
   });
+  
   const { id } = useParams();
   const token = localStorage.getItem('token');
 
@@ -55,7 +57,7 @@ const ReserveMeeting = () => {
           location: data.location,
           participants: '',
           title: '',
-          name: data.name
+          name: data.name,
         });
         setInputFile(data.file);
       } else {
@@ -106,6 +108,31 @@ const ReserveMeeting = () => {
     }
   };
 
+  const reservePrevent = async() => {
+    try{
+      const response = await fetch('/api', {
+        method:"GET",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      if(response.ok) {
+        console.log('회의실 예약정보 가져오기 성공');
+        const data = await response.json();
+        setInputValue({
+          date: data.date,
+          time: data.time,
+          location: data.location,
+          participants: data.participants,
+          title: data.title,
+          name: data.name
+        });
+      }
+    }catch(err) {
+      console.log('회의실 예약정보 가져오기 실패', err);
+    }
+  }
+
   return (
     <div>
       <Header />
@@ -146,6 +173,7 @@ const ReserveMeeting = () => {
                 value={inputValue.location}
                 className={styles.input}
                 readonly
+                disabled={true}
               />
             </InputBox>
             <InputBox className={styles.input_group}>

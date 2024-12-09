@@ -11,9 +11,6 @@ const OauthLoading = () => {
       const token = queryParams.get('token');
       const provider = queryParams.get('provider') || 'google';
 
-      console.log('Token:', token);
-      console.log('Provider:', provider);
-
       if (!provider || !token) {
         alert('유효하지 않은 요청입니다. 다시 시도해주세요.');
         navigate('/login');
@@ -26,7 +23,6 @@ const OauthLoading = () => {
         alert('로그인 성공!');
         navigate('/home');
       } catch (err) {
-        console.error('OAuth 처리 오류:', err);
         alert('서버와 통신에 실패했습니다. 다시 시도해주세요.');
         navigate('/login');
       }

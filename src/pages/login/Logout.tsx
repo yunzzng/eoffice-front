@@ -14,8 +14,6 @@ const Logout = () => {
       alert("로그아웃 되었습니다.");
       localStorage.removeItem("token");
       navigate("/login");
-    } else {
-      alert("취소되었습니다.");
     }
   };
 

@@ -30,7 +30,7 @@ function Login() {
       const response = await fetch('/api/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email:readUser.email, password:readUser.password }),
+        body: JSON.stringify(readUser),
       });
 
       if (response.ok) {
